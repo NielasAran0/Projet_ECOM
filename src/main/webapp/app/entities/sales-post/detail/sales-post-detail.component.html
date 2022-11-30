@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="salesPost">
+      <h2 data-cy="salesPostDetailsHeading"><span jhiTranslate="ecomApp.salesPost.detail.title">Sales Post</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ salesPost.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.salesPost.stock">Stock</span></dt>
+        <dd>
+          <span>{{ salesPost.stock }}</span>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.salesPost.price">Price</span></dt>
+        <dd>
+          <span>{{ salesPost.price }}</span>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.salesPost.limitDate">Limit Date</span></dt>
+        <dd>
+          <span>{{ salesPost.limitDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.salesPost.sells">Sells</span></dt>
+        <dd>
+          <div *ngIf="salesPost.sells">
+            <a [routerLink]="['/product', salesPost.sells.id, 'view']">{{ salesPost.sells.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.salesPost.appUser">App User</span></dt>
+        <dd>
+          <div *ngIf="salesPost.appUser">
+            <a [routerLink]="['/app-user', salesPost.appUser.id, 'view']">{{ salesPost.appUser.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/sales-post', salesPost.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

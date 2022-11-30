@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20221130055038",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_order",
+  "fields": [
+    {
+      "fieldName": "totalPrice",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "discount",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "OrderState",
+      "fieldValues": "INCART,CANCELED,PAID"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserOrder",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "orderLine",
+      "otherEntityRelationshipName": "userOrder",
+      "relationshipName": "lines",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "appUser",
+      "otherEntityRelationshipName": "orders",
+      "relationshipName": "appUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

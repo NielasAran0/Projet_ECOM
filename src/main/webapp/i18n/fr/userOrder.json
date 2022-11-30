@@ -1,0 +1,29 @@
+{
+  "ecomApp": {
+    "userOrder": {
+      "home": {
+        "title": "UserOrders",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau User Order",
+        "createOrEditLabel": "Créer ou éditer un User Order",
+        "notFound": "Aucun User Order trouvé"
+      },
+      "created": "Un nouveau User Order a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Order avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Order avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le User Order {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Order"
+      },
+      "id": "ID",
+      "totalPrice": "Total Price",
+      "discount": "Discount",
+      "state": "State",
+      "date": "Date",
+      "lines": "Lines",
+      "appUser": "App User"
+    }
+  }
+}

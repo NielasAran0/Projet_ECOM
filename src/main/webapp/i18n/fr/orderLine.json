@@ -1,0 +1,28 @@
+{
+  "ecomApp": {
+    "orderLine": {
+      "home": {
+        "title": "OrderLines",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Order Line",
+        "createOrEditLabel": "Créer ou éditer un Order Line",
+        "notFound": "Aucun Order Line trouvé"
+      },
+      "created": "Un nouveau Order Line a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Order Line avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Order Line avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Order Line {{ id }} ?"
+      },
+      "detail": {
+        "title": "Order Line"
+      },
+      "id": "ID",
+      "quantity": "Quantity",
+      "unitPrice": "Unit Price",
+      "delivered": "Delivered",
+      "product": "Product",
+      "userOrder": "User Order"
+    }
+  }
+}
