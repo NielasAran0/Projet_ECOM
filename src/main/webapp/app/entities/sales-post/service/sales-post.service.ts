@@ -58,6 +58,10 @@ export class SalesPostService {
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
+  findAll(): Observable<ISalesPost[]> {
+    return this.http.get<ISalesPost[]>(this.resourceUrl);
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
