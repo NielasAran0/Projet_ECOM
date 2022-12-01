@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201152401",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "order_line",
+  "fields": [
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "unitPrice",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "delivered",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "OrderLine",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "product",
+      "relationshipName": "product",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "userOrder",
+      "otherEntityRelationshipName": "lines",
+      "relationshipName": "userOrder",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

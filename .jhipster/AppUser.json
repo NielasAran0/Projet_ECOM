@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201152355",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "app_user",
+  "fields": [
+    {
+      "fieldName": "telephone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "The User entity",
+  "jpaMetamodelFiltering": false,
+  "name": "AppUser",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "userOrder",
+      "ownerSide": true,
+      "relationshipName": "cart",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "userOrder",
+      "otherEntityRelationshipName": "appUser",
+      "relationshipName": "orders",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "salesPost",
+      "otherEntityRelationshipName": "appUser",
+      "relationshipName": "posts",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

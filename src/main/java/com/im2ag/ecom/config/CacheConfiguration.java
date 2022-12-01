@@ -48,6 +48,19 @@ public class CacheConfiguration {
             createCache(cm, com.im2ag.ecom.domain.User.class.getName());
             createCache(cm, com.im2ag.ecom.domain.Authority.class.getName());
             createCache(cm, com.im2ag.ecom.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.im2ag.ecom.domain.AppUser.class.getName());
+            createCache(cm, com.im2ag.ecom.domain.AppUser.class.getName() + ".orders");
+            createCache(cm, com.im2ag.ecom.domain.AppUser.class.getName() + ".posts");
+            createCache(cm, com.im2ag.ecom.domain.Product.class.getName());
+            createCache(cm, com.im2ag.ecom.domain.Product.class.getName() + ".images");
+            createCache(cm, com.im2ag.ecom.domain.Product.class.getName() + ".categories");
+            createCache(cm, com.im2ag.ecom.domain.SalesPost.class.getName());
+            createCache(cm, com.im2ag.ecom.domain.Image.class.getName());
+            createCache(cm, com.im2ag.ecom.domain.Category.class.getName());
+            createCache(cm, com.im2ag.ecom.domain.Category.class.getName() + ".products");
+            createCache(cm, com.im2ag.ecom.domain.UserOrder.class.getName());
+            createCache(cm, com.im2ag.ecom.domain.UserOrder.class.getName() + ".lines");
+            createCache(cm, com.im2ag.ecom.domain.OrderLine.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

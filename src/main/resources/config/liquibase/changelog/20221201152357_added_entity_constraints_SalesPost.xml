@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity SalesPost.
+    -->
+    <changeSet id="20221201152357-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="sales_post"
+                                 constraintName="fk_sales_post__product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+
+        <addForeignKeyConstraint baseColumnNames="app_user_id"
+                                 baseTableName="sales_post"
+                                 constraintName="fk_sales_post__app_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="app_user"/>
+    </changeSet>
+</databaseChangeLog>

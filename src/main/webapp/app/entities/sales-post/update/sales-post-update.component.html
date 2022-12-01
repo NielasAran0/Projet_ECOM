@@ -1,0 +1,91 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-sales-post-heading" data-cy="SalesPostCreateUpdateHeading" jhiTranslate="ecomApp.salesPost.home.createOrEditLabel">
+        Create or edit a Sales Post
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ecomApp.salesPost.stock" for="field_stock">Stock</label>
+          <input type="number" class="form-control" name="stock" id="field_stock" data-cy="stock" formControlName="stock" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ecomApp.salesPost.price" for="field_price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ecomApp.salesPost.limitDate" for="field_limitDate">Limit Date</label>
+          <div class="input-group">
+            <input
+              id="field_limitDate"
+              data-cy="limitDate"
+              type="text"
+              class="form-control"
+              name="limitDate"
+              ngbDatepicker
+              #limitDateDp="ngbDatepicker"
+              formControlName="limitDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="limitDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ecomApp.salesPost.product" for="field_product">Product</label>
+          <select
+            class="form-control"
+            id="field_product"
+            data-cy="product"
+            name="product"
+            formControlName="product"
+            [compareWith]="compareProduct"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="productOption" *ngFor="let productOption of productsCollection">{{ productOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ecomApp.salesPost.appUser" for="field_appUser">App User</label>
+          <select
+            class="form-control"
+            id="field_appUser"
+            data-cy="appUser"
+            name="appUser"
+            formControlName="appUser"
+            [compareWith]="compareAppUser"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="appUserOption" *ngFor="let appUserOption of appUsersSharedCollection">{{ appUserOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

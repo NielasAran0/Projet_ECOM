@@ -1,0 +1,67 @@
+/**
+ *The User entity
+ */
+entity AppUser {
+    telephone String
+    adresse String
+}
+
+/**
+ * The Product entity.
+ */
+entity Product {
+    name String
+    description String
+}
+
+entity SalesPost {
+	stock Integer
+    price Float
+    limitDate LocalDate
+}
+
+entity Image {
+	url String
+}
+
+entity Category {
+    name String
+}
+
+entity UserOrder {
+    totalPrice Float
+    discount Float
+    state OrderState
+    date LocalDate
+}
+
+entity OrderLine {
+    quantity Integer
+    unitPrice Float
+    delivered Boolean
+}
+
+enum OrderState {
+	INCART, CANCELED, PAID
+}
+
+relationship OneToOne {
+    AppUser {cart} to UserOrder
+	SalesPost {product} to Product {salespost}
+}
+
+relationship ManyToMany {
+	Product {categories} to Category {products}
+}
+
+relationship ManyToOne {
+	Product {seller} to AppUser
+    OrderLine {product} to Product
+}
+
+relationship OneToMany {
+	UserOrder {lines} to OrderLine
+    Product {images} to Image
+    AppUser {orders} to UserOrder
+    AppUser {posts} to SalesPost
+}

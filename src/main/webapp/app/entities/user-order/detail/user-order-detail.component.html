@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userOrder">
+      <h2 data-cy="userOrderDetailsHeading"><span jhiTranslate="ecomApp.userOrder.detail.title">User Order</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ userOrder.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.userOrder.totalPrice">Total Price</span></dt>
+        <dd>
+          <span>{{ userOrder.totalPrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.userOrder.discount">Discount</span></dt>
+        <dd>
+          <span>{{ userOrder.discount }}</span>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.userOrder.state">State</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'ecomApp.OrderState.' + userOrder.state }}">{{ userOrder.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.userOrder.date">Date</span></dt>
+        <dd>
+          <span>{{ userOrder.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="ecomApp.userOrder.appUser">App User</span></dt>
+        <dd>
+          <div *ngIf="userOrder.appUser">
+            <a [routerLink]="['/app-user', userOrder.appUser.id, 'view']">{{ userOrder.appUser.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-order', userOrder.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

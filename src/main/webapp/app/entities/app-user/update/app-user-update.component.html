@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-app-user-heading" data-cy="AppUserCreateUpdateHeading" jhiTranslate="ecomApp.appUser.home.createOrEditLabel">
+        Create or edit a App User
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ecomApp.appUser.telephone" for="field_telephone">Telephone</label>
+          <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ecomApp.appUser.adresse" for="field_adresse">Adresse</label>
+          <input type="text" class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ecomApp.appUser.cart" for="field_cart">Cart</label>
+          <select class="form-control" id="field_cart" data-cy="cart" name="cart" formControlName="cart" [compareWith]="compareUserOrder">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userOrderOption" *ngFor="let userOrderOption of userOrdersSharedCollection">{{ userOrderOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

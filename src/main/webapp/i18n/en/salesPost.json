@@ -1,0 +1,28 @@
+{
+  "ecomApp": {
+    "salesPost": {
+      "home": {
+        "title": "Sales Posts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sales Post",
+        "createOrEditLabel": "Create or edit a Sales Post",
+        "notFound": "No Sales Posts found"
+      },
+      "created": "A new Sales Post is created with identifier {{ param }}",
+      "updated": "A Sales Post is updated with identifier {{ param }}",
+      "deleted": "A Sales Post is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sales Post {{ id }}?"
+      },
+      "detail": {
+        "title": "Sales Post"
+      },
+      "id": "ID",
+      "stock": "Stock",
+      "price": "Price",
+      "limitDate": "Limit Date",
+      "product": "Product",
+      "appUser": "App User"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "ecomApp": {
+    "salesPost": {
+      "home": {
+        "title": "SalesPosts",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Sales Post",
+        "createOrEditLabel": "Créer ou éditer un Sales Post",
+        "notFound": "Aucun Sales Post trouvé"
+      },
+      "created": "Un nouveau Sales Post a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Sales Post avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Sales Post avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Sales Post {{ id }} ?"
+      },
+      "detail": {
+        "title": "Sales Post"
+      },
+      "id": "ID",
+      "stock": "Stock",
+      "price": "Price",
+      "limitDate": "Limit Date",
+      "product": "Product",
+      "appUser": "App User"
+    }
+  }
+}

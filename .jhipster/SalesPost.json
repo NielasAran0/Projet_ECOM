@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201152357",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "sales_post",
+  "fields": [
+    {
+      "fieldName": "stock",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "limitDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SalesPost",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "salespost",
+      "ownerSide": true,
+      "relationshipName": "product",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "appUser",
+      "otherEntityRelationshipName": "posts",
+      "relationshipName": "appUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

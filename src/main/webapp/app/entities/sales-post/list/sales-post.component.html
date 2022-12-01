@@ -1,0 +1,124 @@
+<div>
+  <h2 id="page-heading" data-cy="SalesPostHeading">
+    <span jhiTranslate="ecomApp.salesPost.home.title">Sales Posts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="ecomApp.salesPost.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-sales-post"
+        [routerLink]="['/sales-post/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="ecomApp.salesPost.home.createLabel"> Create a new Sales Post </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="salesPosts?.length === 0">
+    <span jhiTranslate="ecomApp.salesPost.home.notFound">No Sales Posts found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="salesPosts && salesPosts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="stock">
+            <div class="d-flex">
+              <span jhiTranslate="ecomApp.salesPost.stock">Stock</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="price">
+            <div class="d-flex">
+              <span jhiTranslate="ecomApp.salesPost.price">Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="limitDate">
+            <div class="d-flex">
+              <span jhiTranslate="ecomApp.salesPost.limitDate">Limit Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="product.id">
+            <div class="d-flex">
+              <span jhiTranslate="ecomApp.salesPost.product">Product</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="appUser.id">
+            <div class="d-flex">
+              <span jhiTranslate="ecomApp.salesPost.appUser">App User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let salesPost of salesPosts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/sales-post', salesPost.id, 'view']">{{ salesPost.id }}</a>
+          </td>
+          <td>{{ salesPost.stock }}</td>
+          <td>{{ salesPost.price }}</td>
+          <td>{{ salesPost.limitDate | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="salesPost.product">
+              <a [routerLink]="['/product', salesPost.product.id, 'view']">{{ salesPost.product.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="salesPost.appUser">
+              <a [routerLink]="['/app-user', salesPost.appUser.id, 'view']">{{ salesPost.appUser.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/sales-post', salesPost.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/sales-post', salesPost.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(salesPost)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

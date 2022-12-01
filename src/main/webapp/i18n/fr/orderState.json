@@ -1,0 +1,10 @@
+{
+  "ecomApp": {
+    "OrderState": {
+      "null": "",
+      "INCART": "INCART",
+      "CANCELED": "CANCELED",
+      "PAID": "PAID"
+    }
+  }
+}

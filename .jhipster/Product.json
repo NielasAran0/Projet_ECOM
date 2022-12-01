@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201152356",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "product",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "The Product entity.",
+  "jpaMetamodelFiltering": false,
+  "name": "Product",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "image",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "images",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "appUser",
+      "relationshipName": "seller",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "products",
+      "ownerSide": true,
+      "relationshipName": "categories",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "salesPost",
+      "otherEntityRelationshipName": "product",
+      "ownerSide": false,
+      "relationshipName": "salespost",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}
