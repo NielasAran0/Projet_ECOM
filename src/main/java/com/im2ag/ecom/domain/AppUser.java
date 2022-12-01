@@ -27,18 +27,6 @@ public class AppUser implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "telephone")
     private String telephone;
 
@@ -73,58 +61,6 @@ public class AppUser implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public AppUser email(String email) {
-        this.setEmail(email);
-        return this;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public AppUser firstName(String firstName) {
-        this.setFirstName(firstName);
-        return this;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public AppUser lastName(String lastName) {
-        this.setLastName(lastName);
-        return this;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public AppUser password(String password) {
-        this.setPassword(password);
-        return this;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getTelephone() {
@@ -252,10 +188,6 @@ public class AppUser implements Serializable {
     public String toString() {
         return "AppUser{" +
             "id=" + getId() +
-            ", email='" + getEmail() + "'" +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", password='" + getPassword() + "'" +
             ", telephone='" + getTelephone() + "'" +
             ", adresse='" + getAdresse() + "'" +
             "}";

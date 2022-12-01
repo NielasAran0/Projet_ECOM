@@ -121,18 +121,6 @@ public class AppUserResource {
         Optional<AppUser> result = appUserRepository
             .findById(appUser.getId())
             .map(existingAppUser -> {
-                if (appUser.getEmail() != null) {
-                    existingAppUser.setEmail(appUser.getEmail());
-                }
-                if (appUser.getFirstName() != null) {
-                    existingAppUser.setFirstName(appUser.getFirstName());
-                }
-                if (appUser.getLastName() != null) {
-                    existingAppUser.setLastName(appUser.getLastName());
-                }
-                if (appUser.getPassword() != null) {
-                    existingAppUser.setPassword(appUser.getPassword());
-                }
                 if (appUser.getTelephone() != null) {
                     existingAppUser.setTelephone(appUser.getTelephone());
                 }

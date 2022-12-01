@@ -157,17 +157,9 @@ describe('AppUser e2e test', () => {
     });
 
     it('should create an instance of AppUser', () => {
-      cy.get(`[data-cy="email"]`).type('Cloyd91@hotmail.com').should('have.value', 'Cloyd91@hotmail.com');
+      cy.get(`[data-cy="telephone"]`).type('1-311-904-4078 x7847').should('have.value', '1-311-904-4078 x7847');
 
-      cy.get(`[data-cy="firstName"]`).type('Adolph').should('have.value', 'Adolph');
-
-      cy.get(`[data-cy="lastName"]`).type('Johnson').should('have.value', 'Johnson');
-
-      cy.get(`[data-cy="password"]`).type('Fish mindshare').should('have.value', 'Fish mindshare');
-
-      cy.get(`[data-cy="telephone"]`).type('1-543-945-5592').should('have.value', '1-543-945-5592');
-
-      cy.get(`[data-cy="adresse"]`).type('Architect').should('have.value', 'Architect');
+      cy.get(`[data-cy="adresse"]`).type('Granite').should('have.value', 'Granite');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

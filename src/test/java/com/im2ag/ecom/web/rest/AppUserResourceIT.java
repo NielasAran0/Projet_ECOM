@@ -29,18 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class AppUserResourceIT {
 
-    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
-    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
-
-    private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_PASSWORD = "AAAAAAAAAA";
-    private static final String UPDATED_PASSWORD = "BBBBBBBBBB";
-
     private static final String DEFAULT_TELEPHONE = "AAAAAAAAAA";
     private static final String UPDATED_TELEPHONE = "BBBBBBBBBB";
 
@@ -71,13 +59,7 @@ class AppUserResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static AppUser createEntity(EntityManager em) {
-        AppUser appUser = new AppUser()
-            .email(DEFAULT_EMAIL)
-            .firstName(DEFAULT_FIRST_NAME)
-            .lastName(DEFAULT_LAST_NAME)
-            .password(DEFAULT_PASSWORD)
-            .telephone(DEFAULT_TELEPHONE)
-            .adresse(DEFAULT_ADRESSE);
+        AppUser appUser = new AppUser().telephone(DEFAULT_TELEPHONE).adresse(DEFAULT_ADRESSE);
         return appUser;
     }
 
@@ -88,13 +70,7 @@ class AppUserResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static AppUser createUpdatedEntity(EntityManager em) {
-        AppUser appUser = new AppUser()
-            .email(UPDATED_EMAIL)
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .password(UPDATED_PASSWORD)
-            .telephone(UPDATED_TELEPHONE)
-            .adresse(UPDATED_ADRESSE);
+        AppUser appUser = new AppUser().telephone(UPDATED_TELEPHONE).adresse(UPDATED_ADRESSE);
         return appUser;
     }
 
@@ -116,10 +92,6 @@ class AppUserResourceIT {
         List<AppUser> appUserList = appUserRepository.findAll();
         assertThat(appUserList).hasSize(databaseSizeBeforeCreate + 1);
         AppUser testAppUser = appUserList.get(appUserList.size() - 1);
-        assertThat(testAppUser.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(testAppUser.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
-        assertThat(testAppUser.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
-        assertThat(testAppUser.getPassword()).isEqualTo(DEFAULT_PASSWORD);
         assertThat(testAppUser.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
         assertThat(testAppUser.getAdresse()).isEqualTo(DEFAULT_ADRESSE);
     }
@@ -154,10 +126,6 @@ class AppUserResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(appUser.getId().intValue())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
-            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
-            .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD)))
             .andExpect(jsonPath("$.[*].telephone").value(hasItem(DEFAULT_TELEPHONE)))
             .andExpect(jsonPath("$.[*].adresse").value(hasItem(DEFAULT_ADRESSE)));
     }
@@ -174,10 +142,6 @@ class AppUserResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(appUser.getId().intValue()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
-            .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME))
-            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
-            .andExpect(jsonPath("$.password").value(DEFAULT_PASSWORD))
             .andExpect(jsonPath("$.telephone").value(DEFAULT_TELEPHONE))
             .andExpect(jsonPath("$.adresse").value(DEFAULT_ADRESSE));
     }
@@ -201,13 +165,7 @@ class AppUserResourceIT {
         AppUser updatedAppUser = appUserRepository.findById(appUser.getId()).get();
         // Disconnect from session so that the updates on updatedAppUser are not directly saved in db
         em.detach(updatedAppUser);
-        updatedAppUser
-            .email(UPDATED_EMAIL)
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .password(UPDATED_PASSWORD)
-            .telephone(UPDATED_TELEPHONE)
-            .adresse(UPDATED_ADRESSE);
+        updatedAppUser.telephone(UPDATED_TELEPHONE).adresse(UPDATED_ADRESSE);
 
         restAppUserMockMvc
             .perform(
@@ -221,10 +179,6 @@ class AppUserResourceIT {
         List<AppUser> appUserList = appUserRepository.findAll();
         assertThat(appUserList).hasSize(databaseSizeBeforeUpdate);
         AppUser testAppUser = appUserList.get(appUserList.size() - 1);
-        assertThat(testAppUser.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testAppUser.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
-        assertThat(testAppUser.getLastName()).isEqualTo(UPDATED_LAST_NAME);
-        assertThat(testAppUser.getPassword()).isEqualTo(UPDATED_PASSWORD);
         assertThat(testAppUser.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
         assertThat(testAppUser.getAdresse()).isEqualTo(UPDATED_ADRESSE);
     }
@@ -297,7 +251,7 @@ class AppUserResourceIT {
         AppUser partialUpdatedAppUser = new AppUser();
         partialUpdatedAppUser.setId(appUser.getId());
 
-        partialUpdatedAppUser.email(UPDATED_EMAIL).firstName(UPDATED_FIRST_NAME).telephone(UPDATED_TELEPHONE).adresse(UPDATED_ADRESSE);
+        partialUpdatedAppUser.telephone(UPDATED_TELEPHONE).adresse(UPDATED_ADRESSE);
 
         restAppUserMockMvc
             .perform(
@@ -311,10 +265,6 @@ class AppUserResourceIT {
         List<AppUser> appUserList = appUserRepository.findAll();
         assertThat(appUserList).hasSize(databaseSizeBeforeUpdate);
         AppUser testAppUser = appUserList.get(appUserList.size() - 1);
-        assertThat(testAppUser.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testAppUser.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
-        assertThat(testAppUser.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
-        assertThat(testAppUser.getPassword()).isEqualTo(DEFAULT_PASSWORD);
         assertThat(testAppUser.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
         assertThat(testAppUser.getAdresse()).isEqualTo(UPDATED_ADRESSE);
     }
@@ -331,13 +281,7 @@ class AppUserResourceIT {
         AppUser partialUpdatedAppUser = new AppUser();
         partialUpdatedAppUser.setId(appUser.getId());
 
-        partialUpdatedAppUser
-            .email(UPDATED_EMAIL)
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .password(UPDATED_PASSWORD)
-            .telephone(UPDATED_TELEPHONE)
-            .adresse(UPDATED_ADRESSE);
+        partialUpdatedAppUser.telephone(UPDATED_TELEPHONE).adresse(UPDATED_ADRESSE);
 
         restAppUserMockMvc
             .perform(
@@ -351,10 +295,6 @@ class AppUserResourceIT {
         List<AppUser> appUserList = appUserRepository.findAll();
         assertThat(appUserList).hasSize(databaseSizeBeforeUpdate);
         AppUser testAppUser = appUserList.get(appUserList.size() - 1);
-        assertThat(testAppUser.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testAppUser.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
-        assertThat(testAppUser.getLastName()).isEqualTo(UPDATED_LAST_NAME);
-        assertThat(testAppUser.getPassword()).isEqualTo(UPDATED_PASSWORD);
         assertThat(testAppUser.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
         assertThat(testAppUser.getAdresse()).isEqualTo(UPDATED_ADRESSE);
     }

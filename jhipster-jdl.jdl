@@ -2,10 +2,6 @@
  *The User entity
  */
 entity AppUser {
-    email String
-    firstName String
-    lastName String
-    password String
     telephone String
     adresse String
 }

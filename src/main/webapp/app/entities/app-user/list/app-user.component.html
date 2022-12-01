@@ -38,30 +38,6 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="email">
-            <div class="d-flex">
-              <span jhiTranslate="ecomApp.appUser.email">Email</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="firstName">
-            <div class="d-flex">
-              <span jhiTranslate="ecomApp.appUser.firstName">First Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="lastName">
-            <div class="d-flex">
-              <span jhiTranslate="ecomApp.appUser.lastName">Last Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="password">
-            <div class="d-flex">
-              <span jhiTranslate="ecomApp.appUser.password">Password</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col" jhiSortBy="telephone">
             <div class="d-flex">
               <span jhiTranslate="ecomApp.appUser.telephone">Telephone</span>
@@ -88,10 +64,6 @@
           <td>
             <a [routerLink]="['/app-user', appUser.id, 'view']">{{ appUser.id }}</a>
           </td>
-          <td>{{ appUser.email }}</td>
-          <td>{{ appUser.firstName }}</td>
-          <td>{{ appUser.lastName }}</td>
-          <td>{{ appUser.password }}</td>
           <td>{{ appUser.telephone }}</td>
           <td>{{ appUser.adresse }}</td>
           <td>

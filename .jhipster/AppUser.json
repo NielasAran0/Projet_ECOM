@@ -6,22 +6,6 @@
   "entityTableName": "app_user",
   "fields": [
     {
-      "fieldName": "email",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "firstName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "lastName",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "password",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "telephone",
       "fieldType": "String"
     },

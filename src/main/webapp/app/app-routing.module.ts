@@ -11,7 +11,10 @@ import { AccueilComponent } from './shop/accueil/accueil.component';
 import { MainComponent } from './layouts/main/main.component';
 
 const routes: Routes = [
-  { path: '', component: AccueilComponent },
+  {
+    path: '',
+    loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule),
+  },
 
   {
     path: 'login',

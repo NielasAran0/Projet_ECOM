@@ -18,10 +18,6 @@
         "title": "App User"
       },
       "id": "ID",
-      "email": "Email",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "password": "Password",
       "telephone": "Telephone",
       "adresse": "Adresse",
       "cart": "Cart",

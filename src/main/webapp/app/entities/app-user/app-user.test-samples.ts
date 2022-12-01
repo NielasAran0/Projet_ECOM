@@ -5,20 +5,15 @@ export const sampleWithRequiredData: IAppUser = {
 };
 
 export const sampleWithPartialData: IAppUser = {
-  id: 49456,
-  email: 'Fay.Satterfield90@yahoo.com',
-  firstName: 'Maryam',
-  telephone: '571-491-5689',
+  id: 30698,
+  telephone: '744-737-9096 x047',
+  adresse: 'toolset',
 };
 
 export const sampleWithFullData: IAppUser = {
-  id: 45462,
-  email: 'Alana_Batz@gmail.com',
-  firstName: 'Hal',
-  lastName: 'Crona',
-  password: 'Mountains',
-  telephone: '(777) 560-2884',
-  adresse: 'violet white',
+  id: 53044,
+  telephone: '994-200-4741 x0457',
+  adresse: 'monitor',
 };
 
 export const sampleWithNewData: NewAppUser = {

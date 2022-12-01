@@ -20,10 +20,6 @@ describe('AppUser Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            email: expect.any(Object),
-            firstName: expect.any(Object),
-            lastName: expect.any(Object),
-            password: expect.any(Object),
             telephone: expect.any(Object),
             adresse: expect.any(Object),
             cart: expect.any(Object),
@@ -37,10 +33,6 @@ describe('AppUser Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            email: expect.any(Object),
-            firstName: expect.any(Object),
-            lastName: expect.any(Object),
-            password: expect.any(Object),
             telephone: expect.any(Object),
             adresse: expect.any(Object),
             cart: expect.any(Object),

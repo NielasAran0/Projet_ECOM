@@ -28,6 +28,8 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { TopNavComponent } from './shop/top-nav/top-nav.component';
 import { AppComponent } from './app/app.component';
 import { AccueilComponent } from './shop/accueil/accueil.component';
+import { ProductCardComponent } from './shop/product/product-card/product-card.component';
+import { ProductDetailComponent } from './shop/product/product-detail/product-detail.component';
 
 @NgModule({
   imports: [
@@ -47,17 +49,7 @@ import { AccueilComponent } from './shop/accueil/accueil.component';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [
-    MainComponent,
-    NavbarComponent,
-    ErrorComponent,
-    PageRibbonComponent,
-    ActiveMenuDirective,
-    FooterComponent,
-    TopNavComponent,
-    AppComponent,
-    AccueilComponent,
-  ],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {

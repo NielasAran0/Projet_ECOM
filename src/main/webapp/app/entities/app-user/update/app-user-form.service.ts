@@ -18,10 +18,6 @@ type AppUserFormDefaults = Pick<NewAppUser, 'id'>;
 
 type AppUserFormGroupContent = {
   id: FormControl<IAppUser['id'] | NewAppUser['id']>;
-  email: FormControl<IAppUser['email']>;
-  firstName: FormControl<IAppUser['firstName']>;
-  lastName: FormControl<IAppUser['lastName']>;
-  password: FormControl<IAppUser['password']>;
   telephone: FormControl<IAppUser['telephone']>;
   adresse: FormControl<IAppUser['adresse']>;
   cart: FormControl<IAppUser['cart']>;
@@ -44,10 +40,6 @@ export class AppUserFormService {
           validators: [Validators.required],
         }
       ),
-      email: new FormControl(appUserRawValue.email),
-      firstName: new FormControl(appUserRawValue.firstName),
-      lastName: new FormControl(appUserRawValue.lastName),
-      password: new FormControl(appUserRawValue.password),
       telephone: new FormControl(appUserRawValue.telephone),
       adresse: new FormControl(appUserRawValue.adresse),
       cart: new FormControl(appUserRawValue.cart),

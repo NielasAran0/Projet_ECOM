@@ -71,11 +71,7 @@ class AppUserGatlingTest extends Simulation {
             .post("/api/app-users")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
-                "email":"SAMPLE_TEXT"
-                , "firstName":"SAMPLE_TEXT"
-                , "lastName":"SAMPLE_TEXT"
-                , "password":"SAMPLE_TEXT"
-                , "telephone":"SAMPLE_TEXT"
+                "telephone":"SAMPLE_TEXT"
                 , "adresse":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
