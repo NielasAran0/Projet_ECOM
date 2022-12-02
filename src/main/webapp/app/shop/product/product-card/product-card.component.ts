@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { EntityArrayResponseType, ProductService } from 'app/entities/product/service/product.service';
+import { EntityArrayResponseType, SalesPostService } from 'app/entities/sales-post/service/sales-post.service';
 import { IProduct } from '../../../entities/product/product.model';
 import { SortService } from 'app/shared/sort/sort.service';
+import { ISalesPost } from 'app/entities/sales-post/sales-post.model';
 @Component({
   selector: 'jhi-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnInit {
-  products?: IProduct[];
+  products?: ISalesPost[];
   isLoading = false;
 
   predicate = 'id';
   ascending = true;
-  constructor(protected productService: ProductService, protected sortService: SortService) {}
+  constructor(protected salesPostService: SalesPostService, protected sortService: SortService) {}
 
   ngOnInit(): void {
-    var tmp = this.productService
+    this.salesPostService
       .query({
         eagerload: true,
         sort: ['id', 'asc'],
@@ -34,11 +35,11 @@ export class ProductCardComponent implements OnInit {
     this.products = this.refineData(dataFromBody);
   }
 
-  protected refineData(data: IProduct[]): IProduct[] {
+  protected refineData(data: ISalesPost[]): ISalesPost[] {
     return data.sort(this.sortService.startSort(this.predicate, this.ascending ? 1 : -1));
   }
 
-  protected fillComponentAttributesFromResponseBody(data: IProduct[] | null): IProduct[] {
+  protected fillComponentAttributesFromResponseBody(data: ISalesPost[] | null): ISalesPost[] {
     return data ?? [];
   }
 }

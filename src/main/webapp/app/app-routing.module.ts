@@ -12,7 +12,7 @@ import { MainComponent } from './layouts/main/main.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'shop',
     loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule),
   },
 
@@ -22,12 +22,16 @@ const routes: Routes = [
   },
 
   {
-    path: 'dashboard',
+    path: '',
     component: MainComponent,
     children: [
       {
         path: '',
         loadChildren: () => import(`./home/home.module`).then(m => m.HomeModule),
+      },
+      {
+        path: '',
+        loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
       },
       {
         path: 'account',
@@ -42,10 +46,6 @@ const routes: Routes = [
         loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule),
       },
 
-      {
-        path: '',
-        loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
-      },
       navbarRoute,
     ],
   },
@@ -53,7 +53,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

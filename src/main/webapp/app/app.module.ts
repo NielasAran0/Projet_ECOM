@@ -25,11 +25,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import { TopNavComponent } from './shop/top-nav/top-nav.component';
 import { AppComponent } from './app/app.component';
-import { AccueilComponent } from './shop/accueil/accueil.component';
-import { ProductCardComponent } from './shop/product/product-card/product-card.component';
-import { ProductDetailComponent } from './shop/product/product-detail/product-detail.component';
 
 @NgModule({
   imports: [
@@ -49,6 +45,7 @@ import { ProductDetailComponent } from './shop/product/product-detail/product-de
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
+  exports: [FooterComponent],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AppComponent],
   bootstrap: [AppComponent],
 })
