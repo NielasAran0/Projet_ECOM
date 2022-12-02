@@ -4,6 +4,7 @@ import { SalesPostRoutingResolveService } from 'app/entities/sales-post/route/sa
 import { AccueilComponent } from './accueil/accueil.component';
 import { MainBodyComponent } from './main-body/main-body.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
         component: ProductDetailComponent,
       },
     ],
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
   },
 ];
 

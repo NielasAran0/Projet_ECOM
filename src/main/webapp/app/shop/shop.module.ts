@@ -9,9 +9,10 @@ import { ProductCardComponent } from './product/product-card/product-card.compon
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { MainBodyComponent } from './main-body/main-body.component';
 import { AppModule } from 'app/app.module';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
-  declarations: [AccueilComponent, TopNavComponent, ProductCardComponent, ProductDetailComponent, MainBodyComponent],
+  declarations: [AccueilComponent, TopNavComponent, ProductCardComponent, ProductDetailComponent, MainBodyComponent,CartComponent],
   imports: [CommonModule, ShopRoutingModule],
 })
 export class ShopModule {}
