@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartServiceService } from 'app/shop/service/cart-service.service';
 
 import { ISalesPost } from '../../../entities/sales-post/sales-post.model';
 
@@ -11,7 +12,7 @@ import { ISalesPost } from '../../../entities/sales-post/sales-post.model';
 export class ProductDetailComponent implements OnInit {
   salesPost: ISalesPost | null = null;
 
-  constructor(protected activatedRoute: ActivatedRoute) {}
+  constructor(protected activatedRoute: ActivatedRoute, private storageService: CartServiceService) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ salesPost }) => {
@@ -29,14 +30,18 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(ele: ISalesPost | null) {
     const tmp = localStorage.getItem('cart');
-    let cart: any = {};
+    let cart = [];
     if (tmp != null) {
       cart = JSON.parse(tmp);
-      cart.items.push(ele);
+      cart.push(ele);
     } else {
-      cart.items = [ele];
+      cart = [ele];
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
+    this.setMessage(cart);
+  }
+
+  setMessage(value: []): void {
+    this.storageService.setStorageItem(value);
   }
 }
