@@ -33,11 +33,12 @@ export class ProductDetailComponent implements OnInit {
     let cart = [];
     if (tmp != null) {
       cart = JSON.parse(tmp);
+      console.log(cart);
       cart.push(ele);
     } else {
       cart = [ele];
     }
-
+    console.log(cart);
     this.setMessage(cart);
   }
 

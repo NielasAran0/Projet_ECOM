@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartService } from '../../service/cart.service';
+import { CartServiceService } from '../../service/cart-service.service';
 
 @Component({
   selector: 'jhi-subtotal',
@@ -11,7 +11,7 @@ export class SubtotalComponent implements OnInit {
   count$: Observable<number> | undefined;
   subTotal$: Observable<number> | undefined;
 
-  constructor(private shoppingCartService: CartService) {}
+  constructor(private shoppingCartService: CartServiceService) {}
 
   ngOnInit() {
     this.subTotal$ = this.shoppingCartService.getSubTotal();
