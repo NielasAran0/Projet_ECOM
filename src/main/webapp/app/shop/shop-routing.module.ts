@@ -22,11 +22,11 @@ const routes: Routes = [
         },
         component: ProductDetailComponent,
       },
+      {
+        path: 'cart',
+        component: CartComponent,
+      },
     ],
-  },
-  {
-    path: 'cart',
-    component: CartComponent,
   },
 ];
 
