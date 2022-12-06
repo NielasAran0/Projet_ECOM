@@ -8,8 +8,7 @@ import { CartServiceService } from '../../service/cart-service.service';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  items$: Observable<ISalesPost[]> | undefined;
-
+  items$: Observable<any[]> | undefined;
   constructor(private CartService: CartServiceService) {}
 
   ngOnInit() {
