@@ -53,8 +53,8 @@
         <option value="Savoie"></option>
         <option value="Haute-Savoie"></option>
       </datalist>
-      <label for="region" *ngSwitchCase="'belgique'">belgique</label>
-      <label for="region" *ngSwitchCase="'suisse'">suisse</label>
+      <label for="region" *ngSwitchCase="'belgique'"></label>
+      <label for="region" *ngSwitchCase="'suisse'"></label>
     </span>
     <!-- ajouter if avec régions de france/belgique/suisse-->
   </div>
@@ -63,7 +63,7 @@
     <input type="text" id="ville" formControlName="ville" />
     <label for="code_postal">Code Postal :</label>
     <input type="text" id="code_postal" formControlName="code_postal" />
-    <label for="addresse">Rue et numéro :</label>
+    <label for="addresse">Addresse Postale</label>
     <input type="text" id="addresse" formControlName="addresse" />
   </div>
   <!--ajouter identificateur pays-->
@@ -72,11 +72,9 @@
     <input type="tel" id="telephone" formControlName="telephone" />
   </div>
   <input type="checkbox" id="CGV" formControlName="CGV" />
-  <label for="CGV">J'accepte les conditions générales de vente :</label>
+  <label for="CGV">J'accepte les conditions générales de vente</label>
   <div class="button">
     <!-- ><button type="submit" [routerLink]="['../payment']">Valider les informations personnelles</button>-->
-    <button type="submit" [routerLink]="['../payment']" [disabled]="!personal_info_form.valid">
-      Valider les informations personnelles
-    </button>
+    <button type="submit" [disabled]="!personal_info_form.valid">Valider les informations personnelles</button>
   </div>
 </form>

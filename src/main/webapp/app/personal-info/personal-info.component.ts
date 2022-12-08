@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { NgModel } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-personal-info-component',
@@ -17,13 +18,13 @@ export class PersonalInfoComponent {
     region: new FormControl(''),
     departement: new FormControl(''),
     ville: new FormControl('', Validators.required),
-    code_postal: new FormControl('', [Validators.required, Validators.pattern('d{4,5}')]),
+    code_postal: new FormControl('', [Validators.required, Validators.pattern('[0-9]{4,5}')]),
     addresse: new FormControl('', Validators.required),
-    telephone: new FormControl('', Validators.pattern('d{10}')),
+    telephone: new FormControl('', Validators.pattern('[0-9]{10}')),
     CGV: new FormControl('', Validators.required),
   });
 
-  //constructor() {}
+  constructor(private _router: Router) {}
 
   //ngOnInit(): void {}
 
@@ -31,11 +32,11 @@ export class PersonalInfoComponent {
     if (this.personal_info_form.controls['pays'].value == 'france') {
       this.personal_info_form.controls['region'].setValidators(Validators.required);
       this.personal_info_form.controls['departement'].setValidators(Validators.required);
-      //this.personal_info_form.controls['code_postal'].setValidators([Validators.required, Validators.pattern("\d{5}")]);
+      this.personal_info_form.controls['code_postal'].setValidators([Validators.required, Validators.pattern('[0-9]{5}')]);
     } else {
       this.personal_info_form.controls['region'].clearValidators();
       this.personal_info_form.controls['departement'].clearValidators();
-      //this.personal_info_form.controls['code_postal'].setValidators([Validators.required, Validators.pattern("\d{4}")]);
+      this.personal_info_form.controls['code_postal'].setValidators([Validators.required, Validators.pattern('[0-9]{4}')]);
     }
   }
 
@@ -46,6 +47,8 @@ export class PersonalInfoComponent {
   }
 
   onSubmit(): void {
+    //Ajouter if sur l'email, si il existe deja -> payment, sinon page de connexion/creation compte a faire
+    this._router.navigate(['../payment']);
     console.log('submitted form');
   }
 }

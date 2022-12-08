@@ -1,16 +1,16 @@
-<form action="/ma-page-de-traitement" method="post">
+<form [formGroup]="payment_form" (ngSubmit)="onSubmit()">
   <div class="button">
-    <button type="submit" [routerLink]="['../personal-info']">Retour aux informations personelles</button>
+    <button type="text" [routerLink]="['../personal-info']">Retour aux informations personelles</button>
   </div>
   <div>
     <label for="cardnum">Numero de carte :</label>
-    <input type="number" id="cardnum" name="user_cardnum" minlength="16" maxlength="16" />
+    <input type="text" id="cardnum" formControlName="numero_carte" />
   </div>
   <div>
     <label for="expdate">Date d'expiration</label>
-    <input type="month" id="expdate" name="user_expdate" />
+    <input type="month" id="expdate" formControlName="exp_date" />
     <label for="cvv">CVV</label>
-    <input type="number" id="cvv" name="user_cvv" minlength="3" maxlength="3" />
+    <input type="text" id="cvv" formControlName="cvv" />
   </div>
   <div class="button">
     <button type="submit">Valider les informations de paiement</button>
