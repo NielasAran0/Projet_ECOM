@@ -45,6 +45,7 @@ import { DataViewModule } from 'primeng/dataview';
     HttpClientModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
     TranslationModule,
+    // primeng modules
     DataViewModule,
     ButtonModule,
     DropdownModule,
