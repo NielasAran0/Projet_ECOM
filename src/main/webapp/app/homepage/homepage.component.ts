@@ -18,10 +18,14 @@ export class HomepageComponent implements OnInit {
   sortKey: string;
   sortField: string;
 
+  priceRange: number[];
+
   constructor(private salesPostService: SalesPostService) {
     this.sortOrder = 0;
     this.sortKey = '';
     this.sortField = '';
+
+    this.priceRange = [0, 10000];
   }
 
   ngOnInit(): void {
