@@ -6,27 +6,26 @@ import { NgModel } from '@angular/forms';
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.scss'],
 })
-export class PersonalInfoComponent implements OnInit {
-  nom: String | undefined;
-  prenom: String | undefined;
-  email: String | undefined;
-  pays: String | null | undefined;
-  region: String | undefined;
-  departement: String | undefined;
-  ville: String | undefined;
-  code_postal: Number | undefined;
-  addresse: String | undefined;
-  telephone: Number | undefined;
-  constructor() {}
+export class PersonalInfoComponent {
+  nom: string | undefined;
+  prenom: string | undefined;
+  email: string | undefined;
+  pays: string | null | undefined;
+  region: string | undefined;
+  departement: string | undefined;
+  ville: string | undefined;
+  code_postal: number | undefined;
+  addresse: string | undefined;
+  telephone: number | undefined;
+  //constructor() {}
 
-  ngOnInit(): void {}
+  //ngOnInit(): void {}
 
-  updatePays(val: String): void {
+  updatePays(val: string): void {
     this.pays = val;
-    console.log(this.pays);
   }
 
   register(): void {
-    console.log('submitted form');
+    //console.log('submitted form');
   }
 }
