@@ -8,7 +8,6 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { ProductCardComponent } from './product/product-card/product-card.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { MainBodyComponent } from './main-body/main-body.component';
-import { AppModule } from 'app/app.module';
 
 @NgModule({
   declarations: [AccueilComponent, TopNavComponent, ProductCardComponent, ProductDetailComponent, MainBodyComponent],

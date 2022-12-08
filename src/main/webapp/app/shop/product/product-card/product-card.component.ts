@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { EntityArrayResponseType, SalesPostService } from 'app/entities/sales-post/service/sales-post.service';
-import { IProduct } from '../../../entities/product/product.model';
 import { SortService } from 'app/shared/sort/sort.service';
 import { ISalesPost } from 'app/entities/sales-post/sales-post.model';
 @Component({

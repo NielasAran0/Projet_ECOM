@@ -21,14 +21,14 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  changeImage(element: any) {
+  changeImage(element: any): void {
     const main_prodcut_image = document.getElementById('main_product_image') as HTMLImageElement | null;
     if (main_prodcut_image != null) {
       main_prodcut_image.src = element.src;
     }
   }
 
-  addToCart(ele: ISalesPost | null) {
+  addToCart(ele: ISalesPost | null): void {
     const tmp = localStorage.getItem('cart');
     let cart = [];
     if (tmp != null) {

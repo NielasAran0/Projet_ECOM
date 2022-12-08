@@ -14,8 +14,8 @@ export class CartServiceService {
   public storageChange: BehaviorSubject<number>;
 
   constructor() {
-    let tmp = localStorage.getItem('cart');
-    let count = tmp ? JSON.parse(tmp).length : 0;
+    const tmp = localStorage.getItem('cart');
+    const count = tmp ? JSON.parse(tmp).length : 0;
     this.storageChange = new BehaviorSubject<number>(count);
   }
 
