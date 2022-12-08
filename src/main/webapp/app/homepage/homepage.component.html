@@ -8,8 +8,12 @@
         <div class="salesPost-list-detail">
           <div class="salesPost-product-name">{{ salesPost.product.name }}</div>
           <div class="salesPost-product-description">{{ salesPost.product.description }}</div>
-          <i class="pi pi-tag salesPost-product-category-icon"></i
-          ><span class="salesPost-product-category">{{ salesPost.product.categories }}</span>
+          <i class="pi pi-tag salesPost-product-category-icon"></i>
+          <span *ngIf="salesPost.product.categories">
+            <span class="salesPost-product-category" *ngFor="let category of salesPost.product.categories; last as isLast">
+              {{ category.name }}<span *ngIf="!isLast">, </span>
+            </span>
+          </span>
         </div>
         <div class="salesPost-list-action">
           <span class="salesPost-price">${{ salesPost.price }}</span>

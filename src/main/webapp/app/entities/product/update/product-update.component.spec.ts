@@ -13,6 +13,8 @@ import { IAppUser } from 'app/entities/app-user/app-user.model';
 import { AppUserService } from 'app/entities/app-user/service/app-user.service';
 import { ICategory } from 'app/entities/category/category.model';
 import { CategoryService } from 'app/entities/category/service/category.service';
+import { IImage } from 'app/entities/image/image.model';
+import { ImageService } from 'app/entities/image/service/image.service';
 
 import { ProductUpdateComponent } from './product-update.component';
 
@@ -24,6 +26,7 @@ describe('Product Management Update Component', () => {
   let productService: ProductService;
   let appUserService: AppUserService;
   let categoryService: CategoryService;
+  let imageService: ImageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -48,6 +51,7 @@ describe('Product Management Update Component', () => {
     productService = TestBed.inject(ProductService);
     appUserService = TestBed.inject(AppUserService);
     categoryService = TestBed.inject(CategoryService);
+    imageService = TestBed.inject(ImageService);
 
     comp = fixture.componentInstance;
   });
@@ -97,18 +101,43 @@ describe('Product Management Update Component', () => {
       expect(comp.categoriesSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Image query and add missing value', () => {
+      const product: IProduct = { id: 456 };
+      const images: IImage[] = [{ id: 95178 }];
+      product.images = images;
+
+      const imageCollection: IImage[] = [{ id: 4407 }];
+      jest.spyOn(imageService, 'query').mockReturnValue(of(new HttpResponse({ body: imageCollection })));
+      const additionalImages = [...images];
+      const expectedCollection: IImage[] = [...additionalImages, ...imageCollection];
+      jest.spyOn(imageService, 'addImageToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ product });
+      comp.ngOnInit();
+
+      expect(imageService.query).toHaveBeenCalled();
+      expect(imageService.addImageToCollectionIfMissing).toHaveBeenCalledWith(
+        imageCollection,
+        ...additionalImages.map(expect.objectContaining)
+      );
+      expect(comp.imagesSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const product: IProduct = { id: 456 };
       const seller: IAppUser = { id: 37157 };
       product.seller = seller;
       const categories: ICategory = { id: 32126 };
       product.categories = [categories];
+      const images: IImage = { id: 35378 };
+      product.images = [images];
 
       activatedRoute.data = of({ product });
       comp.ngOnInit();
 
       expect(comp.appUsersSharedCollection).toContain(seller);
       expect(comp.categoriesSharedCollection).toContain(categories);
+      expect(comp.imagesSharedCollection).toContain(images);
       expect(comp.product).toEqual(product);
     });
   });
@@ -199,6 +228,16 @@ describe('Product Management Update Component', () => {
         jest.spyOn(categoryService, 'compareCategory');
         comp.compareCategory(entity, entity2);
         expect(categoryService.compareCategory).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('compareImage', () => {
+      it('Should forward to imageService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(imageService, 'compareImage');
+        comp.compareImage(entity, entity2);
+        expect(imageService.compareImage).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

@@ -61,6 +61,7 @@ public class CacheConfiguration {
             createCache(cm, com.im2ag.ecom.domain.UserOrder.class.getName());
             createCache(cm, com.im2ag.ecom.domain.UserOrder.class.getName() + ".lines");
             createCache(cm, com.im2ag.ecom.domain.OrderLine.class.getName());
+            createCache(cm, com.im2ag.ecom.domain.Image.class.getName() + ".products");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -30,12 +30,12 @@ export class HomepageComponent implements OnInit {
     });
 
     this.sortOptions = [
-      { label: 'Prix décroissant', value: '!prix' },
-      { label: 'Prix croissant', value: 'prix' },
+      { label: 'Prix décroissant', value: '!price' },
+      { label: 'Prix croissant', value: 'price' },
     ];
   }
 
-  onSortChange(event: Event) {
+  onSortChange(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
 
     if (value.indexOf('!') === 0) {
