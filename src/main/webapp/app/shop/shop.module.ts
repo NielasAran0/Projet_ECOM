@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 import { ShopRoutingModule } from './shop-routing.module';
 
@@ -57,5 +56,6 @@ import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
     ButtonModule,
     DataViewModule,
   ],
+  imports: [CommonModule, ShopRoutingModule],
 })
 export class ShopModule {}
