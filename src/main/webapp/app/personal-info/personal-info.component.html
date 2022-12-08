@@ -1,26 +1,26 @@
-<form (ngSubmit)="register()">
+<form [formGroup]="personal_info_form" (ngSubmit)="onSubmit()">
   <div>
     <label for="nom">Nom :</label>
-    <input type="text" id="name" name="user_name" />
+    <input type="text" id="name" formControlName="nom" />
     <label for="prenom">Prenom :</label>
-    <input type="text" id="name" name="user_name" />
+    <input type="text" id="surname" formControlName="prenom" />
   </div>
   <div>
     <label for="mail">E-mail&nbsp;:</label>
-    <input type="email" id="mail" name="user_mail" />
+    <input type="email" id="mail" formControlName="email" />
   </div>
   <!--Pour les pays, regions, et departements dropbox de choix-->
   <div>
     <label for="pays">Pays :</label>
-    <select #payslist id="pays" name="pays" value="test" (change)="updatePays(payslist.value)">
+    <select #payslist id="pays" formControlName="pays" value="test" (change)="updatePays(payslist.value)">
       <option value="none">-</option>
       <option value="belgique">Belgique</option>
       <option value="france">France</option>
       <option value="suisse">Suisse</option>
     </select>
-    <span [ngSwitch]="pays">
+    <span [ngSwitch]="[personal_info_form.controls['pays'].value]">
       <label for="region" *ngSwitchCase="'france'">Region: </label>
-      <input list="regions_france" id="regions" name="user_region" *ngSwitchCase="'france'" />
+      <input list="regions_france" id="regions" formControlName="region" *ngSwitchCase="'france'" />
       <datalist id="regions_france">
         <option value="Auvergne-Rhône-Alpes"></option>
         <option value="Bourgogne-Franche-Comté"></option>
@@ -38,7 +38,7 @@
       </datalist>
 
       <label for="departement" *ngSwitchCase="'france'">Departement :</label>
-      <input list="departements_ARA" id="dept" name="user_dept" *ngSwitchCase="'france'" />
+      <input list="departements_ARA" id="dept" formControlName="departement" *ngSwitchCase="'france'" />
       <datalist id="departements_ARA">
         <option value="Ain"></option>
         <option value="Allier"></option>
@@ -60,21 +60,23 @@
   </div>
   <div>
     <label for="ville">Ville :</label>
-    <input type="text" id="ville" name="user_ville" />
+    <input type="text" id="ville" formControlName="ville" />
     <label for="code_postal">Code Postal :</label>
-    <input type="text" id="code_postal" name="user_code_postal" />
+    <input type="text" id="code_postal" formControlName="code_postal" />
     <label for="addresse">Rue et numéro :</label>
-    <input type="text" id="addresse" name="user_addresse" />
+    <input type="text" id="addresse" formControlName="addresse" />
   </div>
   <!--ajouter identificateur pays-->
   <div>
     <label for="nom">Telephone :</label>
-    <input type="tel" id="telephone" name="user_telephone" />
+    <input type="tel" id="telephone" formControlName="telephone" />
   </div>
-  <input type="checkbox" id="CGV" name="CGV" />
+  <input type="checkbox" id="CGV" formControlName="CGV" />
   <label for="CGV">J'accepte les conditions générales de vente :</label>
   <div class="button">
     <!-- ><button type="submit" [routerLink]="['../payment']">Valider les informations personnelles</button>-->
-    <button type="submit" [routerLink]="['../payment']">Valider les informations personnelles</button>
+    <button type="submit" [routerLink]="['../payment']" [disabled]="!personal_info_form.valid">
+      Valider les informations personnelles
+    </button>
   </div>
 </form>
