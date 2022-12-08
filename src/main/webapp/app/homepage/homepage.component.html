@@ -9,6 +9,7 @@
           <div class="salesPost-product-name">{{ salesPost.product.name }}</div>
           <div class="salesPost-product-description">{{ salesPost.product.description }}</div>
           <i class="pi pi-tag salesPost-product-category-icon"></i>
+          <span *ngIf="!salesPost.product.categories"> Categories is null ! </span>
           <span *ngIf="salesPost.product.categories">
             <span class="salesPost-product-category" *ngFor="let category of salesPost.product.categories; last as isLast">
               {{ category.name }}<span *ngIf="!isLast">, </span>
@@ -38,7 +39,7 @@
           <div class="salesPost-product-description">{{ salesPost.product.description }}</div>
         </div>
         <div class="salesPost-grid-item-bottom">
-          <span class="salesPost-product-price">${{ salesPost.product.price }}</span>
+          <span class="salesPost-product-price">${{ salesPost.price }}</span>
           <p-button icon="pi pi-shopping-cart" [disabled]="salesPost.stock === 0"></p-button>
         </div>
       </div>
