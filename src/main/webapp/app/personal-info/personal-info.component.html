@@ -19,21 +19,44 @@
       <option value="suisse">Suisse</option>
     </select>
     <span [ngSwitch]="pays">
-      <label for="region" *ngSwitchCase="'france'">france</label>
-      <select #regionlist *ngSwitchCase="'france'" id="pays" name="pays" value="test" (change)="updatePays(payslist.value)">
-        <option value="none">-</option>
-        <option value="belgique">Belgique</option>
-        <option value="france">France</option>
-        <option value="suisse">Suisse</option>
-      </select>
+      <label for="region" *ngSwitchCase="'france'">Region: </label>
+      <input list="regions_france" id="regions" name="user_region" *ngSwitchCase="'france'" />
+      <datalist id="regions_france">
+        <option value="Auvergne-Rhône-Alpes"></option>
+        <option value="Bourgogne-Franche-Comté"></option>
+        <option value="Bretagne"></option>
+        <option value="Centre-Val de Loire"></option>
+        <option value="Corse"></option>
+        <option value="Grand Est"></option>
+        <option value="Hauts-de-France"></option>
+        <option value="Ile-de-France"></option>
+        <option value="Normandie"></option>
+        <option value="Nouvelle-Aquitaine"></option>
+        <option value="Occitanie"></option>
+        <option value="Pays de la Loire"></option>
+        <option value="Provence-Alpes-Côte d'Azur"></option>
+      </datalist>
+
+      <label for="departement" *ngSwitchCase="'france'">Departement :</label>
+      <input list="departements_ARA" id="dept" name="user_dept" *ngSwitchCase="'france'" />
+      <datalist id="departements_ARA">
+        <option value="Ain"></option>
+        <option value="Allier"></option>
+        <option value="Ardèche"></option>
+        <option value="Cantal"></option>
+        <option value="Drôme"></option>
+        <option value="Isère"></option>
+        <option value="Loire"></option>
+        <option value="Haute-Loire"></option>
+        <option value="Puy-de-Dôme"></option>
+        <option value="Rhône"></option>
+        <option value="Savoie"></option>
+        <option value="Haute-Savoie"></option>
+      </datalist>
       <label for="region" *ngSwitchCase="'belgique'">belgique</label>
       <label for="region" *ngSwitchCase="'suisse'">suisse</label>
     </span>
     <!-- ajouter if avec régions de france/belgique/suisse-->
-    <label for="region">Region :</label>
-    <input type="text" id="name" name="user_name" />
-    <label for="departement">Departement :</label>
-    <input type="text" id="name" name="user_name" />
   </div>
   <div>
     <label for="ville">Ville :</label>
