@@ -14,11 +14,15 @@ export class HomepageComponent implements OnInit {
   salesPosts: ISalesPost[] = [];
 
   sortOptions: SelectItem[] = [];
-  sortKey: string = '';
-  sortOrder: number = 0;
-  sortField: string = '';
+  sortOrder: number;
+  sortKey: string;
+  sortField: string;
 
-  constructor(private salesPostService: SalesPostService) {}
+  constructor(private salesPostService: SalesPostService) {
+    this.sortOrder = 0;
+    this.sortKey = '';
+    this.sortField = '';
+  }
 
   ngOnInit(): void {
     this.salesPostService.findAll().subscribe(salesPosts => {
@@ -32,8 +36,7 @@ export class HomepageComponent implements OnInit {
   }
 
   onSortChange(event: Event) {
-    let target = event.target as HTMLInputElement;
-    let value = target.value;
+    const value = (event.target as HTMLInputElement).value;
 
     if (value.indexOf('!') === 0) {
       this.sortOrder = -1;
