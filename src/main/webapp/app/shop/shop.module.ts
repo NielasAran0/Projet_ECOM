@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { RouterModule } from '@angular/router';
 import { ShopRoutingModule } from './shop-routing.module';
 
 import { AccueilComponent } from './accueil/accueil.component';
@@ -11,6 +11,6 @@ import { MainBodyComponent } from './main-body/main-body.component';
 
 @NgModule({
   declarations: [AccueilComponent, TopNavComponent, ProductCardComponent, ProductDetailComponent, MainBodyComponent],
-  imports: [CommonModule, ShopRoutingModule],
+  imports: [CommonModule, ShopRoutingModule, RouterModule],
 })
 export class ShopModule {}
