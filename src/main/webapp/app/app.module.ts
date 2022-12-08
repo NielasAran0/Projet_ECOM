@@ -30,6 +30,7 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 import { DropdownModule } from 'primeng/dropdown';
+import { SliderModule } from 'primeng/slider';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 
@@ -47,9 +48,10 @@ import { DataViewModule } from 'primeng/dataview';
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
     TranslationModule,
     // primeng modules
-    DataViewModule,
-    ButtonModule,
     DropdownModule,
+    SliderModule,
+    ButtonModule,
+    DataViewModule,
   ],
   providers: [
     Title,
