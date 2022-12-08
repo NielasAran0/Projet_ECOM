@@ -24,7 +24,7 @@ export class ProductCardComponent implements OnInit {
       .subscribe({
         next: (res: EntityArrayResponseType) => {
           this.onResponseSuccess(res);
-          console.log(this.products);
+          // console.log(this.products);
         },
       });
   }
