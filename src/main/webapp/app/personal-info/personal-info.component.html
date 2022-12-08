@@ -1,0 +1,57 @@
+<form (ngSubmit)="register()">
+  <div>
+    <label for="nom">Nom :</label>
+    <input type="text" id="name" name="user_name" />
+    <label for="prenom">Prenom :</label>
+    <input type="text" id="name" name="user_name" />
+  </div>
+  <div>
+    <label for="mail">E-mail&nbsp;:</label>
+    <input type="email" id="mail" name="user_mail" />
+  </div>
+  <!--Pour les pays, regions, et departements dropbox de choix-->
+  <div>
+    <label for="pays">Pays :</label>
+    <select #payslist id="pays" name="pays" value="test" (change)="updatePays(payslist.value)">
+      <option value="none">-</option>
+      <option value="belgique">Belgique</option>
+      <option value="france">France</option>
+      <option value="suisse">Suisse</option>
+    </select>
+    <span [ngSwitch]="pays">
+      <label for="region" *ngSwitchCase="'france'">france</label>
+      <select #regionlist *ngSwitchCase="'france'" id="pays" name="pays" value="test" (change)="updatePays(payslist.value)">
+        <option value="none">-</option>
+        <option value="belgique">Belgique</option>
+        <option value="france">France</option>
+        <option value="suisse">Suisse</option>
+      </select>
+      <label for="region" *ngSwitchCase="'belgique'">belgique</label>
+      <label for="region" *ngSwitchCase="'suisse'">suisse</label>
+    </span>
+    <!-- ajouter if avec régions de france/belgique/suisse-->
+    <label for="region">Region :</label>
+    <input type="text" id="name" name="user_name" />
+    <label for="departement">Departement :</label>
+    <input type="text" id="name" name="user_name" />
+  </div>
+  <div>
+    <label for="ville">Ville :</label>
+    <input type="text" id="name" name="user_name" />
+    <label for="name">Code Postal :</label>
+    <input type="text" id="name" name="user_name" />
+    <label for="name">Rue et numéro :</label>
+    <input type="text" id="name" name="user_name" />
+  </div>
+  <!--ajouter identificateur pays-->
+  <div>
+    <label for="nom">Telephone :</label>
+    <input type="tel" id="name" name="user_name" />
+  </div>
+  <input type="checkbox" id="questionUn" name="abonnement" />
+  <label for="nom">J'accepte les conditions générales de vente :</label>
+  <div class="button">
+    <!-- ><button type="submit" [routerLink]="['../payment']">Valider les informations personnelles</button>-->
+    <button type="submit" [routerLink]="['../payment']">Valider les informations personnelles</button>
+  </div>
+</form>
