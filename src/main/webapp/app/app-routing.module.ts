@@ -9,6 +9,8 @@ import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 import { PaymentComponent } from './payment/payment.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { PaymentSuccesComponent } from './payment-succes/payment-succes.component';
+import { PaymentEchecComponent } from './payment-echec/payment-echec.component';
 
 @NgModule({
   imports: [
@@ -41,6 +43,14 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
         {
           path: 'payment',
           component: PaymentComponent,
+        },
+        {
+          path: 'payment/succes',
+          component: PaymentSuccesComponent,
+        },
+        {
+          path: 'payment/echec',
+          component: PaymentEchecComponent,
         },
         navbarRoute,
         ...errorRoute,

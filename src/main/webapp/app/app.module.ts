@@ -28,6 +28,8 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PaymentSuccesComponent } from './payment-succes/payment-succes.component';
+import { PaymentEchecComponent } from './payment-echec/payment-echec.component';
 
 @NgModule({
   imports: [
@@ -58,6 +60,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     PaymentComponent,
     PersonalInfoComponent,
+    PaymentSuccesComponent,
+    PaymentEchecComponent,
   ],
   bootstrap: [MainComponent],
 })
