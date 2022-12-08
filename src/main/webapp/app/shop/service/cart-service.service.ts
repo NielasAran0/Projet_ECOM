@@ -31,8 +31,8 @@ export class CartServiceService {
   public quantityMap = new Map<number, number>();
 
   constructor() {
-    let tmp = localStorage.getItem('cart');
-    let count = tmp ? JSON.parse(tmp).length : 0;
+    const tmp = localStorage.getItem('cart');
+    const count = tmp ? JSON.parse(tmp).length : 0;
     this.storageChange = new BehaviorSubject<number>(count);
     let list = tmp ? JSON.parse(tmp) : [];
 
