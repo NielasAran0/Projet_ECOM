@@ -9,8 +9,6 @@ import { of, Subject, from } from 'rxjs';
 import { ImageFormService } from './image-form.service';
 import { ImageService } from '../service/image.service';
 import { IImage } from '../image.model';
-import { IProduct } from 'app/entities/product/product.model';
-import { ProductService } from 'app/entities/product/service/product.service';
 
 import { ImageUpdateComponent } from './image-update.component';
 
@@ -20,7 +18,6 @@ describe('Image Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let imageFormService: ImageFormService;
   let imageService: ImageService;
-  let productService: ProductService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,43 +40,17 @@ describe('Image Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     imageFormService = TestBed.inject(ImageFormService);
     imageService = TestBed.inject(ImageService);
-    productService = TestBed.inject(ProductService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Product query and add missing value', () => {
-      const image: IImage = { id: 456 };
-      const product: IProduct = { id: 82250 };
-      image.product = product;
-
-      const productCollection: IProduct[] = [{ id: 10852 }];
-      jest.spyOn(productService, 'query').mockReturnValue(of(new HttpResponse({ body: productCollection })));
-      const additionalProducts = [product];
-      const expectedCollection: IProduct[] = [...additionalProducts, ...productCollection];
-      jest.spyOn(productService, 'addProductToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ image });
-      comp.ngOnInit();
-
-      expect(productService.query).toHaveBeenCalled();
-      expect(productService.addProductToCollectionIfMissing).toHaveBeenCalledWith(
-        productCollection,
-        ...additionalProducts.map(expect.objectContaining)
-      );
-      expect(comp.productsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const image: IImage = { id: 456 };
-      const product: IProduct = { id: 55683 };
-      image.product = product;
 
       activatedRoute.data = of({ image });
       comp.ngOnInit();
 
-      expect(comp.productsSharedCollection).toContain(product);
       expect(comp.image).toEqual(image);
     });
   });
@@ -149,18 +120,6 @@ describe('Image Management Update Component', () => {
       expect(imageService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Compare relationships', () => {
-    describe('compareProduct', () => {
-      it('Should forward to productService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(productService, 'compareProduct');
-        comp.compareProduct(entity, entity2);
-        expect(productService.compareProduct).toHaveBeenCalledWith(entity, entity2);
-      });
     });
   });
 });

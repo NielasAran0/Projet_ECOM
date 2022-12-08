@@ -39,6 +39,17 @@
         </createTable>
 
         <addPrimaryKey columnNames="product_id, categories_id" tableName="rel_product__categories"/>
+
+        <createTable tableName="rel_product__images">
+            <column name="images_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="product_id, images_id" tableName="rel_product__images"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
