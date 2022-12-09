@@ -15,7 +15,7 @@ export const sampleWithFullData: ISalesPost = {
   id: 89782,
   stock: 52615,
   price: 95224,
-  limitDate: dayjs('2022-11-29'),
+  limitDate: dayjs('2022-12-01'),
 };
 
 export const sampleWithNewData: NewSalesPost = {

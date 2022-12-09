@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20221130055035",
+  "changelogDate": "20221201152357",
   "dto": "no",
   "embedded": false,
   "entityTableName": "sales_post",
@@ -26,8 +26,9 @@
   "relationships": [
     {
       "otherEntityName": "product",
+      "otherEntityRelationshipName": "salespost",
       "ownerSide": true,
-      "relationshipName": "sells",
+      "relationshipName": "product",
       "relationshipType": "one-to-one"
     },
     {

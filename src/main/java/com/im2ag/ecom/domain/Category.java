@@ -30,7 +30,7 @@ public class Category implements Serializable {
 
     @ManyToMany(mappedBy = "categories")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "images", "seller", "categories" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "images", "seller", "categories", "salespost" }, allowSetters = true)
     private Set<Product> products = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -92,7 +92,8 @@ public class Category implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -107,7 +108,8 @@ public class Category implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -115,8 +117,8 @@ public class Category implements Serializable {
     @Override
     public String toString() {
         return "Category{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            "}";
+                "id=" + getId() +
+                ", name='" + getName() + "'" +
+                "}";
     }
 }

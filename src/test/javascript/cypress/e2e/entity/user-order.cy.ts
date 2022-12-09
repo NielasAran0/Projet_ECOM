@@ -163,7 +163,7 @@ describe('UserOrder e2e test', () => {
 
       cy.get(`[data-cy="state"]`).select('PAID');
 
-      cy.get(`[data-cy="date"]`).type('2022-11-30').blur().should('have.value', '2022-11-30');
+      cy.get(`[data-cy="date"]`).type('2022-12-01').blur().should('have.value', '2022-12-01');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

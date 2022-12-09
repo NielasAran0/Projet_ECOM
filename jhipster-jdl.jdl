@@ -15,13 +15,13 @@ entity Product {
 }
 
 entity SalesPost {
-        stock Integer
-        price Float
-        limitDate LocalDate
+	stock Integer
+    price Float
+    limitDate LocalDate
 }
 
 entity Image {
-        url String
+	url String
 }
 
 entity Category {
@@ -29,38 +29,38 @@ entity Category {
 }
 
 entity UserOrder {
-        totalPrice Float
+    totalPrice Float
     discount Float
     state OrderState
     date LocalDate
 }
 
 entity OrderLine {
-        quantity Integer
+    quantity Integer
     unitPrice Float
     delivered Boolean
 }
 
 enum OrderState {
-        INCART, CANCELED, PAID
+	INCART, CANCELED, PAID
 }
 
 relationship OneToOne {
-        AppUser {cart} to UserOrder
-        SalesPost {sells} to Product
+    AppUser {cart} to UserOrder
+	SalesPost {product} to Product {salespost}
 }
 
 relationship ManyToMany {
-        Product {categories} to Category {products}
+	Product {categories} to Category {products}
 }
 
 relationship ManyToOne {
-        Product {seller} to AppUser
+	Product {seller} to AppUser
     OrderLine {product} to Product
 }
 
 relationship OneToMany {
-        UserOrder {lines} to OrderLine
+	UserOrder {lines} to OrderLine
     Product {images} to Image
     AppUser {orders} to UserOrder
     AppUser {posts} to SalesPost

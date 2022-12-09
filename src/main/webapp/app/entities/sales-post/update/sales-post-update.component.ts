@@ -20,7 +20,7 @@ export class SalesPostUpdateComponent implements OnInit {
   isSaving = false;
   salesPost: ISalesPost | null = null;
 
-  productsSharedCollection: IProduct[] = [];
+  productsCollection: IProduct[] = [];
   appUsersSharedCollection: IAppUser[] = [];
 
   editForm: SalesPostFormGroup = this.salesPostFormService.createSalesPostFormGroup();
@@ -85,10 +85,7 @@ export class SalesPostUpdateComponent implements OnInit {
     this.salesPost = salesPost;
     this.salesPostFormService.resetForm(this.editForm, salesPost);
 
-    this.productsSharedCollection = this.productService.addProductToCollectionIfMissing<IProduct>(
-      this.productsSharedCollection,
-      salesPost.sells
-    );
+    this.productsCollection = this.productService.addProductToCollectionIfMissing<IProduct>(this.productsCollection, salesPost.product);
     this.appUsersSharedCollection = this.appUserService.addAppUserToCollectionIfMissing<IAppUser>(
       this.appUsersSharedCollection,
       salesPost.appUser
@@ -97,10 +94,10 @@ export class SalesPostUpdateComponent implements OnInit {
 
   protected loadRelationshipsOptions(): void {
     this.productService
-      .query()
+      .query({ filter: 'salespost-is-null' })
       .pipe(map((res: HttpResponse<IProduct[]>) => res.body ?? []))
-      .pipe(map((products: IProduct[]) => this.productService.addProductToCollectionIfMissing<IProduct>(products, this.salesPost?.sells)))
-      .subscribe((products: IProduct[]) => (this.productsSharedCollection = products));
+      .pipe(map((products: IProduct[]) => this.productService.addProductToCollectionIfMissing<IProduct>(products, this.salesPost?.product)))
+      .subscribe((products: IProduct[]) => (this.productsCollection = products));
 
     this.appUserService
       .query()

@@ -36,15 +36,24 @@
               #limitDateDp="ngbDatepicker"
               formControlName="limitDate"
             />
-            <button type="button" class="btn btn-secondary" (click)="limitDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            <button type="button" class="btn btn-secondary" (click)="limitDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
           </div>
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="ecomApp.salesPost.sells" for="field_sells">Sells</label>
-          <select class="form-control" id="field_sells" data-cy="sells" name="sells" formControlName="sells" [compareWith]="compareProduct">
+          <label class="form-label" jhiTranslate="ecomApp.salesPost.product" for="field_product">Product</label>
+          <select
+            class="form-control"
+            id="field_product"
+            data-cy="product"
+            name="product"
+            formControlName="product"
+            [compareWith]="compareProduct"
+          >
             <option [ngValue]="null"></option>
-            <option [ngValue]="productOption" *ngFor="let productOption of productsSharedCollection">{{ productOption.id }}</option>
+            <option [ngValue]="productOption" *ngFor="let productOption of productsCollection">{{ productOption.id }}</option>
           </select>
         </div>
 

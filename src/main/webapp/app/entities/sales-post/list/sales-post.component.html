@@ -56,9 +56,9 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="sells.id">
+          <th scope="col" jhiSortBy="product.id">
             <div class="d-flex">
-              <span jhiTranslate="ecomApp.salesPost.sells">Sells</span>
+              <span jhiTranslate="ecomApp.salesPost.product">Product</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -80,8 +80,8 @@
           <td>{{ salesPost.price }}</td>
           <td>{{ salesPost.limitDate | formatMediumDate }}</td>
           <td>
-            <div *ngIf="salesPost.sells">
-              <a [routerLink]="['/product', salesPost.sells.id, 'view']">{{ salesPost.sells.id }}</a>
+            <div *ngIf="salesPost.product">
+              <a [routerLink]="['/product', salesPost.product.id, 'view']">{{ salesPost.product.id }}</a>
             </div>
           </td>
           <td>

@@ -7,7 +7,7 @@ export interface ISalesPost {
   stock?: number | null;
   price?: number | null;
   limitDate?: dayjs.Dayjs | null;
-  sells?: Pick<IProduct, 'id' | 'name' | 'description'> | null;
+  product?: Pick<IProduct, 'id' | 'name' | 'description'> | null;
   appUser?: Pick<IAppUser, 'id'> | null;
 }
 

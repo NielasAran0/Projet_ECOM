@@ -3,13 +3,13 @@
     <div class="row g-0">
       <div class="col-md-6 border-end">
         <div class="d-flex flex-column justify-content-center">
-          <div class="main_image"><img src="https://i.imgur.com/TAzli1U.jpg" id="main_product_image" width="350" /></div>
+          <div class="main_image"><img src="https://i.imgur.com/TAzli1U.jpg" id="main_product_image" width="350" alt="img" /></div>
           <div class="thumbnail_images">
             <ul id="thumbnail">
-              <li><img (click)="changeImage($event.target)" src="https://i.imgur.com/TAzli1U.jpg" width="70" /></li>
-              <li><img (click)="changeImage($event.target)" src="https://i.imgur.com/w6kEctd.jpg" width="70" /></li>
-              <li><img (click)="changeImage($event.target)" src="https://i.imgur.com/L7hFD8X.jpg" width="70" /></li>
-              <li><img (click)="changeImage($event.target)" src="https://i.imgur.com/6ZufmNS.jpg" width="70" /></li>
+              <li><img (click)="changeImage($event.target)" src="https://i.imgur.com/TAzli1U.jpg" width="70" alt="img1" /></li>
+              <li><img (click)="changeImage($event.target)" src="https://i.imgur.com/w6kEctd.jpg" width="70" alt="img2" /></li>
+              <li><img (click)="changeImage($event.target)" src="https://i.imgur.com/L7hFD8X.jpg" width="70" alt="img3" /></li>
+              <li><img (click)="changeImage($event.target)" src="https://i.imgur.com/6ZufmNS.jpg" width="70" alt="img4" /></li>
             </ul>
           </div>
         </div>
@@ -17,11 +17,11 @@
       <div class="col-md-6">
         <div class="p-3 right-side">
           <div class="d-flex justify-content-between align-items-center">
-            <h3>{{ salesPost?.sells?.name }}</h3>
-            <span class="heart"><i class="bx bx-heart"></i></span>
+            <h3>{{ salesPost?.product?.name }}</h3>
+            <span class="heart"><em class="bx bx-heart"></em></span>
           </div>
           <div class="mt-2 pr-3 content">
-            <p>{{ salesPost?.sells?.description }}</p>
+            <p>{{ salesPost?.product?.description }}</p>
           </div>
           <h3>${{ salesPost?.price }}</h3>
 

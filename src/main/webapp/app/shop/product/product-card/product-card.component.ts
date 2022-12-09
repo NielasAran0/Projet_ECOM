@@ -19,12 +19,10 @@ export class ProductCardComponent implements OnInit {
     this.salesPostService
       .query({
         eagerload: true,
-        sort: ['id', 'asc'],
       })
       .subscribe({
         next: (res: EntityArrayResponseType) => {
           this.onResponseSuccess(res);
-          // console.log(this.products);
         },
       });
   }
