@@ -18,8 +18,6 @@ export class PaymentComponent {
   //ngOnInit(): void {}
 
   onSubmit(): void {
-    console.log(this._router.url);
     this._router.navigate([this._router.url + '/succes']);
-    console.log('submitted form');
   }
 }
