@@ -14,7 +14,7 @@ import './config/dayjs';
 import { SharedModule } from 'app/shared/shared.module';
 import { TranslationModule } from 'app/shared/language/translation.module';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeModule } from './home/home.module';
+
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { NgbDateDayjsAdapter } from './config/datepicker-adapter';
 import { fontAwesomeIcons } from './config/font-awesome-icons';
@@ -25,18 +25,12 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import { PaymentComponent } from './payment/payment.component';
-import { PersonalInfoComponent } from './personal-info/personal-info.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { PaymentSuccesComponent } from './payment-succes/payment-succes.component';
-import { PaymentEchecComponent } from './payment-echec/payment-echec.component';
+import { AppComponent } from './app/app.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     SharedModule,
-    HomeModule,
-    ReactiveFormsModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppRoutingModule,
     // Set this to true to enable service worker (PWA)
@@ -51,19 +45,9 @@ import { PaymentEchecComponent } from './payment-echec/payment-echec.component';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [
-    MainComponent,
-    NavbarComponent,
-    ErrorComponent,
-    PageRibbonComponent,
-    ActiveMenuDirective,
-    FooterComponent,
-    PaymentComponent,
-    PersonalInfoComponent,
-    PaymentSuccesComponent,
-    PaymentEchecComponent,
-  ],
-  bootstrap: [MainComponent],
+  exports: [FooterComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AppComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(applicationConfigService: ApplicationConfigService, iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {

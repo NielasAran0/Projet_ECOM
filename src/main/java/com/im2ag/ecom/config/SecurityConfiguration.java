@@ -77,6 +77,12 @@ public class SecurityConfiguration {
             .antMatchers("/content/**").permitAll()
             .antMatchers("/swagger-ui/**").permitAll()
             .antMatchers("/test/**").permitAll()
+            .antMatchers("/api/sales-posts").permitAll()
+            .antMatchers("/api/sales-posts/**").permitAll()
+            .antMatchers("/api/products").permitAll()
+            .antMatchers("/api/categories").permitAll()
+            .antMatchers("/api/images").permitAll()
+
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
@@ -89,6 +95,7 @@ public class SecurityConfiguration {
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+           
         .and()
             .httpBasic()
         .and()
