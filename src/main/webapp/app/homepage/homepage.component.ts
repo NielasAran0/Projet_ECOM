@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 
 import { ISalesPost } from '../entities/sales-post/sales-post.model';
 import { SalesPostService } from '../entities/sales-post/service/sales-post.service';
