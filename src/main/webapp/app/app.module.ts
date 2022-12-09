@@ -3,6 +3,7 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/en';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { NgxWebstorageModule } from 'ngx-webstorage';
@@ -26,19 +27,12 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { AppComponent } from './app/app.component';
-import { HomepageComponent } from './homepage/homepage.component';
-
-import { DropdownModule } from 'primeng/dropdown';
-import { SliderModule } from 'primeng/slider';
-import { ButtonModule } from 'primeng/button';
-import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    HomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppRoutingModule,
     // Set this to true to enable service worker (PWA)
@@ -46,11 +40,6 @@ import { DataViewModule } from 'primeng/dataview';
     HttpClientModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
     TranslationModule,
-    // primeng modules
-    DropdownModule,
-    SliderModule,
-    ButtonModule,
-    DataViewModule,
   ],
   providers: [
     Title,
@@ -58,16 +47,6 @@ import { DataViewModule } from 'primeng/dataview';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [
-    MainComponent,
-    NavbarComponent,
-    ErrorComponent,
-    PageRibbonComponent,
-    ActiveMenuDirective,
-    FooterComponent,
-    HomepageComponent,
-  ],
-  bootstrap: [MainComponent],
   exports: [FooterComponent],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AppComponent],
   bootstrap: [AppComponent],

@@ -16,6 +16,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PaymentSuccesComponent } from './payment-succes/payment-succes.component';
 import { PaymentEchecComponent } from './payment-echec/payment-echec.component';
 
+import { DropdownModule } from 'primeng/dropdown';
+import { SliderModule } from 'primeng/slider';
+import { ButtonModule } from 'primeng/button';
+import { DataViewModule } from 'primeng/dataview';
+
 @NgModule({
   declarations: [
     AccueilComponent,
@@ -28,6 +33,17 @@ import { PaymentEchecComponent } from './payment-echec/payment-echec.component';
     PaymentSuccesComponent,
     PaymentEchecComponent,
   ],
-  imports: [CommonModule, SharedModule, ShopRoutingModule, RouterModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    ShopRoutingModule,
+    RouterModule,
+    ReactiveFormsModule,
+    // primeng modules
+    DropdownModule,
+    SliderModule,
+    ButtonModule,
+    DataViewModule,
+  ],
 })
 export class ShopModule {}
