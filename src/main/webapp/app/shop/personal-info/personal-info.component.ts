@@ -29,7 +29,7 @@ export class PersonalInfoComponent {
   //ngOnInit(): void {}
 
   countryValidator(): void {
-    if (this.personal_info_form.controls['pays'].value == 'france') {
+    if (this.personal_info_form.controls['pays'].value === 'france') {
       this.personal_info_form.controls['region'].setValidators(Validators.required);
       this.personal_info_form.controls['departement'].setValidators(Validators.required);
       this.personal_info_form.controls['code_postal'].setValidators([Validators.required, Validators.pattern('[0-9]{5}')]);
@@ -49,6 +49,5 @@ export class PersonalInfoComponent {
   onSubmit(): void {
     //Ajouter if sur l'email, si il existe deja -> payment, sinon page de connexion/creation compte a faire
     this._router.navigate(['../payment']);
-    console.log('submitted form');
   }
 }
