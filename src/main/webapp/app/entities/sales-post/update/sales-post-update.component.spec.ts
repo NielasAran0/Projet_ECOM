@@ -53,26 +53,22 @@ describe('SalesPost Management Update Component', () => {
   });
 
   describe('ngOnInit', () => {
-    it('Should call Product query and add missing value', () => {
+    it('Should call product query and add missing value', () => {
       const salesPost: ISalesPost = { id: 456 };
-      const sells: IProduct = { id: 74582 };
-      salesPost.sells = sells;
+      const product: IProduct = { id: 74582 };
+      salesPost.product = product;
 
       const productCollection: IProduct[] = [{ id: 15859 }];
       jest.spyOn(productService, 'query').mockReturnValue(of(new HttpResponse({ body: productCollection })));
-      const additionalProducts = [sells];
-      const expectedCollection: IProduct[] = [...additionalProducts, ...productCollection];
+      const expectedCollection: IProduct[] = [product, ...productCollection];
       jest.spyOn(productService, 'addProductToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ salesPost });
       comp.ngOnInit();
 
       expect(productService.query).toHaveBeenCalled();
-      expect(productService.addProductToCollectionIfMissing).toHaveBeenCalledWith(
-        productCollection,
-        ...additionalProducts.map(expect.objectContaining)
-      );
-      expect(comp.productsSharedCollection).toEqual(expectedCollection);
+      expect(productService.addProductToCollectionIfMissing).toHaveBeenCalledWith(productCollection, product);
+      expect(comp.productsCollection).toEqual(expectedCollection);
     });
 
     it('Should call AppUser query and add missing value', () => {
@@ -99,15 +95,15 @@ describe('SalesPost Management Update Component', () => {
 
     it('Should update editForm', () => {
       const salesPost: ISalesPost = { id: 456 };
-      const sells: IProduct = { id: 17393 };
-      salesPost.sells = sells;
+      const product: IProduct = { id: 17393 };
+      salesPost.product = product;
       const appUser: IAppUser = { id: 2212 };
       salesPost.appUser = appUser;
 
       activatedRoute.data = of({ salesPost });
       comp.ngOnInit();
 
-      expect(comp.productsSharedCollection).toContain(sells);
+      expect(comp.productsCollection).toContain(product);
       expect(comp.appUsersSharedCollection).toContain(appUser);
       expect(comp.salesPost).toEqual(salesPost);
     });

@@ -161,7 +161,7 @@ describe('SalesPost e2e test', () => {
 
       cy.get(`[data-cy="price"]`).type('16045').should('have.value', '16045');
 
-      cy.get(`[data-cy="limitDate"]`).type('2022-11-29').blur().should('have.value', '2022-11-29');
+      cy.get(`[data-cy="limitDate"]`).type('2022-12-01').blur().should('have.value', '2022-12-01');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

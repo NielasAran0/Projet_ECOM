@@ -23,7 +23,7 @@ describe('SalesPost Form Service', () => {
             stock: expect.any(Object),
             price: expect.any(Object),
             limitDate: expect.any(Object),
-            sells: expect.any(Object),
+            product: expect.any(Object),
             appUser: expect.any(Object),
           })
         );
@@ -38,7 +38,7 @@ describe('SalesPost Form Service', () => {
             stock: expect.any(Object),
             price: expect.any(Object),
             limitDate: expect.any(Object),
-            sells: expect.any(Object),
+            product: expect.any(Object),
             appUser: expect.any(Object),
           })
         );
