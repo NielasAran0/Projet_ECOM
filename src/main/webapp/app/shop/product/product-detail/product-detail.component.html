@@ -3,7 +3,7 @@
     <div class="row g-0">
       <div class="col-md-6 border-end">
         <div class="d-flex flex-column justify-content-center">
-          <div class="main_image"><img src="https://i.imgur.com/TAzli1U.jpg" id="main_product_image" width="350" /></div>
+          <div class="main_image"><img src="https://i.imgur.com/TAzli1U.jpg" id="main_product_image" width="350" alt="img" /></div>
           <div class="thumbnail_images">
             <ul id="thumbnail">
               <li><img (click)="changeImage($event.target)" src="https://i.imgur.com/TAzli1U.jpg" width="70" alt="img1" /></li>
@@ -18,7 +18,7 @@
         <div class="p-3 right-side">
           <div class="d-flex justify-content-between align-items-center">
             <h3>{{ salesPost?.product?.name }}</h3>
-            <span class="heart"><i class="bx bx-heart"></i></span>
+            <span class="heart"><em class="bx bx-heart"></em></span>
           </div>
           <div class="mt-2 pr-3 content">
             <p>{{ salesPost?.product?.description }}</p>
