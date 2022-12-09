@@ -31,34 +31,21 @@ export class CartServiceService {
   public quantityMap = new Map<number, number>();
 
   constructor() {
-    const tmp = localStorage.getItem('cart');
-    const count = tmp ? JSON.parse(tmp).length : 0;
-    this.storageChange = new BehaviorSubject<number>(count);
+    let tmp = localStorage.getItem('cart');
+    let count = 0;
     let list = tmp ? JSON.parse(tmp) : [];
-
-    list.forEach((element: any) => {
-      if (typeof this.quantityMap.get(element.id) == 'undefined') {
-        this.quantityMap.set(element.id, 1);
-      } else {
-        var quantity = this.quantityMap.get(element.id) as number;
-        this.quantityMap.set(element.id, quantity + 1);
-      }
-    });
-
-    var newList: any[] = [];
-    var arrId = [];
-    for (var item of list) {
-      if (arrId.indexOf(item['id']) == -1) {
-        arrId.push(item['id']);
-        item.quantity = this.quantityMap.get(item.id);
-        newList.push(item);
-      }
+    if (list.length != 0) {
+      list.map((i: any) => {
+        count += i.quantity;
+      });
     }
-    this.storage = new BehaviorSubject<any[]>(newList);
+    this.storageChange = new BehaviorSubject<number>(count);
+
+    this.storage = new BehaviorSubject<any[]>(list);
 
     var total = 0;
     list.forEach((element: any) => {
-      total = element.price + total;
+      total = element.price * element.quantity + total;
     });
     this.subTotal = new BehaviorSubject<number>(total);
   }
@@ -66,32 +53,17 @@ export class CartServiceService {
   public setStorageItem(change: []): void {
     var total = 0;
     localStorage.setItem('cart', JSON.stringify(change));
-    this.storageChange.next(change.length);
-    this.quantityMap = new Map<number, number>();
-    let tmp = localStorage.getItem('cart');
-    let list = tmp ? JSON.parse(tmp) : [];
-    list.forEach((element: any) => {
-      if (typeof this.quantityMap.get(element.id) == 'undefined') {
-        this.quantityMap.set(element.id, 1);
-      } else {
-        var quantity = this.quantityMap.get(element.id) as number;
-        this.quantityMap.set(element.id, quantity + 1);
-      }
-    });
-
-    var newList: any[] = [];
-    var arrId = [];
-    for (var item of list) {
-      if (arrId.indexOf(item['id']) == -1) {
-        arrId.push(item['id']);
-        item.quantity = this.quantityMap.get(item.id);
-        newList.push(item);
-      }
+    let count = 0;
+    if (change.length != 0) {
+      change.map((i: any) => {
+        count += i.quantity;
+      });
     }
-    this.storage.next(newList);
+    this.storageChange.next(count);
+    this.storage.next(change);
 
     change.forEach((element: any) => {
-      total = element.price + total;
+      total = element.price * element.quantity + total;
     });
     this.subTotal.next(total);
   }
@@ -114,11 +86,22 @@ export class CartServiceService {
   getSubTotal(): Observable<number> {
     return this.subTotal;
   }
-  /*updateQuantity(updateQuantity: number, updateItem: ISalesPost) {
-    var id =updateItem.id;
-    let tmp = localStorage.getItem('cart');
-    let list= tmp ? JSON.parse(tmp) : [];
-    
-   
-  }*/
+  updateQuantity(operation: number, updateItem: any) {
+    var id = updateItem.id;
+    let items = localStorage.getItem('cart');
+    let list = items ? JSON.parse(items) : [];
+
+    // find the index of the item with the specified id
+    const index = list.findIndex((i: any) => i.id === id);
+    if (operation === 1) {
+      updateItem.quantity++;
+      list.splice(index, 1, updateItem);
+    } else {
+      updateItem.quantity--;
+      list.splice(index, 1, updateItem);
+    }
+    // remove the item from the array
+
+    this.setStorageItem(list);
+  }
 }

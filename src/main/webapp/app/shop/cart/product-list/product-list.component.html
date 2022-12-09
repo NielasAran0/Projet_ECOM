@@ -8,17 +8,15 @@
           </div>
           <div class="col-6 col-md-7">
             <h5>{{ item.id }}</h5>
-            <h6>Quantity:{{ item.quantity }}</h6>
 
             <small class="text-success">In Stock</small>
             <ul class="nav">
-              <!-- <li class="nav-item">
-                <select class="form-select" aria-label="quantity" (change)="updateQuantity($event, item)">
-                  <option selected value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </li> -->
+              <div>
+                <button class="minus_button" [disabled]="item.quantity === 1" (click)="decreseQuantity(item)">-</button>
+                {{ item.quantity }}
+                <button class="plus_button" [disabled]="item.quantity >= item.stock" (click)="increseQuantity(item)">+</button>
+              </div>
+
               <li class="nav-item ms-4">
                 <button class="btn btn-link" aria-current="delete-button" (click)="deleteItem(item)">Delete</button>
               </li>

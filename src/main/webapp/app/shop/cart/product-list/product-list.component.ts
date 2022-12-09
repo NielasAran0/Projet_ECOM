@@ -14,12 +14,16 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.items$ = this.CartService.getCart();
   }
-  /*updateQuantity($event: Event, product: ISalesPost) {
-    const quantity = ($event as any)?.target?.value;
-    this.CartService.updateQuantity(quantity, product);
-  }*/
 
   deleteItem(product: ISalesPost) {
     this.CartService.deleteItem(product);
+  }
+
+  decreseQuantity(product: ISalesPost | any) {
+    this.CartService.updateQuantity(-1, product);
+  }
+
+  increseQuantity(product: ISalesPost | any) {
+    this.CartService.updateQuantity(1, product);
   }
 }

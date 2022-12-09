@@ -28,17 +28,22 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  addToCart(ele: ISalesPost | null): void {
+  addToCart(ele: ISalesPost | any): void {
     const tmp = localStorage.getItem('cart');
     let cart = [];
     if (tmp != null) {
       cart = JSON.parse(tmp);
-      console.log(cart);
-      cart.push(ele);
+      var index = cart.findIndex((i: any) => i.id === ele.id);
+      if (index === -1) {
+        ele.quantity = 1;
+        cart.push(ele);
+      } else {
+        ele.quantity = cart[index].quantity + 1;
+        cart.splice(index, 1, ele);
+      }
     } else {
       cart = [ele];
     }
-    console.log(cart);
     this.setMessage(cart);
   }
 
