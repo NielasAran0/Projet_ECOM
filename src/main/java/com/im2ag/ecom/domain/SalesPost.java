@@ -6,8 +6,6 @@ import java.time.LocalDate;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  * A SalesPost.
@@ -35,10 +33,10 @@ public class SalesPost implements Serializable {
     @Column(name = "limit_date")
     private LocalDate limitDate;
 
-    @JsonIgnoreProperties(value = { "seller" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties(value = { "images", "seller", "categories", "salespost" }, allowSetters = true)
+    @OneToOne
     @JoinColumn(unique = true)
-    private Product sells;
+    private Product product;
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "cart", "orders", "posts" }, allowSetters = true)
@@ -98,16 +96,16 @@ public class SalesPost implements Serializable {
         this.limitDate = limitDate;
     }
 
-    public Product getSells() {
-        return this.sells;
+    public Product getProduct() {
+        return this.product;
     }
 
-    public void setSells(Product product) {
-        this.sells = product;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public SalesPost sells(Product product) {
-        this.setSells(product);
+    public SalesPost product(Product product) {
+        this.setProduct(product);
         return this;
     }
 

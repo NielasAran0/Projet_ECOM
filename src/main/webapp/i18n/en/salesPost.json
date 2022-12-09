@@ -21,7 +21,7 @@
       "stock": "Stock",
       "price": "Price",
       "limitDate": "Limit Date",
-      "sells": "Sells",
+      "product": "Product",
       "appUser": "App User"
     }
   }

@@ -22,7 +22,8 @@
       "description": "Description",
       "images": "Images",
       "seller": "Seller",
-      "categories": "Categories"
+      "categories": "Categories",
+      "salespost": "Salespost"
     }
   }
 }

@@ -19,7 +19,7 @@ export const sampleWithFullData: IUserOrder = {
   totalPrice: 92855,
   discount: 80265,
   state: OrderState['CANCELED'],
-  date: dayjs('2022-11-29'),
+  date: dayjs('2022-11-30'),
 };
 
 export const sampleWithNewData: NewUserOrder = {

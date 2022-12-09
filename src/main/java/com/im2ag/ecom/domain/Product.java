@@ -8,10 +8,6 @@ import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * The Product entity.
@@ -37,7 +33,7 @@ public class Product implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "product" }, allowSetters = true)
     private Set<Image> images = new HashSet<>();
@@ -46,7 +42,7 @@ public class Product implements Serializable {
     @JsonIgnoreProperties(value = { "cart", "orders", "posts" }, allowSetters = true)
     private AppUser seller;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
         name = "rel_product__categories",
         joinColumns = @JoinColumn(name = "product_id"),
@@ -55,6 +51,10 @@ public class Product implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "products" }, allowSetters = true)
     private Set<Category> categories = new HashSet<>();
+
+    @JsonIgnoreProperties(value = { "product", "appUser" }, allowSetters = true)
+    @OneToOne(mappedBy = "product")
+    private SalesPost salespost;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -163,6 +163,25 @@ public class Product implements Serializable {
     public Product removeCategories(Category category) {
         this.categories.remove(category);
         category.getProducts().remove(this);
+        return this;
+    }
+
+    public SalesPost getSalespost() {
+        return this.salespost;
+    }
+
+    public void setSalespost(SalesPost salesPost) {
+        if (this.salespost != null) {
+            this.salespost.setProduct(null);
+        }
+        if (salesPost != null) {
+            salesPost.setProduct(this);
+        }
+        this.salespost = salesPost;
+    }
+
+    public Product salespost(SalesPost salesPost) {
+        this.setSalespost(salesPost);
         return this;
     }
 

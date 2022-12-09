@@ -21,7 +21,7 @@ type SalesPostFormGroupContent = {
   stock: FormControl<ISalesPost['stock']>;
   price: FormControl<ISalesPost['price']>;
   limitDate: FormControl<ISalesPost['limitDate']>;
-  sells: FormControl<ISalesPost['sells']>;
+  product: FormControl<ISalesPost['product']>;
   appUser: FormControl<ISalesPost['appUser']>;
 };
 
@@ -45,7 +45,7 @@ export class SalesPostFormService {
       stock: new FormControl(salesPostRawValue.stock),
       price: new FormControl(salesPostRawValue.price),
       limitDate: new FormControl(salesPostRawValue.limitDate),
-      sells: new FormControl(salesPostRawValue.sells),
+      product: new FormControl(salesPostRawValue.product),
       appUser: new FormControl(salesPostRawValue.appUser),
     });
   }
