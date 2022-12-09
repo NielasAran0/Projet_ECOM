@@ -33,7 +33,7 @@ public class SalesPost implements Serializable {
     @Column(name = "limit_date")
     private LocalDate limitDate;
 
-    @JsonIgnoreProperties(value = { "images", "seller", "categories", "salespost" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "seller", "salespost" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private Product product;
@@ -122,7 +122,8 @@ public class SalesPost implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -137,7 +138,8 @@ public class SalesPost implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -145,10 +147,10 @@ public class SalesPost implements Serializable {
     @Override
     public String toString() {
         return "SalesPost{" +
-            "id=" + getId() +
-            ", stock=" + getStock() +
-            ", price=" + getPrice() +
-            ", limitDate='" + getLimitDate() + "'" +
-            "}";
+                "id=" + getId() +
+                ", stock=" + getStock() +
+                ", price=" + getPrice() +
+                ", limitDate='" + getLimitDate() + "'" +
+                "}";
     }
 }
