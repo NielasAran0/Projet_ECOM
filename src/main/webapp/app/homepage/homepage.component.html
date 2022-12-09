@@ -5,11 +5,13 @@
   <ng-template let-salesPost pTemplate="listItem">
     <div class="col-12">
       <div class="salesPost-list-item">
+        <div *ngIf="salesPost.product.images && salesPost.product.images.length > 0">
+          <img [src]="salesPost.product.images[0].url" [alt]="salesPost.product.name" />
+        </div>
         <div class="salesPost-list-detail">
           <div class="salesPost-product-name">{{ salesPost.product.name }}</div>
           <div class="salesPost-product-description">{{ salesPost.product.description }}</div>
           <i class="pi pi-tag salesPost-product-category-icon"></i>
-          <span *ngIf="!salesPost.product.categories"> Categories is null ! </span>
           <span *ngIf="salesPost.product.categories">
             <span class="salesPost-product-category" *ngFor="let category of salesPost.product.categories; last as isLast">
               {{ category.name }}<span *ngIf="!isLast">, </span>
@@ -19,7 +21,9 @@
         <div class="salesPost-list-action">
           <span class="salesPost-price">${{ salesPost.price }}</span>
           <p-button icon="pi pi-shopping-cart" label="Ajouter au panier" [disabled]="salesPost.stock === 0"></p-button>
-          <span>INVENTAIRE STATUT</span>
+          <span *ngIf="salesPost.stock === 0" class="salesPost-badge status-outofstock"> RUPTURE DE STOCK </span>
+          <span *ngIf="salesPost.stock > 0 && salesPost.stock < 100" class="salesPost-badge status-lowstock"> STOCK FAIBLE </span>
+          <span *ngIf="salesPost.stock >= 100" class="salesPost-badge status-instock"> EN STOCK </span>
         </div>
       </div>
     </div>
@@ -30,11 +34,20 @@
         <div class="salesPost-grid-item-top">
           <div>
             <i class="pi pi-tag salesPost-product-category-icon"></i>
-            <span class="salesPost-product-category">{{ salesPost.product.categories }}</span>
+            <span *ngIf="salesPost.product.categories">
+              <span class="salesPost-product-category" *ngFor="let category of salesPost.product.categories; last as isLast">
+                {{ category.name }}<span *ngIf="!isLast">, </span>
+              </span>
+            </span>
           </div>
-          <span>INVENTAIRE STATUT</span>
+          <span *ngIf="salesPost.stock === 0" class="salesPost-badge status-outofstock"> RUPTURE DE STOCK </span>
+          <span *ngIf="salesPost.stock > 0 && salesPost.stock < 100" class="salesPost-badge status-lowstock"> STOCK FAIBLE </span>
+          <span *ngIf="salesPost.stock >= 100" class="salesPost-badge status-instock"> EN STOCK </span>
         </div>
         <div class="salesPost-grid-item-content">
+          <div *ngIf="salesPost.product.images && salesPost.product.images.length > 0">
+            <img [src]="salesPost.product.images[0].url" [alt]="salesPost.product.name" />
+          </div>
           <div class="salesPost-product-name">{{ salesPost.product.name }}</div>
           <div class="salesPost-product-description">{{ salesPost.product.description }}</div>
         </div>

@@ -33,7 +33,7 @@ public class SalesPost implements Serializable {
     @Column(name = "limit_date")
     private LocalDate limitDate;
 
-    @JsonIgnoreProperties(value = { "seller", "categories", "images", "salespost" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "seller", "salespost" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private Product product;

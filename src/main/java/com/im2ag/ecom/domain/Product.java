@@ -37,7 +37,7 @@ public class Product implements Serializable {
     @JsonIgnoreProperties(value = { "cart", "orders", "posts" }, allowSetters = true)
     private AppUser seller;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "rel_product__categories",
         joinColumns = @JoinColumn(name = "product_id"),
@@ -47,7 +47,7 @@ public class Product implements Serializable {
     @JsonIgnoreProperties(value = { "products" }, allowSetters = true)
     private Set<Category> categories = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "rel_product__images",
         joinColumns = @JoinColumn(name = "product_id"),
