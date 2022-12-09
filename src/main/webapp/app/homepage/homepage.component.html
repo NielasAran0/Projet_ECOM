@@ -11,7 +11,7 @@
         <div class="salesPost-list-detail">
           <div class="salesPost-product-name">{{ salesPost.product.name }}</div>
           <div class="salesPost-product-description">{{ salesPost.product.description }}</div>
-          <i class="pi pi-tag salesPost-product-category-icon"></i>
+          <em class="pi pi-tag salesPost-product-category-icon"></em>
           <span *ngIf="salesPost.product.categories">
             <span class="salesPost-product-category" *ngFor="let category of salesPost.product.categories; last as isLast">
               {{ category.name }}<span *ngIf="!isLast">, </span>
@@ -33,7 +33,7 @@
       <div class="salesPost-grid-item card">
         <div class="salesPost-grid-item-top">
           <div>
-            <i class="pi pi-tag salesPost-product-category-icon"></i>
+            <em class="pi pi-tag salesPost-product-category-icon"></em>
             <span *ngIf="salesPost.product.categories">
               <span class="salesPost-product-category" *ngFor="let category of salesPost.product.categories; last as isLast">
                 {{ category.name }}<span *ngIf="!isLast">, </span>
