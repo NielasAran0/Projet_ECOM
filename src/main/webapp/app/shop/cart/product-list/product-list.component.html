@@ -7,21 +7,21 @@
             <img class="img-fluid" src="https://via.placeholder.com/175" alt="sample image" />
           </div>
           <div class="col-6 col-md-7">
-            <h5>{{ item.id }}</h5>
-
-            <small class="text-success">In Stock</small>
+            <h5>ID:{{ item.id }}</h5>
+            <!-- <h5>{{ item.sells.name }}</h5> -->
+            <div class="text-success" *ngIf="item?.stock > 0">in stock</div>
             <ul class="nav">
               <div>
                 <button class="minus_button" [disabled]="item.quantity === 1" (click)="decreseQuantity(item)">-</button>
                 {{ item.quantity }}
                 <button class="plus_button" [disabled]="item.quantity >= item.stock" (click)="increseQuantity(item)">+</button>
               </div>
-
-              <li class="nav-item ms-4">
+              <div class="nav-item ms-4">
                 <button class="btn btn-link" aria-current="delete-button" (click)="deleteItem(item)">Delete</button>
-              </li>
+              </div>
             </ul>
           </div>
+
           <div class="col-3 col-md-2">
             <p class="h5 text-end text-nowrap">{{ item.price | currency: 'USD':'symbol':'.2' }}</p>
           </div>
