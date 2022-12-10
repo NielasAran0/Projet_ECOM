@@ -54,11 +54,11 @@ export class CartServiceService {
     let total = 0;
     localStorage.setItem('cart', JSON.stringify(change));
     let count = 0;
-    if (change.length !== 0) {
-      change.map((i: any) => {
-        count += i.quantity;
-      });
-    }
+
+    change.map((i: any) => {
+      count += i.quantity;
+    });
+
     this.storageChange.next(count);
     this.storage.next(change);
 
