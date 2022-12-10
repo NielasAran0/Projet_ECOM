@@ -1,11 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { ISalesPost } from 'app/entities/sales-post/sales-post.model';
+import { SalesPostService } from 'app/entities/sales-post/service/sales-post.service';
+
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'jhi-accueil',
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.scss'],
 })
-export class AccueilComponent {
-  // constructor() {}
-  // ngOnInit(): void {}
+export class AccueilComponent implements OnInit {
+  salesPosts: ISalesPost[] = [];
+
+  sortOptions: SelectItem[] = [];
+  sortOrder: number;
+  sortKey: string;
+  sortField: string;
+
+  priceRange: number[];
+
+  constructor(private salesPostService: SalesPostService) {
+    this.sortOrder = 0;
+    this.sortKey = '';
+    this.sortField = '';
+
+    this.priceRange = [0, 10000];
+  }
+
+  ngOnInit(): void {
+    this.salesPostService.findAll().subscribe(salesPosts => {
+      this.salesPosts = salesPosts;
+    });
+
+    this.sortOptions = [
+      { label: 'Prix décroissant', value: '!price' },
+      { label: 'Prix croissant', value: 'price' },
+    ];
+  }
+
+  onSortChange(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+    } else {
+      this.sortOrder = 1;
+      this.sortField = value;
+    }
+  }
 }

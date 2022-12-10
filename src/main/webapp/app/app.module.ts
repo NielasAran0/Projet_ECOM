@@ -3,6 +3,7 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/en';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { NgxWebstorageModule } from 'ngx-webstorage';
@@ -30,6 +31,7 @@ import { AppComponent } from './app/app.component';
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     SharedModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppRoutingModule,
