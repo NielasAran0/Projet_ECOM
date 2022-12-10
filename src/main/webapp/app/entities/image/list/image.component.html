@@ -44,6 +44,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="product.id">
+            <div class="d-flex">
+              <span jhiTranslate="ecomApp.image.product">Product</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -53,6 +59,11 @@
             <a [routerLink]="['/image', image.id, 'view']">{{ image.id }}</a>
           </td>
           <td>{{ image.url }}</td>
+          <td>
+            <div *ngIf="image.product">
+              <a [routerLink]="['/product', image.product.id, 'view']">{{ image.product.id }}</a>
+            </div>
+          </td>
           <td class="text-end">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/image', image.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

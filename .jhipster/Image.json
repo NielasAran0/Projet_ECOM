@@ -19,9 +19,8 @@
     {
       "otherEntityName": "product",
       "otherEntityRelationshipName": "images",
-      "ownerSide": false,
-      "relationshipName": "products",
-      "relationshipType": "many-to-many"
+      "relationshipName": "product",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "no"

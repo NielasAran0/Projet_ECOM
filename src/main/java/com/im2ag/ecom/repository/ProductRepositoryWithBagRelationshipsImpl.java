@@ -22,7 +22,7 @@ public class ProductRepositoryWithBagRelationshipsImpl implements ProductReposit
 
     @Override
     public Optional<Product> fetchBagRelationships(Optional<Product> product) {
-        return product.map(this::fetchCategories).map(this::fetchImages);
+        return product.map(this::fetchCategories);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ProductRepositoryWithBagRelationshipsImpl implements ProductReposit
 
     @Override
     public List<Product> fetchBagRelationships(List<Product> products) {
-        return Optional.of(products).map(this::fetchCategories).map(this::fetchImages).orElse(Collections.emptyList());
+        return Optional.of(products).map(this::fetchCategories).orElse(Collections.emptyList());
     }
 
     Product fetchCategories(Product result) {
@@ -49,29 +49,6 @@ public class ProductRepositoryWithBagRelationshipsImpl implements ProductReposit
         List<Product> result = entityManager
             .createQuery(
                 "select distinct product from Product product left join fetch product.categories where product in :products",
-                Product.class
-            )
-            .setParameter("products", products)
-            .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
-            .getResultList();
-        Collections.sort(result, (o1, o2) -> Integer.compare(order.get(o1.getId()), order.get(o2.getId())));
-        return result;
-    }
-
-    Product fetchImages(Product result) {
-        return entityManager
-            .createQuery("select product from Product product left join fetch product.images where product is :product", Product.class)
-            .setParameter("product", result)
-            .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
-            .getSingleResult();
-    }
-
-    List<Product> fetchImages(List<Product> products) {
-        HashMap<Object, Integer> order = new HashMap<>();
-        IntStream.range(0, products.size()).forEach(index -> order.put(products.get(index).getId(), index));
-        List<Product> result = entityManager
-            .createQuery(
-                "select distinct product from Product product left join fetch product.images where product in :products",
                 Product.class
             )
             .setParameter("products", products)

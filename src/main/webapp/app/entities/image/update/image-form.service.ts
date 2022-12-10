@@ -14,12 +14,12 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type ImageFormGroupInput = IImage | PartialWithRequiredKeyOf<NewImage>;
 
-type ImageFormDefaults = Pick<NewImage, 'id' | 'products'>;
+type ImageFormDefaults = Pick<NewImage, 'id'>;
 
 type ImageFormGroupContent = {
   id: FormControl<IImage['id'] | NewImage['id']>;
   url: FormControl<IImage['url']>;
-  products: FormControl<IImage['products']>;
+  product: FormControl<IImage['product']>;
 };
 
 export type ImageFormGroup = FormGroup<ImageFormGroupContent>;
@@ -40,7 +40,7 @@ export class ImageFormService {
         }
       ),
       url: new FormControl(imageRawValue.url),
-      products: new FormControl(imageRawValue.products ?? []),
+      product: new FormControl(imageRawValue.product),
     });
   }
 
@@ -61,7 +61,6 @@ export class ImageFormService {
   private getFormDefaults(): ImageFormDefaults {
     return {
       id: null,
-      products: [],
     };
   }
 }

@@ -59,21 +59,6 @@
             <option [ngValue]="categoryOption" *ngFor="let categoryOption of categoriesSharedCollection">{{ categoryOption.id }}</option>
           </select>
         </div>
-
-        <div class="row mb-3">
-          <label jhiTranslate="ecomApp.product.images" for="field_images">Images</label>
-          <select
-            class="form-control"
-            id="field_images"
-            data-cy="images"
-            multiple
-            name="images"
-            formControlName="images"
-            [compareWith]="compareImage"
-          >
-            <option [ngValue]="imageOption" *ngFor="let imageOption of imagesSharedCollection">{{ imageOption.id }}</option>
-          </select>
-        </div>
       </div>
 
       <div>

@@ -52,7 +52,6 @@ relationship OneToOne {
 
 relationship ManyToMany {
 	Product {categories} to Category {products}
-	Product {images} to Image {products}
 }
 
 relationship ManyToOne {
@@ -62,6 +61,9 @@ relationship ManyToOne {
 
 relationship OneToMany {
 	UserOrder {lines} to OrderLine
+    Product {images} to Image
     AppUser {orders} to UserOrder
     AppUser {posts} to SalesPost
 }
+
+paginate SalesPost with pagination

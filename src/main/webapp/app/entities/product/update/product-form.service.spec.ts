@@ -24,7 +24,6 @@ describe('Product Form Service', () => {
             description: expect.any(Object),
             seller: expect.any(Object),
             categories: expect.any(Object),
-            images: expect.any(Object),
           })
         );
       });
@@ -39,7 +38,6 @@ describe('Product Form Service', () => {
             description: expect.any(Object),
             seller: expect.any(Object),
             categories: expect.any(Object),
-            images: expect.any(Object),
           })
         );
       });

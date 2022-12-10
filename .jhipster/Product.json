@@ -22,6 +22,12 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "image",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "images",
+      "relationshipType": "one-to-many"
+    },
+    {
       "otherEntityName": "appUser",
       "relationshipName": "seller",
       "relationshipType": "many-to-one"
@@ -31,13 +37,6 @@
       "otherEntityRelationshipName": "products",
       "ownerSide": true,
       "relationshipName": "categories",
-      "relationshipType": "many-to-many"
-    },
-    {
-      "otherEntityName": "image",
-      "otherEntityRelationshipName": "products",
-      "ownerSide": true,
-      "relationshipName": "images",
       "relationshipType": "many-to-many"
     },
     {
