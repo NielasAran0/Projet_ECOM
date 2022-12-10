@@ -61,7 +61,7 @@ export class ProductCardComponent implements OnInit, OnDestroy {
         }
       });
   }
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.eventSub.unsubscribe();
   }
 
