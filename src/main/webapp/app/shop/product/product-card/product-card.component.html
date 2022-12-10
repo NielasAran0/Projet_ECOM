@@ -1,8 +1,25 @@
 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-  <div *ngFor="let prod of products; index as i; first as isFirst" class="col mb-5" [routerLink]="['/shop/product/' + prod.id]">
-    <div class="card h-100">
+  <div class="my-3" *ngFor="let prod of products; index as i; first as isFirst" [routerLink]="['/shop/product/' + prod.id]">
+    <div class="card h-100 round-card">
       <!-- Sale badge-->
-      <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+      <div class="badge text-bg-warning position-absolute rotate-top-left">
+        reste
+        {{ prod.stock }}
+        articles
+      </div>
+
+      <!-- <span *ngIf="prod.stock === 0" class="salesPost-badge status-outofstock"> RUPTURE DE STOCK </span>
+      <span *ngIf="prod.stock > 0 && prod.stock < 100" class="salesPost-badge status-lowstock"> STOCK
+        FAIBLE </span>
+      <span *ngIf="prod.stock >= 100" class="salesPost-badge status-instock"> EN STOCK </span> -->
+
+      <div class="badge text-bg-danger position-absolute rotate-top-right">
+        <span class="fs-6">
+          Expire
+          {{ prod.limitDate?.fromNow() }}
+        </span>
+      </div>
+
       <!-- Product image-->
       <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
       <!-- Product details-->
@@ -10,11 +27,12 @@
         <div class="text-center">
           <!-- Product name-->
           <h5 class="fw-bolder">{{ prod.product?.name }}</h5>
+
           <!-- Product reviews-->
 
           <!-- Product price-->
 
-          ${{ prod.price }}
+          <p class="fw-bold">${{ prod.price }}</p>
         </div>
       </div>
     </div>

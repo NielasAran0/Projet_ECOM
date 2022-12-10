@@ -1,0 +1,16 @@
+.rotate-top-left {
+  top: 5px;
+  left: -5px;
+}
+
+.rotate-top-right {
+  top: 25px;
+  right: -35px;
+  transform: rotate(45deg);
+  border: 5px solid rgb(217, 59, 38);
+  border-radius: 15px;
+}
+
+.round-card {
+  border-radius: 30px;
+}

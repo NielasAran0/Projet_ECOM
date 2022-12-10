@@ -44,9 +44,7 @@ public class ProductResource {
      * {@code POST  /products} : Create a new product.
      *
      * @param product the product to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
-     *         body the new product, or with status {@code 400 (Bad Request)} if the
-     *         product has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new product, or with status {@code 400 (Bad Request)} if the product has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/products")
@@ -65,13 +63,11 @@ public class ProductResource {
     /**
      * {@code PUT  /products/:id} : Updates an existing product.
      *
-     * @param id      the id of the product to save.
+     * @param id the id of the product to save.
      * @param product the product to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
-     *         the updated product,
-     *         or with status {@code 400 (Bad Request)} if the product is not valid,
-     *         or with status {@code 500 (Internal Server Error)} if the product
-     *         couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated product,
+     * or with status {@code 400 (Bad Request)} if the product is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the product couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/products/{id}")
@@ -97,17 +93,14 @@ public class ProductResource {
     }
 
     /**
-     * {@code PATCH  /products/:id} : Partial updates given fields of an existing
-     * product, field will ignore if it is null
+     * {@code PATCH  /products/:id} : Partial updates given fields of an existing product, field will ignore if it is null
      *
-     * @param id      the id of the product to save.
+     * @param id the id of the product to save.
      * @param product the product to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
-     *         the updated product,
-     *         or with status {@code 400 (Bad Request)} if the product is not valid,
-     *         or with status {@code 404 (Not Found)} if the product is not found,
-     *         or with status {@code 500 (Internal Server Error)} if the product
-     *         couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated product,
+     * or with status {@code 400 (Bad Request)} if the product is not valid,
+     * or with status {@code 404 (Not Found)} if the product is not found,
+     * or with status {@code 500 (Internal Server Error)} if the product couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/products/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -150,11 +143,9 @@ public class ProductResource {
     /**
      * {@code GET  /products} : get all the products.
      *
-     * @param eagerload flag to eager load entities from relationships (This is
-     *                  applicable for many-to-many).
-     * @param filter    the filter of the request.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
-     *         of products in body.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param filter the filter of the request.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of products in body.
      */
     @GetMapping("/products")
     public List<Product> getAllProducts(
@@ -180,8 +171,7 @@ public class ProductResource {
      * {@code GET  /products/:id} : get the "id" product.
      *
      * @param id the id of the product to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
-     *         the product, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the product, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable Long id) {
