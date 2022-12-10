@@ -35,6 +35,13 @@
             >{{ last ? '' : ', ' }}
           </span>
         </dd>
+        <dt><span jhiTranslate="ecomApp.product.images">Images</span></dt>
+        <dd>
+          <span *ngFor="let images of product.images; let last = last">
+            <a [routerLink]="['/image', images.id, 'view']">{{ images.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

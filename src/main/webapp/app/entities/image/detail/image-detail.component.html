@@ -18,12 +18,6 @@
         <dd>
           <span>{{ image.url }}</span>
         </dd>
-        <dt><span jhiTranslate="ecomApp.image.product">Product</span></dt>
-        <dd>
-          <div *ngIf="image.product">
-            <a [routerLink]="['/product', image.product.id, 'view']">{{ image.product.id }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

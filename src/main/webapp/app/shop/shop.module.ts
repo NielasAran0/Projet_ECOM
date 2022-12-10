@@ -10,9 +10,40 @@ import { ProductCardComponent } from './product/product-card/product-card.compon
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { MainBodyComponent } from './main-body/main-body.component';
 import { SharedModule } from 'app/shared/shared.module';
+import { PaymentComponent } from './payment/payment.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PaymentSuccesComponent } from './payment-succes/payment-succes.component';
+import { PaymentEchecComponent } from './payment-echec/payment-echec.component';
+
+import { DropdownModule } from 'primeng/dropdown';
+import { SliderModule } from 'primeng/slider';
+import { ButtonModule } from 'primeng/button';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
-  declarations: [AccueilComponent, TopNavComponent, ProductCardComponent, ProductDetailComponent, MainBodyComponent],
-  imports: [CommonModule, SharedModule, ShopRoutingModule, RouterModule],
+  declarations: [
+    AccueilComponent,
+    TopNavComponent,
+    ProductCardComponent,
+    ProductDetailComponent,
+    MainBodyComponent,
+    PaymentComponent,
+    PersonalInfoComponent,
+    PaymentSuccesComponent,
+    PaymentEchecComponent,
+  ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    ShopRoutingModule,
+    RouterModule,
+    ReactiveFormsModule,
+    // primeng modules
+    DropdownModule,
+    SliderModule,
+    ButtonModule,
+    DataViewModule,
+  ],
 })
 export class ShopModule {}

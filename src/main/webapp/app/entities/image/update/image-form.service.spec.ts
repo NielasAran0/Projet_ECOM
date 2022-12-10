@@ -21,7 +21,7 @@ describe('Image Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             url: expect.any(Object),
-            product: expect.any(Object),
+            products: expect.any(Object),
           })
         );
       });
@@ -33,7 +33,7 @@ describe('Image Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             url: expect.any(Object),
-            product: expect.any(Object),
+            products: expect.any(Object),
           })
         );
       });
