@@ -65,3 +65,5 @@ relationship OneToMany {
     AppUser {orders} to UserOrder
     AppUser {posts} to SalesPost
 }
+
+paginate SalesPost with pagination

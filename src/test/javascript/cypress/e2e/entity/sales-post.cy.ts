@@ -91,6 +91,9 @@ describe('SalesPost e2e test', () => {
             },
             {
               statusCode: 200,
+              headers: {
+                link: '<http://localhost/api/sales-posts?page=0&size=20>; rel="last",<http://localhost/api/sales-posts?page=0&size=20>; rel="first"',
+              },
               body: [salesPost],
             }
           ).as('entitiesRequestInternal');

@@ -21,7 +21,7 @@
   "fluentMethods": true,
   "jpaMetamodelFiltering": false,
   "name": "SalesPost",
-  "pagination": "no",
+  "pagination": "pagination",
   "readOnly": false,
   "relationships": [
     {
