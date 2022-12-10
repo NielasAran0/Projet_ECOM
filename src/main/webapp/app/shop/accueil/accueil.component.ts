@@ -35,7 +35,6 @@ export class AccueilComponent implements OnInit, OnDestroy {
         next: (res: EntityArrayResponseType) => {
           this.fillComponentAttributesFromResponseHeader(res.headers);
           this.salesPosts = res.body as ISalesPost[];
-          console.log(this.salesPosts);
         },
       });
 
@@ -45,7 +44,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
         throttleTime(200)
       )
       .subscribe(() => {
-        if (this.bottomReached() && this.salesPosts!.length < this.totalItems) {
+        if (this.bottomReached() && this.salesPosts.length < this.totalItems) {
           this.page++;
 
           this.salesPostService
@@ -58,7 +57,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
               next: (res: EntityArrayResponseType) => {
                 const tmp = res.body as ISalesPost[];
 
-                this.salesPosts = [...(this.salesPosts ?? []), ...tmp];
+                this.salesPosts = [...this.salesPosts, ...tmp];
               },
             });
         }
