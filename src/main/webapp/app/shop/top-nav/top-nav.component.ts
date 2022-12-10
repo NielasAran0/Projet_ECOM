@@ -16,8 +16,4 @@ export class TopNavComponent implements OnInit {
   ngOnInit(): void {
     this.totalItem = this.storageService.getCount();
   }
-
-  login(): void {
-    this.router.navigate(['../login']);
-  }
 }

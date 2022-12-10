@@ -9,6 +9,8 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { MainBodyComponent } from './main-body/main-body.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
 
 const routes: Routes = [
   {
