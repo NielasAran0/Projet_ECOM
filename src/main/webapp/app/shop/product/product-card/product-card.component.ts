@@ -33,7 +33,6 @@ export class ProductCardComponent implements OnInit, OnDestroy {
         next: (res: EntityArrayResponseType) => {
           this.fillComponentAttributesFromResponseHeader(res.headers);
           this.products = res.body as ISalesPost[];
-          console.log(this.products);
         },
       });
 
@@ -55,9 +54,8 @@ export class ProductCardComponent implements OnInit, OnDestroy {
             .subscribe({
               next: (res: EntityArrayResponseType) => {
                 const tmp = res.body as ISalesPost[];
-                if (tmp) {
-                  this.products = [...(this.products || []), ...tmp];
-                }
+
+                this.products = [...(this.products ?? []), ...tmp];
               },
             });
         }
@@ -67,11 +65,11 @@ export class ProductCardComponent implements OnInit, OnDestroy {
     this.eventSub.unsubscribe();
   }
 
-  protected fillComponentAttributesFromResponseHeader(headers: HttpHeaders): void {
-    this.totalItems = Number(headers.get(TOTAL_COUNT_RESPONSE_HEADER));
-  }
-
   bottomReached(): boolean {
     return window.innerHeight + window.scrollY * 1.1 >= document.body.offsetHeight;
+  }
+
+  protected fillComponentAttributesFromResponseHeader(headers: HttpHeaders): void {
+    this.totalItems = Number(headers.get(TOTAL_COUNT_RESPONSE_HEADER));
   }
 }

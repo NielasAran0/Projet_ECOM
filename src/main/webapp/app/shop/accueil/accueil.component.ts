@@ -18,9 +18,8 @@ export class AccueilComponent implements OnInit, OnDestroy {
   salesPosts: ISalesPost[] = [];
   page = 1;
   itemsPerPage = ITEMS_PER_PAGE;
-
-  private eventSub: Subscription;
   totalItems!: number;
+  private eventSub: Subscription;
 
   constructor(protected salesPostService: SalesPostService, private storageService: CartServiceService) {
     this.eventSub = Subscription.EMPTY;
@@ -59,9 +58,8 @@ export class AccueilComponent implements OnInit, OnDestroy {
             .subscribe({
               next: (res: EntityArrayResponseType) => {
                 const tmp = res.body as ISalesPost[];
-                if (tmp) {
-                  this.salesPosts = [...(this.salesPosts || []), ...tmp];
-                }
+
+                this.salesPosts = [...(this.salesPosts ?? []), ...tmp];
               },
             });
         }
@@ -70,10 +68,6 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.eventSub.unsubscribe();
-  }
-
-  protected fillComponentAttributesFromResponseHeader(headers: HttpHeaders): void {
-    this.totalItems = Number(headers.get(TOTAL_COUNT_RESPONSE_HEADER));
   }
 
   bottomReached(): boolean {
@@ -95,5 +89,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   setMessage(value: []): void {
     this.storageService.setStorageItem(value);
+  }
+
+  protected fillComponentAttributesFromResponseHeader(headers: HttpHeaders): void {
+    this.totalItems = Number(headers.get(TOTAL_COUNT_RESPONSE_HEADER));
   }
 }
