@@ -68,6 +68,10 @@ export class AccueilComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngOnDestroy() {
+    this.eventSub.unsubscribe();
+  }
+
   protected fillComponentAttributesFromResponseHeader(headers: HttpHeaders): void {
     this.totalItems = Number(headers.get(TOTAL_COUNT_RESPONSE_HEADER));
   }
@@ -75,9 +79,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   bottomReached(): boolean {
     return window.innerHeight + window.scrollY * 1.1 >= document.body.offsetHeight;
   }
-  ngOnDestroy() {
-    this.eventSub.unsubscribe();
-  }
+
   addToCart(ele: ISalesPost | null): void {
     const tmp = localStorage.getItem('cart');
     let cart = [];

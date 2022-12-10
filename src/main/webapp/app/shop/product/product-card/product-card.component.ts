@@ -15,9 +15,8 @@ export class ProductCardComponent implements OnInit, OnDestroy {
   products?: ISalesPost[];
   page = 1;
   itemsPerPage = ITEMS_PER_PAGE;
-
-  private eventSub: Subscription;
   totalItems!: number;
+  private eventSub: Subscription;
 
   constructor(protected salesPostService: SalesPostService, protected sortService: SortService) {
     this.eventSub = Subscription.EMPTY;
@@ -64,6 +63,9 @@ export class ProductCardComponent implements OnInit, OnDestroy {
         }
       });
   }
+  ngOnDestroy() {
+    this.eventSub.unsubscribe();
+  }
 
   protected fillComponentAttributesFromResponseHeader(headers: HttpHeaders): void {
     this.totalItems = Number(headers.get(TOTAL_COUNT_RESPONSE_HEADER));
@@ -71,8 +73,5 @@ export class ProductCardComponent implements OnInit, OnDestroy {
 
   bottomReached(): boolean {
     return window.innerHeight + window.scrollY * 1.1 >= document.body.offsetHeight;
-  }
-  ngOnDestroy() {
-    this.eventSub.unsubscribe();
   }
 }
