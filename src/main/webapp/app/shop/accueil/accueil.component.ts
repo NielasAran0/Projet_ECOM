@@ -4,7 +4,6 @@ import { ITEMS_PER_PAGE, TOTAL_COUNT_RESPONSE_HEADER } from 'app/config/paginati
 
 import { ISalesPost } from 'app/entities/sales-post/sales-post.model';
 import { EntityArrayResponseType, SalesPostService } from 'app/entities/sales-post/service/sales-post.service';
-import { SortService } from 'app/shared/sort/sort.service';
 
 import { filter, fromEvent, Subscription, throttleTime } from 'rxjs';
 import { CartServiceService } from '../service/cart-service.service';
