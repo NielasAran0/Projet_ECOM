@@ -32,12 +32,12 @@ export class ProductDetailComponent implements OnInit {
     let cart = [];
     if (tmp != null) {
       cart = JSON.parse(tmp);
-      var index = cart.findIndex((i: any) => i.id === ele.id);
+      let index = cart.findIndex((i: any) => i.id === ele.id);
       if (index === -1) {
         ele.quantity = 1;
         cart.push(ele);
       } else {
-        ele.quantity = cart[index].quantity + 1;
+        ele.quantity++;
         cart.splice(index, 1, ele);
       }
     } else {

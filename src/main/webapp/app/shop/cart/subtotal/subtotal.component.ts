@@ -13,7 +13,7 @@ export class SubtotalComponent implements OnInit {
 
   constructor(private shoppingCartService: CartServiceService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subTotal$ = this.shoppingCartService.getSubTotal();
     this.count$ = this.shoppingCartService.getCount();
   }

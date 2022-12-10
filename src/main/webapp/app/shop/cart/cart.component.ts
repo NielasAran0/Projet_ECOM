@@ -8,6 +8,9 @@ import { SortService } from 'app/shared/sort/sort.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  constructor() {}
-  ngOnInit(): void {}
+  //constructor() {}
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 }

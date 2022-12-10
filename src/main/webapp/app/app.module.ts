@@ -26,6 +26,7 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { AppComponent } from './app/app.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,16 @@ import { AppComponent } from './app/app.component';
     httpInterceptorProviders,
   ],
   exports: [FooterComponent],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AppComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+    AppComponent,
+    ProfileComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

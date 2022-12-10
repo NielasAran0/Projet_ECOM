@@ -31,10 +31,10 @@ export class CartServiceService {
   public quantityMap = new Map<number, number>();
 
   constructor() {
-    let tmp = localStorage.getItem('cart');
+    const tmp = localStorage.getItem('cart');
     let count = 0;
-    let list = tmp ? JSON.parse(tmp) : [];
-    if (list.length != 0) {
+    const list = tmp ? JSON.parse(tmp) : [];
+    if (list.length !== 0) {
       list.map((i: any) => {
         count += i.quantity;
       });
@@ -43,7 +43,7 @@ export class CartServiceService {
 
     this.storage = new BehaviorSubject<any[]>(list);
 
-    var total = 0;
+    let total = 0;
     list.forEach((element: any) => {
       total = element.price * element.quantity + total;
     });
@@ -51,10 +51,10 @@ export class CartServiceService {
   }
 
   public setStorageItem(change: []): void {
-    var total = 0;
+    let total = 0;
     localStorage.setItem('cart', JSON.stringify(change));
     let count = 0;
-    if (change.length != 0) {
+    if (change.length !== 0) {
       change.map((i: any) => {
         count += i.quantity;
       });
@@ -75,21 +75,22 @@ export class CartServiceService {
     return this.storage;
   }
 
-  deleteItem(deleteItem: ISalesPost) {
-    var id = deleteItem.id;
-    let tmp = localStorage.getItem('cart');
-    let list = tmp ? JSON.parse(tmp) : [];
-    var l = list.filter((x: any) => x.id != id);
+  deleteItem(deleteItem: ISalesPost): void {
+    const id = deleteItem.id;
+    const tmp = localStorage.getItem('cart');
+    const list = tmp ? JSON.parse(tmp) : [];
+    const l = list.filter((x: any) => x.id !== id);
     this.setStorageItem(l);
   }
 
   getSubTotal(): Observable<number> {
     return this.subTotal;
   }
-  updateQuantity(operation: number, updateItem: any) {
-    var id = updateItem.id;
-    let items = localStorage.getItem('cart');
-    let list = items ? JSON.parse(items) : [];
+
+  updateQuantity(operation: number, updateItem: any): void {
+    const id = updateItem.id;
+    const items = localStorage.getItem('cart');
+    const list = items ? JSON.parse(items) : [];
 
     // find the index of the item with the specified id
     const index = list.findIndex((i: any) => i.id === id);

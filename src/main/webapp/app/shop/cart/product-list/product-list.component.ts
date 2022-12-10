@@ -11,19 +11,19 @@ export class ProductListComponent implements OnInit {
   items$: Observable<any[]> | undefined;
   constructor(private CartService: CartServiceService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.items$ = this.CartService.getCart();
   }
 
-  deleteItem(product: ISalesPost) {
+  deleteItem(product: ISalesPost): void {
     this.CartService.deleteItem(product);
   }
 
-  decreseQuantity(product: ISalesPost | any) {
+  decreseQuantity(product: ISalesPost | any): void {
     this.CartService.updateQuantity(-1, product);
   }
 
-  increseQuantity(product: ISalesPost | any) {
+  increseQuantity(product: ISalesPost | any): void {
     this.CartService.updateQuantity(1, product);
   }
 }
