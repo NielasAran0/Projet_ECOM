@@ -5,10 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   //constructor() {}
-
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  //ngOnInit()
 }
