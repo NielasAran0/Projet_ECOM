@@ -62,12 +62,6 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="images.id">
-            <div class="d-flex">
-              <span jhiTranslate="ecomApp.product.images">Images</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -86,12 +80,6 @@
           <td>
             <span *ngFor="let categories of product.categories; let last = last">
               <a class="form-control-static" [routerLink]="['/category', categories.id, 'view']">{{ categories.id }}</a
-              >{{ last ? '' : ', ' }}
-            </span>
-          </td>
-          <td>
-            <span *ngFor="let images of product.images; let last = last">
-              <a class="form-control-static" [routerLink]="['/image', images.id, 'view']">{{ images.id }}</a
               >{{ last ? '' : ', ' }}
             </span>
           </td>

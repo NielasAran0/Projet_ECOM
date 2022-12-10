@@ -174,6 +174,7 @@ public class SalesPostResource {
     ) {
         log.debug("REST request to get a page of SalesPosts");
         Page<SalesPost> page;
+
         if (home != null) {
             Sort sort = Sort.by("limitDate").ascending();
             pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);

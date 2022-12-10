@@ -19,7 +19,7 @@
       },
       "id": "ID",
       "url": "Url",
-      "products": "Products"
+      "product": "Product"
     }
   }
 }

@@ -33,11 +33,16 @@ public class Product implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @OneToMany(mappedBy = "product")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "product" }, allowSetters = true)
+    private Set<Image> images = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties(value = { "cart", "orders", "posts" }, allowSetters = true)
     private AppUser seller;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
         name = "rel_product__categories",
         joinColumns = @JoinColumn(name = "product_id"),
@@ -46,16 +51,6 @@ public class Product implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "products" }, allowSetters = true)
     private Set<Category> categories = new HashSet<>();
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "rel_product__images",
-        joinColumns = @JoinColumn(name = "product_id"),
-        inverseJoinColumns = @JoinColumn(name = "images_id")
-    )
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "products" }, allowSetters = true)
-    private Set<Image> images = new HashSet<>();
 
     @JsonIgnoreProperties(value = { "product", "appUser" }, allowSetters = true)
     @OneToOne(mappedBy = "product")
@@ -102,6 +97,37 @@ public class Product implements Serializable {
         this.description = description;
     }
 
+    public Set<Image> getImages() {
+        return this.images;
+    }
+
+    public void setImages(Set<Image> images) {
+        if (this.images != null) {
+            this.images.forEach(i -> i.setProduct(null));
+        }
+        if (images != null) {
+            images.forEach(i -> i.setProduct(this));
+        }
+        this.images = images;
+    }
+
+    public Product images(Set<Image> images) {
+        this.setImages(images);
+        return this;
+    }
+
+    public Product addImages(Image image) {
+        this.images.add(image);
+        image.setProduct(this);
+        return this;
+    }
+
+    public Product removeImages(Image image) {
+        this.images.remove(image);
+        image.setProduct(null);
+        return this;
+    }
+
     public AppUser getSeller() {
         return this.seller;
     }
@@ -137,31 +163,6 @@ public class Product implements Serializable {
     public Product removeCategories(Category category) {
         this.categories.remove(category);
         category.getProducts().remove(this);
-        return this;
-    }
-
-    public Set<Image> getImages() {
-        return this.images;
-    }
-
-    public void setImages(Set<Image> images) {
-        this.images = images;
-    }
-
-    public Product images(Set<Image> images) {
-        this.setImages(images);
-        return this;
-    }
-
-    public Product addImages(Image image) {
-        this.images.add(image);
-        image.getProducts().add(this);
-        return this;
-    }
-
-    public Product removeImages(Image image) {
-        this.images.remove(image);
-        image.getProducts().remove(this);
         return this;
     }
 
@@ -204,7 +205,7 @@ public class Product implements Serializable {
     }
 
     // prettier-ignore
-@Override
+    @Override
     public String toString() {
         return "Product{" +
             "id=" + getId() +

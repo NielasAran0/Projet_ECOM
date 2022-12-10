@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface SalesPostRepository extends JpaRepository<SalesPost, Long> {
-    @Query("SELECT e FROM SalesPost e WHERE e.limitDate > current_timestamp and e.stock>0 ")
+    @Query("SELECT e FROM SalesPost e WHERE e.limitDate > current_timestamp and e.stock>0")
     Page<SalesPost> findConditionLimitDateAndStock(Pageable pageable);
 }

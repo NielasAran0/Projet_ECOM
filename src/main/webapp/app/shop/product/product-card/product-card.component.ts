@@ -3,8 +3,8 @@ import { EntityArrayResponseType, SalesPostService } from 'app/entities/sales-po
 import { SortService } from 'app/shared/sort/sort.service';
 import { ISalesPost } from 'app/entities/sales-post/sales-post.model';
 
-import { ITEMS_PER_PAGE, PAGE_HEADER, TOTAL_COUNT_RESPONSE_HEADER } from 'app/config/pagination.constants';
-import { debounceTime, filter, fromEvent, Subscription, tap, throttleTime } from 'rxjs';
+import { ITEMS_PER_PAGE, TOTAL_COUNT_RESPONSE_HEADER } from 'app/config/pagination.constants';
+import { filter, fromEvent, Subscription, throttleTime } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'jhi-product-card',
@@ -38,9 +38,8 @@ export class ProductCardComponent implements OnInit, OnDestroy {
         },
       });
 
-    fromEvent(window, 'scroll')
+    fromEvent(window, 'wheel')
       .pipe(
-        // emits once, then ignores subsequent emissions for 300ms, repeat...
         filter(() => this.bottomReached()),
         throttleTime(200)
       )

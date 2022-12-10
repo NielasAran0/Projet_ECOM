@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 import { ImageFormService, ImageFormGroup } from './image-form.service';
 import { IImage } from '../image.model';
 import { ImageService } from '../service/image.service';
+import { IProduct } from 'app/entities/product/product.model';
+import { ProductService } from 'app/entities/product/service/product.service';
 
 @Component({
   selector: 'jhi-image-update',
@@ -16,13 +18,18 @@ export class ImageUpdateComponent implements OnInit {
   isSaving = false;
   image: IImage | null = null;
 
+  productsSharedCollection: IProduct[] = [];
+
   editForm: ImageFormGroup = this.imageFormService.createImageFormGroup();
 
   constructor(
     protected imageService: ImageService,
     protected imageFormService: ImageFormService,
+    protected productService: ProductService,
     protected activatedRoute: ActivatedRoute
   ) {}
+
+  compareProduct = (o1: IProduct | null, o2: IProduct | null): boolean => this.productService.compareProduct(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ image }) => {
@@ -30,6 +37,8 @@ export class ImageUpdateComponent implements OnInit {
       if (image) {
         this.updateForm(image);
       }
+
+      this.loadRelationshipsOptions();
     });
   }
 
@@ -69,5 +78,18 @@ export class ImageUpdateComponent implements OnInit {
   protected updateForm(image: IImage): void {
     this.image = image;
     this.imageFormService.resetForm(this.editForm, image);
+
+    this.productsSharedCollection = this.productService.addProductToCollectionIfMissing<IProduct>(
+      this.productsSharedCollection,
+      image.product
+    );
+  }
+
+  protected loadRelationshipsOptions(): void {
+    this.productService
+      .query()
+      .pipe(map((res: HttpResponse<IProduct[]>) => res.body ?? []))
+      .pipe(map((products: IProduct[]) => this.productService.addProductToCollectionIfMissing<IProduct>(products, this.image?.product)))
+      .subscribe((products: IProduct[]) => (this.productsSharedCollection = products));
   }
 }

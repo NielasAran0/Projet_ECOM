@@ -33,7 +33,7 @@ public class OrderLine implements Serializable {
     private Boolean delivered;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "seller", "categories", "images", "salespost" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "images", "seller", "categories", "salespost" }, allowSetters = true)
     private Product product;
 
     @ManyToOne

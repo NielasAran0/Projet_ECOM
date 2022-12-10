@@ -17,6 +17,21 @@
           <label class="form-label" jhiTranslate="ecomApp.image.url" for="field_url">Url</label>
           <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ecomApp.image.product" for="field_product">Product</label>
+          <select
+            class="form-control"
+            id="field_product"
+            data-cy="product"
+            name="product"
+            formControlName="product"
+            [compareWith]="compareProduct"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="productOption" *ngFor="let productOption of productsSharedCollection">{{ productOption.id }}</option>
+          </select>
+        </div>
       </div>
 
       <div>

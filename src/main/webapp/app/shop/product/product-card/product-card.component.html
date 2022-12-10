@@ -1,5 +1,5 @@
 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-  <div *ngFor="let prod of products; index as i; first as isFirst" class="col mb-5" [routerLink]="['/shop/product/' + prod.id]">
+  <div class="my-3" *ngFor="let prod of products; index as i; first as isFirst" [routerLink]="['/shop/product/' + prod.id]">
     <div class="card h-100 round-card">
       <!-- Sale badge-->
       <div class="badge text-bg-warning position-absolute rotate-top-left">
@@ -7,6 +7,12 @@
         {{ prod.stock }}
         articles
       </div>
+
+      <!-- <span *ngIf="prod.stock === 0" class="salesPost-badge status-outofstock"> RUPTURE DE STOCK </span>
+      <span *ngIf="prod.stock > 0 && prod.stock < 100" class="salesPost-badge status-lowstock"> STOCK
+        FAIBLE </span>
+      <span *ngIf="prod.stock >= 100" class="salesPost-badge status-instock"> EN STOCK </span> -->
+
       <div class="badge text-bg-danger position-absolute rotate-top-right">
         <span class="fs-6">
           Expire
