@@ -17,7 +17,10 @@
     <p-dataView [value]="salesPosts" layout="grid">
       <ng-template pTemplate="header">
         <div class="flex flex-column md:flex-row md:justify-content-between">
-          <p-slider [(ngModel)]="priceRange" [range]="true" [min]="0" [max]="5000"></p-slider>
+          <div>
+            <p>Prix : {{ priceRange[0] + ' - ' + priceRange[1] + ' €' }}</p>
+            <p-slider [(ngModel)]="priceRange" [range]="true" [min]="0" [max]="5000"></p-slider>
+          </div>
           <input type="search" pInputText placeholder="Rechercher par nom" />
           <p-button label="Rechercher" icon="pi pi-search"> </p-button>
           <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
@@ -40,7 +43,7 @@
               </span>
             </div>
             <div class="salesPost-list-action">
-              <span class="salesPost-price">${{ salesPost.price }}</span>
+              <span class="salesPost-price">{{ salesPost.price }} €</span>
               <p-button
                 (onClick)="addToCart(salesPost)"
                 icon="pi pi-shopping-cart"
@@ -90,7 +93,7 @@
               <div class="salesPost-product-description">{{ salesPost.product.description }}</div>
             </div>
             <div class="salesPost-grid-item-bottom">
-              <span class="salesPost-product-price">${{ salesPost.price }}</span>
+              <span class="salesPost-product-price">{{ salesPost.price }} €</span>
               <p-button (onClick)="addToCart(salesPost)" icon="pi pi-shopping-cart" [disabled]="salesPost.stock === 0"> </p-button>
             </div>
           </div>

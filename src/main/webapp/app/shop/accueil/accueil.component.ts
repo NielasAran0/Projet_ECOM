@@ -20,7 +20,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
   totalItems!: number;
   private eventSub: Subscription;
 
-  priceRange: number[] = [20, 80];
+  priceRange: number[] = [0, 5000];
 
   constructor(protected salesPostService: SalesPostService, private storageService: CartServiceService) {
     this.eventSub = Subscription.EMPTY;
