@@ -33,7 +33,7 @@ public class Product implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "product" }, allowSetters = true)
     private Set<Image> images = new HashSet<>();
@@ -42,7 +42,7 @@ public class Product implements Serializable {
     @JsonIgnoreProperties(value = { "cart", "orders", "posts" }, allowSetters = true)
     private AppUser seller;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "rel_product__categories",
         joinColumns = @JoinColumn(name = "product_id"),

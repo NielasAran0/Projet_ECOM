@@ -170,7 +170,10 @@ public class SalesPostResource {
     @GetMapping("/sales-posts")
     public ResponseEntity<List<SalesPost>> getAllSalesPosts(
         @org.springdoc.api.annotations.ParameterObject Pageable pageable,
-        @RequestParam(required = false) String home
+        @RequestParam(required = false) String home,
+        @RequestParam(required = false) Float minPrice,
+        @RequestParam(required = false) Float maxPrice,
+        @RequestParam(required = false) String productName
     ) {
         log.debug("REST request to get a page of SalesPosts");
         Page<SalesPost> page;
@@ -179,7 +182,19 @@ public class SalesPostResource {
             Sort sort = Sort.by("limitDate").ascending();
             pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
 
-            page = salesPostRepository.findConditionLimitDateAndStock(pageable);
+            if (productName == null) {
+                if (minPrice == null) {
+                    page = salesPostRepository.findSalesPostsUnderMaxPrice(pageable, maxPrice);
+                } else {
+                    page = salesPostRepository.findSalesPostsInPriceRange(pageable, minPrice, maxPrice);
+                }
+            } else {
+                if (minPrice == null) {
+                    page = salesPostRepository.findSalesPostsUnderMaxPriceAndByName(pageable, maxPrice, productName.toLowerCase());
+                } else {
+                    page = salesPostRepository.findSalesPostsInPriceRangeAndByName(pageable, minPrice, maxPrice, productName.toLowerCase());
+                }
+            }
         } else {
             page = salesPostRepository.findAll(pageable);
         }
