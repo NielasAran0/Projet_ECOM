@@ -10,12 +10,12 @@ import { ProfileService } from './service/profile.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user!: IAppUser;
+  user!: User;
 
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.profileService.getLoggedInUser().subscribe((user: IAppUser) => {
+    this.profileService.getLoggedInUser().subscribe((user: User) => {
       this.user = user;
     });
   }
