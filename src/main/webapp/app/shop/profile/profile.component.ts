@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'app/admin/user-management/user-management.model';
 import { IAppUser } from 'app/entities/app-user/app-user.model';
 import { Observable } from 'rxjs';
-import { ProfileService } from './service/profile.service';
+import { ProfileService } from '../service/profile.service';
 @Component({
   selector: 'jhi-profile',
   templateUrl: './profile.component.html',

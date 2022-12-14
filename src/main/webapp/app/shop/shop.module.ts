@@ -25,6 +25,7 @@ import { SliderModule } from 'primeng/slider';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     PersonalInfoComponent,
     PaymentSuccesComponent,
     PaymentEchecComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
