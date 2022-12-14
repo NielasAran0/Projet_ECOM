@@ -20,12 +20,23 @@ export class AccueilComponent implements OnInit, OnDestroy {
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems!: number;
 
-  priceRange: number[] = [0, 5000];
-  productNameInput: String = '';
+  priceRange: number[];
+  productNameInput: string;
+
+  minPrice: number;
+  maxPrice: number;
+  productName: string;
 
   private eventSub: Subscription;
 
   constructor(protected salesPostService: SalesPostService, private storageService: CartServiceService) {
+    this.priceRange = [0, 5000];
+    this.productNameInput = '';
+
+    this.minPrice = 0;
+    this.maxPrice = 5000;
+    this.productName = '';
+
     this.eventSub = Subscription.EMPTY;
   }
 
@@ -35,6 +46,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
         home: 'home',
         page: this.page - 1,
         size: this.itemsPerPage,
+        minPrice: this.minPrice,
+        maxPrice: this.maxPrice,
+        productName: this.productName,
       })
       .subscribe({
         next: (res: EntityArrayResponseType) => {
@@ -57,6 +71,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
               home: 'home',
               page: this.page - 1,
               size: this.itemsPerPage,
+              minPrice: this.minPrice,
+              maxPrice: this.maxPrice,
+              productName: this.productName,
             })
             .subscribe({
               next: (res: EntityArrayResponseType) => {
@@ -75,6 +92,30 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   bottomReached(): boolean {
     return window.innerHeight + window.scrollY * 1.1 >= document.body.offsetHeight;
+  }
+
+  handleSearch(): void {
+    this.salesPosts = [];
+
+    this.minPrice = this.priceRange[0];
+    this.maxPrice = this.priceRange[1];
+    this.productName = this.productNameInput;
+
+    this.salesPostService
+      .query({
+        home: 'home',
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        minPrice: this.minPrice,
+        maxPrice: this.maxPrice,
+        productName: this.productName,
+      })
+      .subscribe({
+        next: (res: EntityArrayResponseType) => {
+          this.fillComponentAttributesFromResponseHeader(res.headers);
+          this.salesPosts = res.body as ISalesPost[];
+        },
+      });
   }
 
   addToCart(ele: ISalesPost | null): void {
