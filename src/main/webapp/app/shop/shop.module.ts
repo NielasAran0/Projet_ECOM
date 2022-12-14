@@ -56,6 +56,7 @@ import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
     SliderModule,
     ButtonModule,
     DataViewModule,
+    HttpClientModule,
   ],
 })
 export class ShopModule {}
