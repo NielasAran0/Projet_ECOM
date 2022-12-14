@@ -51,7 +51,6 @@ import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     // primeng modules
     DropdownModule,
     SliderModule,
