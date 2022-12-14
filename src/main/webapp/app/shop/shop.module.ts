@@ -16,7 +16,7 @@ import { ProductListComponent } from './cart/product-list/product-list.component
 import { SharedModule } from 'app/shared/shared.module';
 import { PaymentComponent } from './payment/payment.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaymentSuccesComponent } from './payment-succes/payment-succes.component';
 import { PaymentEchecComponent } from './payment-echec/payment-echec.component';
 
@@ -24,7 +24,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
-import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
@@ -48,13 +47,13 @@ import { ProfileComponent } from './profile/profile.component';
     SharedModule,
     ShopRoutingModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
     // primeng modules
     DropdownModule,
     SliderModule,
     ButtonModule,
     DataViewModule,
-    HttpClientModule,
   ],
 })
 export class ShopModule {}

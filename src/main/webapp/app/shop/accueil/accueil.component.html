@@ -14,38 +14,20 @@
 
 <section class="py-5">
   <div class="container px-4 px-lg-5 mt-5">
-    <p-dataView [value]="salesPosts" layout="grid">
+    <p-dataView
+      [value]="salesPosts"
+      layout="grid"
+      emptyMessage="Aucun résultat correspondant à ces critères de recherche. Veuillez élargir la plage de prix et vérifiez qu'il n'y ait pas d'erreur dans le nom recherché."
+    >
       <ng-template pTemplate="header">
-        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-      </ng-template>
-      <ng-template let-salesPost pTemplate="gridItem">
-        <div class="col-12 md:col-4">
-          <div class="salesPost-grid-item card">
-            <div class="salesPost-grid-item-top">
-              <div>
-                <em class="pi pi-tag salesPost-product-category-icon"></em>
-                <span *ngIf="salesPost.product.categories">
-                  <span class="salesPost-product-category" *ngFor="let category of salesPost.product.categories; last as isLast">
-                    {{ category.name }}<span *ngIf="!isLast">, </span>
-                  </span>
-                </span>
-              </div>
-              <span *ngIf="salesPost.stock === 0" class="salesPost-badge status-outofstock"> RUPTURE DE STOCK </span>
-              <span *ngIf="salesPost.stock > 0 && salesPost.stock < 100" class="salesPost-badge status-lowstock"> STOCK FAIBLE </span>
-              <span *ngIf="salesPost.stock >= 100" class="salesPost-badge status-instock"> EN STOCK </span>
-            </div>
-            <div class="salesPost-grid-item-content">
-              <div *ngIf="salesPost.product.images && salesPost.product.images.length > 0">
-                <img [src]="salesPost.product.images[0].url" [alt]="salesPost.product.name" />
-              </div>
-              <div class="salesPost-product-name">{{ salesPost.product.name }}</div>
-              <div class="salesPost-product-description">{{ salesPost.product.description }}</div>
-            </div>
-            <div class="salesPost-grid-item-bottom">
-              <span class="salesPost-product-price">${{ salesPost.price }}</span>
-              <p-button (onClick)="addToCart(salesPost)" icon="pi pi-shopping-cart" [disabled]="salesPost.stock === 0"> </p-button>
-            </div>
+        <div class="flex flex-column md:flex-row md:justify-content-between">
+          <div>
+            <p>Prix : {{ priceRange[0] + ' - ' + priceRange[1] + ' €' }}</p>
+            <p-slider [(ngModel)]="priceRange" [range]="true" [min]="0" [max]="5000"></p-slider>
           </div>
+          <input type="search" pInputText [(ngModel)]="productNameInput" placeholder="Rechercher par nom" />
+          <p-button label="Rechercher" icon="pi pi-search" (onClick)="handleSearch()"> </p-button>
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
         </div>
       </ng-template>
       <ng-template let-salesPost pTemplate="listItem">
@@ -65,7 +47,7 @@
               </span>
             </div>
             <div class="salesPost-list-action">
-              <span class="salesPost-price">${{ salesPost.price }}</span>
+              <span class="salesPost-price">{{ salesPost.price }} €</span>
               <p-button
                 (onClick)="addToCart(salesPost)"
                 icon="pi pi-shopping-cart"
@@ -73,8 +55,50 @@
                 [disabled]="salesPost.stock === 0"
               ></p-button>
               <span *ngIf="salesPost.stock === 0" class="salesPost-badge status-outofstock"> RUPTURE DE STOCK </span>
-              <span *ngIf="salesPost.stock > 0 && salesPost.stock < 100" class="salesPost-badge status-lowstock"> STOCK FAIBLE </span>
-              <span *ngIf="salesPost.stock >= 100" class="salesPost-badge status-instock"> EN STOCK </span>
+              <span *ngIf="salesPost.stock === 1" class="salesPost-badge status-outofstock"> 1 unité restante</span>
+              <span *ngIf="salesPost.stock > 1 && salesPost.stock <= 10" class="salesPost-badge status-outofstock">
+                {{ salesPost.stock }} unités restantes</span
+              >
+              <span *ngIf="salesPost.stock > 10 && salesPost.stock <= 50" class="salesPost-badge status-lowstock">
+                {{ salesPost.stock }} unités restantes</span
+              >
+              <span *ngIf="salesPost.stock > 50" class="salesPost-badge status-instock"> {{ salesPost.stock }} unités restantes</span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template let-salesPost pTemplate="gridItem">
+        <div class="col-12 md:col-4">
+          <div class="salesPost-grid-item card">
+            <div class="salesPost-grid-item-top">
+              <div>
+                <em class="pi pi-tag salesPost-product-category-icon"></em>
+                <span *ngIf="salesPost.product.categories">
+                  <span class="salesPost-product-category" *ngFor="let category of salesPost.product.categories; last as isLast">
+                    {{ category.name }}<span *ngIf="!isLast">, </span>
+                  </span>
+                </span>
+              </div>
+              <span *ngIf="salesPost.stock === 0" class="salesPost-badge status-outofstock"> RUPTURE DE STOCK </span>
+              <span *ngIf="salesPost.stock === 1" class="salesPost-badge status-outofstock"> 1 unité restante</span>
+              <span *ngIf="salesPost.stock > 1 && salesPost.stock <= 10" class="salesPost-badge status-outofstock">
+                {{ salesPost.stock }} unités restantes</span
+              >
+              <span *ngIf="salesPost.stock > 10 && salesPost.stock <= 50" class="salesPost-badge status-lowstock">
+                {{ salesPost.stock }} unités restantes</span
+              >
+              <span *ngIf="salesPost.stock > 50" class="salesPost-badge status-instock"> {{ salesPost.stock }} unités restantes</span>
+            </div>
+            <div class="salesPost-grid-item-content">
+              <div *ngIf="salesPost.product.images && salesPost.product.images.length > 0">
+                <img [src]="salesPost.product.images[0].url" [alt]="salesPost.product.name" />
+              </div>
+              <div class="salesPost-product-name">{{ salesPost.product.name }}</div>
+              <div class="salesPost-product-description">{{ salesPost.product.description }}</div>
+            </div>
+            <div class="salesPost-grid-item-bottom">
+              <span class="salesPost-product-price">{{ salesPost.price }} €</span>
+              <p-button (onClick)="addToCart(salesPost)" icon="pi pi-shopping-cart" [disabled]="salesPost.stock === 0"> </p-button>
             </div>
           </div>
         </div>
