@@ -14,14 +14,18 @@
 
 <section class="py-5">
   <div class="container px-4 px-lg-5 mt-5">
-    <p-dataView [value]="salesPosts" layout="grid">
+    <p-dataView
+      [value]="salesPosts"
+      layout="grid"
+      emptyMessage="Aucun résultat correspondant à ces critères de recherche. Veuillez élargir la plage de prix et vérifiez qu'il n'y ait pas d'erreur dans le nom recherché."
+    >
       <ng-template pTemplate="header">
         <div class="flex flex-column md:flex-row md:justify-content-between">
           <div>
             <p>Prix : {{ priceRange[0] + ' - ' + priceRange[1] + ' €' }}</p>
             <p-slider [(ngModel)]="priceRange" [range]="true" [min]="0" [max]="5000"></p-slider>
           </div>
-          <input type="search" pInputText placeholder="Rechercher par nom" />
+          <input type="search" pInputText [(ngModel)]="productNameInput" placeholder="Rechercher par nom" />
           <p-button label="Rechercher" icon="pi pi-search"> </p-button>
           <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
         </div>

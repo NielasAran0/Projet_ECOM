@@ -15,12 +15,15 @@ import { CartServiceService } from '../service/cart-service.service';
 })
 export class AccueilComponent implements OnInit, OnDestroy {
   salesPosts: ISalesPost[] = [];
+
   page = 1;
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems!: number;
-  private eventSub: Subscription;
 
   priceRange: number[] = [0, 5000];
+  productNameInput: String = '';
+
+  private eventSub: Subscription;
 
   constructor(protected salesPostService: SalesPostService, private storageService: CartServiceService) {
     this.eventSub = Subscription.EMPTY;
