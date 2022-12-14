@@ -10,6 +10,7 @@ import { MainBodyComponent } from './main-body/main-body.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from 'app/login/login.component';
+import { ProfileComponent } from 'app/shop/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'payment/echec',
         component: PaymentEchecComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
     ],
   },

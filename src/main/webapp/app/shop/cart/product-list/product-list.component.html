@@ -7,9 +7,11 @@
             <img class="img-fluid" src="https://via.placeholder.com/175" alt="sample image" />
           </div>
           <div class="col-6 col-md-7">
-            <h5>ID:{{ item.id }}</h5>
-            <!-- <h5>{{ item.sells.name }}</h5> -->
-            <div class="text-success" *ngIf="item?.stock > 0">in stock</div>
+            <a [routerLink]="['/shop/product/', item.id]">
+              <h5>{{ item.product.name }}</h5>
+              <p>ID:{{ item.id }}</p>
+            </a>
+            <div class="text-success" *ngIf="item?.stock > 0">en stock</div>
             <ul class="nav">
               <div>
                 <button class="minus_button" [disabled]="item.quantity === 1" (click)="decreseQuantity(item)">-</button>
@@ -21,13 +23,15 @@
               </div>
             </ul>
           </div>
-
           <div class="col-3 col-md-2">
-            <p class="h5 text-end text-nowrap">{{ item.price | currency: 'USD':'symbol':'.2' }}</p>
+            <p class="h5 text-end text-nowrap">Prix Unitaire:{{ item.price | currency: 'EUR':'symbol':'.2' }}</p>
+          </div>
+          <div class="col-3 col-md-2">
+            <p class="h5 text-end text-nowrap" style="color: brown">Expire {{ item.limitDate | date: 'yyyy:MM:dd HH:mm:ss' }}</p>
           </div>
         </div>
       </div>
     </div>
-    <div *ngIf="(items$ | async)?.length === 0">Your shopping cart is empty.</div>
+    <div *ngIf="(items$ | async)?.length === 0">Vorte panier est vide</div>
   </div>
 </div>

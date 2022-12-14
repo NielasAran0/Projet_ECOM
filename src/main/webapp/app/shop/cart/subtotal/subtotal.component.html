@@ -1,6 +1,6 @@
 <div class="card mb-4">
   <div class="card-body">
-    <p>Subtotal ({{ count$ | async }} items): {{ subTotal$ | async | currency: 'USD':'symbol':'.2' }}</p>
-    <button class="btn btn-warning" [disabled]="(count$ | async) === 0">Proceed to Checkout</button>
+    <p>Total ({{ count$ | async }} produits): {{ subTotal$ | async | currency: 'EUR':'symbol':'.2' }}</p>
+    <button [routerLink]="['/shop/payment']" class="btn btn-warning" [disabled]="(count$ | async) === 0">Passer à la caisse</button>
   </div>
 </div>

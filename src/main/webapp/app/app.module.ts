@@ -27,7 +27,7 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { AppComponent } from './app/app.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './shop/profile/profile.component';
 
 @NgModule({
   imports: [
