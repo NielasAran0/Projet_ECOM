@@ -24,6 +24,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { DataViewModule } from 'primeng/dataview';
     SliderModule,
     ButtonModule,
     DataViewModule,
+    HttpClientModule,
   ],
 })
 export class ShopModule {}
