@@ -118,16 +118,22 @@ export class AccueilComponent implements OnInit, OnDestroy {
       });
   }
 
-  addToCart(ele: ISalesPost | null): void {
+  addToCart(ele: ISalesPost | any): void {
     const tmp = localStorage.getItem('cart');
     let cart = [];
     if (tmp != null) {
       cart = JSON.parse(tmp);
-      cart.push(ele);
+      const index = cart.findIndex((i: any) => i.id === ele.id);
+      if (index === -1) {
+        ele.quantity = 1;
+        cart.push(ele);
+      } else {
+        ele.quantity++;
+        cart.splice(index, 1, ele);
+      }
     } else {
       cart = [ele];
     }
-
     this.setMessage(cart);
   }
 

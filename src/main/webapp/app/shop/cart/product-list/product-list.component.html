@@ -1,0 +1,37 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <div *ngFor="let item of items$ | async" class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <img class="img-fluid" src="https://via.placeholder.com/175" alt="sample image" />
+          </div>
+          <div class="col-6 col-md-7">
+            <a [routerLink]="['/shop/product/', item.id]">
+              <h5>{{ item.product.name }}</h5>
+              <p>ID:{{ item.id }}</p>
+            </a>
+            <div class="text-success" *ngIf="item?.stock > 0">en stock</div>
+            <ul class="nav">
+              <div>
+                <button class="minus_button" [disabled]="item.quantity === 1" (click)="decreseQuantity(item)">-</button>
+                {{ item.quantity }}
+                <button class="plus_button" [disabled]="item.quantity >= item.stock" (click)="increseQuantity(item)">+</button>
+              </div>
+              <div class="nav-item ms-4">
+                <button class="btn btn-link" aria-current="delete-button" (click)="deleteItem(item)">Delete</button>
+              </div>
+            </ul>
+          </div>
+          <div class="col-3 col-md-2">
+            <p class="h5 text-end text-nowrap">Prix Unitaire:{{ item.price | currency: 'EUR':'symbol':'.2' }}</p>
+          </div>
+          <div class="col-3 col-md-2">
+            <p class="h5 text-end text-nowrap" style="color: brown">Expire {{ item.limitDate | date: 'yyyy:MM:dd HH:mm:ss' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="(items$ | async)?.length === 0">Vorte panier est vide</div>
+  </div>
+</div>

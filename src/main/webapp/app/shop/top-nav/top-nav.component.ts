@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CartServiceService } from '../service/cart-service.service';
 
@@ -10,7 +11,7 @@ import { CartServiceService } from '../service/cart-service.service';
 export class TopNavComponent implements OnInit {
   totalItem: Observable<number> | undefined;
   // totalItem?: number;
-  constructor(private storageService: CartServiceService) {}
+  constructor(private storageService: CartServiceService, private router: Router) {}
 
   ngOnInit(): void {
     this.totalItem = this.storageService.getCount();
