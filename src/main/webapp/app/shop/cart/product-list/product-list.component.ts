@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ISalesPost } from '../../../entities/sales-post/sales-post.model';
 import { CartServiceService } from '../../service/cart-service.service';
+import { map } from 'rxjs';
 @Component({
   selector: 'jhi-product-list',
   templateUrl: './product-list.component.html',
