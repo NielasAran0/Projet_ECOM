@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class ProfileService {
   constructor(private http: HttpClient) {}
 
-  getLoggedInUser(): Observable<IAppUser> {
-    return this.http.get<IAppUser>('api/app-users/1');
+  getLoggedInUser(): Observable<User> {
+    return this.http.get<User>('/api/account');
   }
 }
