@@ -10,7 +10,7 @@ import { OrderService } from '../service/order.service';
   styleUrls: ['./buyer-order.component.scss'],
 })
 export class BuyerOrderComponent implements OnInit {
-  order: IUserOrder | undefined;
+  order: IUserOrder = {} as IUserOrder;
   items$: Observable<any[]> | undefined;
 
   constructor(private orderService: OrderService, private CartService: CartServiceService) {}

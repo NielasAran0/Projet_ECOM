@@ -57,6 +57,10 @@ const routes: Routes = [
         path: 'buyer-order',
         component: BuyerOrderComponent,
       },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
     ],
   },
 ];

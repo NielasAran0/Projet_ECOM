@@ -2,7 +2,8 @@
   <form method="post">
     <div class="row">
       <div class="col-md-8">
-        <div class="tab-content profile-tab" id="myTabContent">
+        <h2 *ngIf="user.id === undefined">Vous devez vous connecter</h2>
+        <div class="tab-content profile-tab" id="myTabContent" *ngIf="user.id !== undefined">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
               <div class="col-md-6">
@@ -62,7 +63,14 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                <input routerLink="/shop/buyer-order" type="button" class="btn btn-primary" name="btnAddMore" value="Consulter le Order" />
+                <input
+                  routerLink="/shop/buyer-order"
+                  [disabled]="user.id"
+                  type="button"
+                  class="btn btn-primary"
+                  name="btnAddMore"
+                  value="Consulter le Order"
+                />
               </div>
               <div class="col-md-6">
                 <input

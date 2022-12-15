@@ -9,7 +9,7 @@ import { ProfileService } from '../service/profile.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user!: User;
+  user: User = {} as User;
 
   constructor(private profileService: ProfileService) {}
 
