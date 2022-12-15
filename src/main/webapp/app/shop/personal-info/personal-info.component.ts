@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AppUserTransmissionService } from '../app-user-transmission.service';
@@ -28,7 +27,7 @@ export class PersonalInfoComponent {
 
   constructor(private _router: Router, private http: HttpClient, private appUserTransmissionService: AppUserTransmissionService) {}
 
-  //ngOnInit(): void {}
+  // ngOnInit(): void {}
 
   countryValidator(): void {
     if (this.personal_info_form.controls['pays'].value === 'france') {

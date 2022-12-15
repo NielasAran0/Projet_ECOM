@@ -20,16 +20,14 @@ export class PaymentComponent {
   // ngOnInit(): void {}
 
   onSubmit(): void {
-    let tel = this.appUserTransmissionService.getTel();
-    let nom = this.appUserTransmissionService.getNom();
-    let prenom = this.appUserTransmissionService.getPrenom();
-    let addresse = this.appUserTransmissionService.getAddresse();
-    this.http.post('http://localhost:9000/api/app-user-info', [tel, addresse]).subscribe(response => {
-      let user_id = response;
-      this.http.get('http://localhost:9000/api/user-orders/app-user/' + user_id.toString()).subscribe(response => {
-        this.http.get('http://localhost:9000/api/order-lines/user-orders', response).subscribe(response => {
-          if (response instanceof Array) {
-            response.forEach(element => {
+    const tel = this.appUserTransmissionService.getTel();
+    const addresse = this.appUserTransmissionService.getAddresse();
+    this.http.post('http://localhost:9000/api/app-user-info', [tel, addresse]).subscribe(app_user_response => {
+      let user_id = app_user_response;
+      this.http.get('http://localhost:9000/api/user-orders/app-user/' + user_id.toString()).subscribe(user_order_response => {
+        this.http.get('http://localhost:9000/api/order-lines/user-orders', user_order_response).subscribe(order_line_response => {
+          if (order_line_response instanceof Array) {
+            order_line_response.forEach(element => {
               this.http.put('http://localhost:9000/api/sales-posts/stock', element);
             });
           }
