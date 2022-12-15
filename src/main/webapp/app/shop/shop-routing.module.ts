@@ -8,6 +8,9 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { MainBodyComponent } from './main-body/main-body.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from 'app/login/login.component';
+import { ProfileComponent } from 'app/shop/profile/profile.component';
 
 import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
@@ -57,6 +60,10 @@ const routes: Routes = [
         component: ProductDetailComponent,
       },
       {
+        path: 'cart',
+        component: CartComponent,
+      },
+      {
         path: 'personal-info',
         component: PersonalInfoComponent,
       },
@@ -72,7 +79,15 @@ const routes: Routes = [
         path: 'payment/echec',
         component: PaymentEchecComponent,
       },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
     ],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
 ];
 

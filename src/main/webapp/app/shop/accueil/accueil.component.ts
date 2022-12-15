@@ -15,12 +15,28 @@ import { CartServiceService } from '../service/cart-service.service';
 })
 export class AccueilComponent implements OnInit, OnDestroy {
   salesPosts: ISalesPost[] = [];
+
   page = 1;
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems!: number;
+
+  priceRange: number[];
+  productNameInput: string;
+
+  minPrice: number;
+  maxPrice: number;
+  productName: string;
+
   private eventSub: Subscription;
 
   constructor(protected salesPostService: SalesPostService, private storageService: CartServiceService) {
+    this.priceRange = [0, 5000];
+    this.productNameInput = '';
+
+    this.minPrice = 0;
+    this.maxPrice = 5000;
+    this.productName = '';
+
     this.eventSub = Subscription.EMPTY;
   }
 
@@ -30,6 +46,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
         home: 'home',
         page: this.page - 1,
         size: this.itemsPerPage,
+        minPrice: this.minPrice,
+        maxPrice: this.maxPrice,
+        productName: this.productName,
       })
       .subscribe({
         next: (res: EntityArrayResponseType) => {
@@ -52,6 +71,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
               home: 'home',
               page: this.page - 1,
               size: this.itemsPerPage,
+              minPrice: this.minPrice,
+              maxPrice: this.maxPrice,
+              productName: this.productName,
             })
             .subscribe({
               next: (res: EntityArrayResponseType) => {
@@ -72,16 +94,46 @@ export class AccueilComponent implements OnInit, OnDestroy {
     return window.innerHeight + window.scrollY * 1.1 >= document.body.offsetHeight;
   }
 
-  addToCart(ele: ISalesPost | null): void {
+  handleSearch(): void {
+    this.salesPosts = [];
+
+    this.minPrice = this.priceRange[0];
+    this.maxPrice = this.priceRange[1];
+    this.productName = this.productNameInput;
+
+    this.salesPostService
+      .query({
+        home: 'home',
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        minPrice: this.minPrice,
+        maxPrice: this.maxPrice,
+        productName: this.productName,
+      })
+      .subscribe({
+        next: (res: EntityArrayResponseType) => {
+          this.fillComponentAttributesFromResponseHeader(res.headers);
+          this.salesPosts = res.body as ISalesPost[];
+        },
+      });
+  }
+
+  addToCart(ele: ISalesPost | any): void {
     const tmp = localStorage.getItem('cart');
     let cart = [];
     if (tmp != null) {
       cart = JSON.parse(tmp);
-      cart.push(ele);
+      const index = cart.findIndex((i: any) => i.id === ele.id);
+      if (index === -1) {
+        ele.quantity = 1;
+        cart.push(ele);
+      } else {
+        ele.quantity++;
+        cart.splice(index, 1, ele);
+      }
     } else {
       cart = [ele];
     }
-
     this.setMessage(cart);
   }
 

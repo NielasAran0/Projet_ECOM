@@ -16,7 +16,6 @@ import { CartServiceService } from '../service/cart-service.service';
 })
 export class TopNavComponent implements OnInit {
   totalItem: Observable<number> | undefined;
-  isNavbarCollapsed = true;
   authorities: string[] = [];
   account: Account | null = null;
   constructor(

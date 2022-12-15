@@ -156,9 +156,36 @@ public class SalesPostResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of salesPosts in body.
      */
     @GetMapping("/sales-posts")
-    public ResponseEntity<List<SalesPost>> getAllSalesPosts(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<SalesPost>> getAllSalesPosts(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false) String home,
+        @RequestParam(required = false) Float minPrice,
+        @RequestParam(required = false) Float maxPrice,
+        @RequestParam(required = false) String productName
+    ) {
         log.debug("REST request to get a page of SalesPosts");
-        Page<SalesPost> page = salesPostRepository.findAll(pageable);
+        Page<SalesPost> page;
+
+        if (home != null) {
+            Sort sort = Sort.by("limitDate").ascending();
+            pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+
+            if (productName == null) {
+                if (minPrice == null) {
+                    page = salesPostRepository.findSalesPostsUnderMaxPrice(pageable, maxPrice);
+                } else {
+                    page = salesPostRepository.findSalesPostsInPriceRange(pageable, minPrice, maxPrice);
+                }
+            } else {
+                if (minPrice == null) {
+                    page = salesPostRepository.findSalesPostsUnderMaxPriceAndByName(pageable, maxPrice, productName.toLowerCase());
+                } else {
+                    page = salesPostRepository.findSalesPostsInPriceRangeAndByName(pageable, minPrice, maxPrice, productName.toLowerCase());
+                }
+            }
+        } else {
+            page = salesPostRepository.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="geyu (generated)" id="1670869823909-5">
+        <addColumn tableName="sales_post">
+            <column name="product_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="geyu (generated)" id="1670869823909-6">
+        <addUniqueConstraint columnNames="product_id" constraintName="UC_SALES_POSTPRODUCT_ID_COL" tableName="sales_post"/>
+    </changeSet>
+    <changeSet author="geyu (generated)" id="1670869823909-7">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="sales_post" constraintName="FKt0bip9r6k93e67fapxanf168y" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+    </changeSet>
+    <changeSet author="geyu (generated)" id="1670869823909-8">
+        <dropForeignKeyConstraint baseTableName="sales_post" constraintName="fk_sales_post__sells_id"/>
+    </changeSet>
+    <changeSet author="geyu (generated)" id="1670869823909-9">
+        <dropUniqueConstraint constraintName="ux_sales_post__sells_id" tableName="sales_post"/>
+    </changeSet>
+    <changeSet author="geyu (generated)" id="1670869823909-10">
+        <dropColumn columnName="sells_id" tableName="sales_post"/>
+    </changeSet>
+    <changeSet author="geyu (generated)" id="1670869823909-1">
+        <setTableRemarks tableName="app_user"/>
+    </changeSet>
+    <changeSet author="geyu (generated)" id="1670869823909-2">
+        <setTableRemarks tableName="product"/>
+    </changeSet>
+    <changeSet author="geyu (generated)" id="1670869823909-3">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="geyu (generated)" id="1670869823909-4">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>
