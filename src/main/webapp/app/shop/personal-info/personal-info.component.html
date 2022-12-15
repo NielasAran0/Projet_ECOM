@@ -1,80 +1,109 @@
-<form [formGroup]="personal_info_form" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name">Nom :</label>
-    <input type="text" id="name" formControlName="nom" />
-    <label for="surname">Prenom :</label>
-    <input type="text" id="surname" formControlName="prenom" />
-  </div>
-  <div>
-    <label for="mail">E-mail&nbsp;:</label>
-    <input type="email" id="mail" formControlName="email" />
-  </div>
-  <!--Pour les pays, regions, et departements dropbox de choix-->
-  <div>
-    <label for="pays">Pays :</label>
-    <select #payslist id="pays" formControlName="pays" value="test" (change)="updatePays(payslist.value)">
-      <option value="none">-</option>
-      <option value="belgique">Belgique</option>
-      <option value="france">France</option>
-      <option value="suisse">Suisse</option>
-    </select>
-    <span [ngSwitch]="[personal_info_form.controls['pays'].value]">
-      <label for="regions" *ngSwitchCase="'france'">Region: </label>
-      <input list="regions_france" id="regions" formControlName="region" *ngSwitchCase="'france'" />
-      <datalist id="regions_france">
-        <option value="Auvergne-Rhône-Alpes"></option>
-        <option value="Bourgogne-Franche-Comté"></option>
-        <option value="Bretagne"></option>
-        <option value="Centre-Val de Loire"></option>
-        <option value="Corse"></option>
-        <option value="Grand Est"></option>
-        <option value="Hauts-de-France"></option>
-        <option value="Ile-de-France"></option>
-        <option value="Normandie"></option>
-        <option value="Nouvelle-Aquitaine"></option>
-        <option value="Occitanie"></option>
-        <option value="Pays de la Loire"></option>
-        <option value="Provence-Alpes-Côte d'Azur"></option>
-      </datalist>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="personal-info.component.scss" />
+  </head>
+  <style>
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      height: 30px;
+      border-radius: 5px;
+    }
 
-      <label for="dept" *ngSwitchCase="'france'">Departement :</label>
-      <input list="departements_ARA" id="dept" formControlName="departement" *ngSwitchCase="'france'" />
-      <datalist id="departements_ARA">
-        <option value="Ain"></option>
-        <option value="Allier"></option>
-        <option value="Ardèche"></option>
-        <option value="Cantal"></option>
-        <option value="Drôme"></option>
-        <option value="Isère"></option>
-        <option value="Loire"></option>
-        <option value="Haute-Loire"></option>
-        <option value="Puy-de-Dôme"></option>
-        <option value="Rhône"></option>
-        <option value="Savoie"></option>
-        <option value="Haute-Savoie"></option>
-      </datalist>
-      <label for="region" *ngSwitchCase="'belgique'"></label>
-      <label for="region" *ngSwitchCase="'suisse'"></label>
-    </span>
-    <!-- ajouter if avec régions de france/belgique/suisse-->
-  </div>
-  <div>
-    <label for="ville">Ville :</label>
-    <input type="text" id="ville" formControlName="ville" />
-    <label for="code_postal">Code Postal :</label>
-    <input type="text" id="code_postal" formControlName="code_postal" />
-    <label for="addresse">Addresse Postale</label>
-    <input type="text" id="addresse" formControlName="addresse" />
-  </div>
-  <!--ajouter identificateur pays-->
-  <div>
-    <label for="telephone">Telephone :</label>
-    <input type="tel" id="telephone" formControlName="telephone" />
-  </div>
-  <input type="checkbox" id="CGV" formControlName="CGV" />
-  <label for="CGV">J'accepte les conditions générales de vente</label>
-  <div class="button">
-    <!-- ><button type="submit" [routerLink]="['../payment']">Valider les informations personnelles</button>-->
-    <button type="submit" [disabled]="!personal_info_form.valid">Valider les informations personnelles</button>
-  </div>
-</form>
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      padding: 12px 16px;
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+  <body>
+    <form class="form-container" [formGroup]="personal_info_form" (ngSubmit)="onSubmit()">
+      <div>
+        <label class="form-label" for="name">Nom :</label>
+        <input class="form-control" type="text" id="name" formControlName="nom" />
+        <label class="form-label" for="surname">Prenom :</label>
+        <input class="form-control" type="text" id="surname" formControlName="prenom" />
+      </div>
+      <div>
+        <label class="form-label" for="mail">E-mail&nbsp;:</label>
+        <input class="form-control" type="email" id="mail" formControlName="email" />
+      </div>
+      <!--Pour les pays, regions, et departements dropbox de choix-->
+      <div>
+        <label class="form-label" for="pays">Pays :</label>
+        <select #payslist class="dropdown" id="pays" formControlName="pays" value="test" (change)="updatePays(payslist.value)">
+          <option class="form-dropdown-option" value="none">-</option>
+          <option class="form-dropdown-option" value="belgique">Belgique</option>
+          <option class="form-dropdown-option" value="france">France</option>
+          <option class="form-dropdown-option" value="suisse">Suisse</option>
+        </select>
+        <span [ngSwitch]="[personal_info_form.controls['pays'].value]">
+          <br *ngSwitchCase="'france'" />
+          <label class="form-label" for="regions" *ngSwitchCase="'france'">Region: </label>
+          <input class="form-control" list="regions_france" id="regions" formControlName="region" *ngSwitchCase="'france'" />
+          <datalist id="regions_france">
+            <option value="Auvergne-Rhône-Alpes"></option>
+            <option value="Bourgogne-Franche-Comté"></option>
+            <option value="Bretagne"></option>
+            <option value="Centre-Val de Loire"></option>
+            <option value="Corse"></option>
+            <option value="Grand Est"></option>
+            <option value="Hauts-de-France"></option>
+            <option value="Ile-de-France"></option>
+            <option value="Normandie"></option>
+            <option value="Nouvelle-Aquitaine"></option>
+            <option value="Occitanie"></option>
+            <option value="Pays de la Loire"></option>
+            <option value="Provence-Alpes-Côte d'Azur"></option>
+          </datalist>
+
+          <label class="form-label" for="dept" *ngSwitchCase="'france'">Departement :</label>
+          <input class="form-control" list="departements_ARA" id="dept" formControlName="departement" *ngSwitchCase="'france'" />
+          <datalist id="departements_ARA">
+            <option value="Ain"></option>
+            <option value="Allier"></option>
+            <option value="Ardèche"></option>
+            <option value="Cantal"></option>
+            <option value="Drôme"></option>
+            <option value="Isère"></option>
+            <option value="Loire"></option>
+            <option value="Haute-Loire"></option>
+            <option value="Puy-de-Dôme"></option>
+            <option value="Rhône"></option>
+            <option value="Savoie"></option>
+            <option value="Haute-Savoie"></option>
+          </datalist>
+          <label class="form-label" for="region" *ngSwitchCase="'belgique'"></label>
+          <label class="form-label" for="region" *ngSwitchCase="'suisse'"></label>
+        </span>
+        <!-- ajouter if avec régions de france/belgique/suisse-->
+      </div>
+      <div>
+        <label class="form-label" for="ville">Ville :</label>
+        <input class="form-control" type="text" id="ville" formControlName="ville" />
+        <label class="form-label" for="code_postal">Code Postal :</label>
+        <input class="form-control" type="text" id="code_postal" formControlName="code_postal" />
+        <label class="form-label" for="addresse">Addresse Postale</label>
+        <input class="form-control" type="text" id="addresse" formControlName="addresse" />
+      </div>
+      <!--ajouter identificateur pays-->
+      <div>
+        <label class="form-label" for="telephone">Telephone :</label>
+        <input class="form-control" type="tel" id="telephone" formControlName="telephone" />
+      </div>
+      <div class="button">
+        <!-- ><button class="form-button" type="submit" [routerLink]="['../payment']">Valider les informations personnelles</button>-->
+        <button class="form-button" type="submit" [disabled]="!personal_info_form.valid">Valider les informations personnelles</button>
+      </div>
+    </form>
+  </body>
+</html>

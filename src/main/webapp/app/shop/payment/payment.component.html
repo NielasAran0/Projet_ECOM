@@ -1,18 +1,18 @@
-<form [formGroup]="payment_form" (ngSubmit)="onSubmit()">
+<form class="form-container" [formGroup]="payment_form" (ngSubmit)="onSubmit()">
   <div class="button">
-    <button type="text" [routerLink]="['../personal-info']">Retour aux informations personelles</button>
+    <button class="form-button" type="text" [routerLink]="['../personal-info']">Retour aux informations personelles</button>
   </div>
   <div>
-    <label for="cardnum">Numero de carte :</label>
-    <input type="text" id="cardnum" formControlName="numero_carte" />
+    <label class="form-label" for="cardnum">Numero de carte :</label>
+    <input class="form-control" type="text" id="cardnum" formControlName="numero_carte" />
   </div>
   <div>
-    <label for="expdate">Date d'expiration</label>
-    <input type="month" id="expdate" formControlName="exp_date" />
-    <label for="cvv">CVV</label>
-    <input type="text" id="cvv" formControlName="cvv" />
+    <label class="form-label" for="expdate">Date d'expiration</label>
+    <input class="form-control" type="month" id="expdate" formControlName="exp_date" />
+    <label class="form-label" for="cvv">CVV</label>
+    <input class="form-control" type="text" id="cvv" formControlName="cvv" />
   </div>
   <div class="button">
-    <button type="submit">Valider les informations de paiement</button>
+    <button class="form-button" type="submit" [disabled]="!payment_form.valid">Valider les informations de paiement</button>
   </div>
 </form>

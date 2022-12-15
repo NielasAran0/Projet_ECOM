@@ -1,1 +1,12 @@
-<div>Echec du paiement, <a [routerLink]="['/shop/payment']">cliquez ici pour réessayer</a></div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="payment-echec.component.scss" />
+  </head>
+  <body>
+    <div>
+      Echec du paiement, cela peut être du à un problème de paiement, ou un problème de stock.
+      <a [routerLink]="['/shop/personal-info']">Cliquez ici pour réessayer</a>
+    </div>
+  </body>
+</html>
