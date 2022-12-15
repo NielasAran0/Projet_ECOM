@@ -25,6 +25,7 @@ import { SliderModule } from 'primeng/slider';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { ProfileComponent } from './profile/profile.component';
+import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
 
 import { OrderComponent } from './order/order.component';
 import { UploadProductComponent } from './upload-product/upload-product.component';
@@ -52,6 +53,7 @@ import dayjs from 'dayjs';
     UploadProductComponent,
     PostAnnonceComponent,
     ProfileComponent,
+    BuyerOrderComponent,
   ],
   imports: [
     CommonModule,

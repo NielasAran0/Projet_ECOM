@@ -1,0 +1,48 @@
+<div class="card mt-50 mb-50">
+  <div class="col d-flex">
+    <span class="text-muted" id="orderno">order #{{ order.id }}</span>
+  </div>
+
+  <div class="title mx-auto">Nous vous remercions de votre commande!</div>
+  <div class="main">
+    <span id="sub-title">
+      <p><b>Résumé de paiement</b></p>
+    </span>
+    <div class="row row-main">
+      <div *ngFor="let item of items$ | async" class="card mb-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <img class="img-fluid" src="https://via.placeholder.com/175" alt="sample image" />
+            </div>
+            <div class="col-6 col-md-7">
+              <a [routerLink]="['/shop/product/', item.id]">
+                <h5>{{ item.product.name }}</h5>
+                <p>ID:{{ item.id }}</p>
+              </a>
+              <ul class="nav">
+                <div>
+                  {{ item.quantity }}
+                </div>
+                <div class="nav-item ms-4"></div>
+              </ul>
+            </div>
+            <div class="col-3 col-md-2">
+              <p class="h5 text-end text-nowrap">{{ item.price | currency: 'symbol':'' }} &euro;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="total">
+      <div class="row">
+        <div class="col"><b> Total:</b></div>
+        <div class="col d-flex justify-content-end">
+          <b>{{ order.totalPrice | currency: 'symbol':'' }} &euro;</b>
+        </div>
+      </div>
+      <button class="btn d-flex mx-auto">Track your order</button>
+    </div>
+  </div>
+</div>
