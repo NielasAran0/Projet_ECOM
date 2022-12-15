@@ -38,6 +38,10 @@ public class AppUser implements Serializable {
     @JoinColumn(unique = true)
     private UserOrder cart;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
+
     @OneToMany(mappedBy = "appUser")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "lines", "appUser" }, allowSetters = true)
@@ -99,6 +103,19 @@ public class AppUser implements Serializable {
 
     public AppUser cart(UserOrder userOrder) {
         this.setCart(userOrder);
+        return this;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public AppUser user(User user) {
+        this.setUser(user);
         return this;
     }
 

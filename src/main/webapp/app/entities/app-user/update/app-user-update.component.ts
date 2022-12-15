@@ -9,6 +9,8 @@ import { IAppUser } from '../app-user.model';
 import { AppUserService } from '../service/app-user.service';
 import { IUserOrder } from 'app/entities/user-order/user-order.model';
 import { UserOrderService } from 'app/entities/user-order/service/user-order.service';
+import { IUser } from 'app/entities/user/user.model';
+import { UserService } from 'app/entities/user/user.service';
 
 @Component({
   selector: 'jhi-app-user-update',
@@ -19,6 +21,7 @@ export class AppUserUpdateComponent implements OnInit {
   appUser: IAppUser | null = null;
 
   userOrdersSharedCollection: IUserOrder[] = [];
+  usersSharedCollection: IUser[] = [];
 
   editForm: AppUserFormGroup = this.appUserFormService.createAppUserFormGroup();
 
@@ -26,10 +29,13 @@ export class AppUserUpdateComponent implements OnInit {
     protected appUserService: AppUserService,
     protected appUserFormService: AppUserFormService,
     protected userOrderService: UserOrderService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
   compareUserOrder = (o1: IUserOrder | null, o2: IUserOrder | null): boolean => this.userOrderService.compareUserOrder(o1, o2);
+
+  compareUser = (o1: IUser | null, o2: IUser | null): boolean => this.userService.compareUser(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ appUser }) => {
@@ -83,6 +89,7 @@ export class AppUserUpdateComponent implements OnInit {
       this.userOrdersSharedCollection,
       appUser.cart
     );
+    this.usersSharedCollection = this.userService.addUserToCollectionIfMissing<IUser>(this.usersSharedCollection, appUser.user);
   }
 
   protected loadRelationshipsOptions(): void {
@@ -95,5 +102,11 @@ export class AppUserUpdateComponent implements OnInit {
         )
       )
       .subscribe((userOrders: IUserOrder[]) => (this.userOrdersSharedCollection = userOrders));
+
+    this.userService
+      .query()
+      .pipe(map((res: HttpResponse<IUser[]>) => res.body ?? []))
+      .pipe(map((users: IUser[]) => this.userService.addUserToCollectionIfMissing<IUser>(users, this.appUser?.user)))
+      .subscribe((users: IUser[]) => (this.usersSharedCollection = users));
   }
 }

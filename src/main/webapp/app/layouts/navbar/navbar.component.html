@@ -29,7 +29,7 @@
         </li>
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         <li
-          *ngSwitchCase="true"
+          *ngIf="account?.authorities?.includes('ROLE_ADMIN')"
           ngbDropdown
           class="nav-item dropdown pointer"
           display="dynamic"

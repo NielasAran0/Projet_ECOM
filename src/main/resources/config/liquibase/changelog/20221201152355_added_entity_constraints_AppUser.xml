@@ -13,5 +13,11 @@
                                  constraintName="fk_app_user__cart_id"
                                  referencedColumnNames="id"
                                  referencedTableName="user_order"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="app_user"
+                                 constraintName="fk_app_user__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
     </changeSet>
 </databaseChangeLog>

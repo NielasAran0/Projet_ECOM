@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
   <div class="container px-4 px-lg-5">
     <a class="navbar-brand" [routerLink]="['/shop']">Vente Flash France</a>
     <button
@@ -13,14 +13,66 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-        <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="/shop">Home</a></li> -->
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/login']">Login</a></li>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" [ngSwitch]="account !== null">
+        <li class="nav-item pt-2" *ngSwitchCase="true">
+          <a class="nav-link" aria-current="page">Bienvenue, {{ account?.login }}</a>
+        </li>
+
+        <li class="nav-item pt-2" *ngSwitchCase="true">
+          <a class="nav-link" routerLink="order" routerLinkActive="active">Commande</a>
+        </li>
+
+        <li class="nav-item dropdown pt-2">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span jhiTranslate="global.menu.account.main">Account</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngIf="account?.authorities?.includes('ROLE_SELLER')">
+              <a class="dropdown-item" routerLink="product-add" routerLinkActive="active">
+                <fa-icon icon="heart" [fixedWidth]="true"></fa-icon>
+                Ajouter un produit
+              </a>
+            </li>
+
+            <li *ngIf="account?.authorities?.includes('ROLE_SELLER')">
+              <a class="dropdown-item" routerLink="annonce" routerLinkActive="active">
+                <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+                Poster une annonce
+              </a>
+            </li>
+
+            <li *ngSwitchCase="true">
+              <a class="dropdown-item" routerLink="/account/password" routerLinkActive="active" data-cy="passwordItem">
+                <fa-icon icon="lock" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.account.password">Password</span>
+              </a>
+            </li>
+            <li *ngSwitchCase="true">
+              <a class="dropdown-item" (click)="logout()" id="logout" data-cy="logout">
+                <fa-icon icon="sign-out-alt" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.account.logout">Sign out</span>
+              </a>
+            </li>
+            <li *ngSwitchCase="false">
+              <a class="dropdown-item" (click)="login()" id="login" data-cy="login">
+                <fa-icon icon="sign-in-alt" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.account.login">Sign in</span>
+              </a>
+            </li>
+            <li *ngSwitchCase="false">
+              <a class="dropdown-item" routerLink="/account/register" routerLinkActive="active" data-cy="register">
+                <fa-icon icon="user-plus" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.account.register">Register</span>
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
+
       <form class="d-flex">
         <button class="btn btn-outline-dark" type="submit">
           <em class="bi-cart-fill me-1"></em>
-          Cart
+          Panier
 
           <span class="badge bg-dark text-white ms-1 rounded-pill">{{ totalItem | async }}</span>
         </button>

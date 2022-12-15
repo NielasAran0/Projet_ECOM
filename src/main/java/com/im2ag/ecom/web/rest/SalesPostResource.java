@@ -12,9 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,9 +48,7 @@ public class SalesPostResource {
      * {@code POST  /sales-posts} : Create a new salesPost.
      *
      * @param salesPost the salesPost to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
-     *         body the new salesPost, or with status {@code 400 (Bad Request)} if
-     *         the salesPost has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new salesPost, or with status {@code 400 (Bad Request)} if the salesPost has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/sales-posts")
@@ -71,14 +67,11 @@ public class SalesPostResource {
     /**
      * {@code PUT  /sales-posts/:id} : Updates an existing salesPost.
      *
-     * @param id        the id of the salesPost to save.
+     * @param id the id of the salesPost to save.
      * @param salesPost the salesPost to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
-     *         the updated salesPost,
-     *         or with status {@code 400 (Bad Request)} if the salesPost is not
-     *         valid,
-     *         or with status {@code 500 (Internal Server Error)} if the salesPost
-     *         couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated salesPost,
+     * or with status {@code 400 (Bad Request)} if the salesPost is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the salesPost couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/sales-posts/{id}")
@@ -106,18 +99,14 @@ public class SalesPostResource {
     }
 
     /**
-     * {@code PATCH  /sales-posts/:id} : Partial updates given fields of an existing
-     * salesPost, field will ignore if it is null
+     * {@code PATCH  /sales-posts/:id} : Partial updates given fields of an existing salesPost, field will ignore if it is null
      *
-     * @param id        the id of the salesPost to save.
+     * @param id the id of the salesPost to save.
      * @param salesPost the salesPost to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
-     *         the updated salesPost,
-     *         or with status {@code 400 (Bad Request)} if the salesPost is not
-     *         valid,
-     *         or with status {@code 404 (Not Found)} if the salesPost is not found,
-     *         or with status {@code 500 (Internal Server Error)} if the salesPost
-     *         couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated salesPost,
+     * or with status {@code 400 (Bad Request)} if the salesPost is not valid,
+     * or with status {@code 404 (Not Found)} if the salesPost is not found,
+     * or with status {@code 500 (Internal Server Error)} if the salesPost couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/sales-posts/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -164,25 +153,12 @@ public class SalesPostResource {
      * {@code GET  /sales-posts} : get all the salesPosts.
      *
      * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
-     *         of salesPosts in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of salesPosts in body.
      */
     @GetMapping("/sales-posts")
-    public ResponseEntity<List<SalesPost>> getAllSalesPosts(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
-        @RequestParam(required = false) String home
-    ) {
+    public ResponseEntity<List<SalesPost>> getAllSalesPosts(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of SalesPosts");
-        Page<SalesPost> page;
-
-        if (home != null) {
-            Sort sort = Sort.by("limitDate").ascending();
-            pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
-
-            page = salesPostRepository.findConditionLimitDateAndStock(pageable);
-        } else {
-            page = salesPostRepository.findAll(pageable);
-        }
+        Page<SalesPost> page = salesPostRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -191,8 +167,7 @@ public class SalesPostResource {
      * {@code GET  /sales-posts/:id} : get the "id" salesPost.
      *
      * @param id the id of the salesPost to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
-     *         the salesPost, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the salesPost, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/sales-posts/{id}")
     public ResponseEntity<SalesPost> getSalesPost(@PathVariable Long id) {

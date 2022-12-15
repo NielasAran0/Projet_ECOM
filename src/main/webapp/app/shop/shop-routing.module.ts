@@ -9,6 +9,12 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { MainBodyComponent } from './main-body/main-body.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 
+import { Authority } from 'app/config/authority.constants';
+import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
+import { OrderComponent } from './order/order.component';
+import { UploadProductComponent } from './upload-product/upload-product.component';
+import { PostAnnonceComponent } from './post-annonce/post-annonce.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -17,6 +23,31 @@ const routes: Routes = [
       {
         path: '',
         component: AccueilComponent,
+      },
+
+      {
+        path: 'order',
+        data: {
+          authorities: [Authority.USER],
+        },
+        canActivate: [UserRouteAccessService],
+        component: OrderComponent,
+      },
+      {
+        path: 'product-add',
+        data: {
+          authorities: [Authority.SELLER],
+        },
+        canActivate: [UserRouteAccessService],
+        component: UploadProductComponent,
+      },
+      {
+        path: 'annonce',
+        data: {
+          authorities: [Authority.SELLER],
+        },
+        canActivate: [UserRouteAccessService],
+        component: PostAnnonceComponent,
       },
       {
         path: 'product/:id',

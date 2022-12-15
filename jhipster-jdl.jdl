@@ -47,6 +47,7 @@ enum OrderState {
 
 relationship OneToOne {
     AppUser {cart} to UserOrder
+     AppUser {user} to User
 	SalesPost {product} to Product {salespost}
 }
 

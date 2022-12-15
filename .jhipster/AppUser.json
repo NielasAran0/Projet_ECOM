@@ -28,6 +28,12 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
       "otherEntityName": "userOrder",
       "otherEntityRelationshipName": "appUser",
       "relationshipName": "orders",

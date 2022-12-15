@@ -30,6 +30,9 @@ const routes: Routes = [
       },
       {
         path: '',
+        data: {
+          authorities: [Authority.ADMIN],
+        },
         loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
       },
       {

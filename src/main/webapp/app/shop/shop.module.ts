@@ -21,6 +21,10 @@ import { SliderModule } from 'primeng/slider';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 
+import { OrderComponent } from './order/order.component';
+import { UploadProductComponent } from './upload-product/upload-product.component';
+import { PostAnnonceComponent } from './post-annonce/post-annonce.component';
+
 @NgModule({
   declarations: [
     AccueilComponent,
@@ -32,6 +36,10 @@ import { DataViewModule } from 'primeng/dataview';
     PersonalInfoComponent,
     PaymentSuccesComponent,
     PaymentEchecComponent,
+
+    OrderComponent,
+    UploadProductComponent,
+    PostAnnonceComponent,
   ],
   imports: [
     CommonModule,

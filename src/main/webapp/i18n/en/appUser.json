@@ -21,6 +21,7 @@
       "telephone": "Telephone",
       "adresse": "Adresse",
       "cart": "Cart",
+      "user": "User",
       "orders": "Orders",
       "posts": "Posts"
     }
