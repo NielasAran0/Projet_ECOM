@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { UploadProductComponent } from './upload-product.component';
 
@@ -8,6 +9,7 @@ describe('UploadProductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [TranslateModule.forRoot()],
       declarations: [UploadProductComponent],
     }).compileComponents();
 
