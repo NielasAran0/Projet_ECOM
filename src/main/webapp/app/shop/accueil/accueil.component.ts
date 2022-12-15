@@ -124,8 +124,6 @@ export class AccueilComponent implements OnInit, OnDestroy {
     if (tmp != null) {
       cart = JSON.parse(tmp);
       const index = cart.findIndex((i: any) => i.id === ele.id);
-      console.log(index);
-
       if (index === -1) {
         ele.quantity = 1;
         cart.push(ele);
