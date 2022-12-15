@@ -42,7 +42,7 @@ describe('RegisterService Service', () => {
       });
 
       // THEN
-      expect(testRequest.request.body).equal({ email, langKey, login, password });
+      expect(testRequest.request.body).toEqual({ email, langKey, login, password });
     });
   });
 });
