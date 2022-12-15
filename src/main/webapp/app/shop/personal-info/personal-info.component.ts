@@ -3,6 +3,8 @@ import { AbstractControl, FormControl, ValidatorFn, Validators } from '@angular/
 import { FormGroup } from '@angular/forms';
 import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AppUserTransmissionService } from '../app-user-transmission.service';
 
 @Component({
   selector: 'jhi-personal-info-component',
@@ -24,7 +26,7 @@ export class PersonalInfoComponent {
     CGV: new FormControl('', Validators.required),
   });
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private http: HttpClient, private appUserTransmissionService: AppUserTransmissionService) {}
 
   //ngOnInit(): void {}
 
@@ -47,7 +49,17 @@ export class PersonalInfoComponent {
   }
 
   onSubmit(): void {
-    //Ajouter if sur l'email, si il existe deja -> payment, sinon page de connexion/creation compte a faire
-    this._router.navigate(['../payment']);
+    let tel: string | null = this.personal_info_form.controls['telephone'].value;
+    let addr: string | null = this.personal_info_form.controls['addresse'].value;
+    let code_postal: string | null = this.personal_info_form.controls['code_postal'].value;
+    let ville: string | null = this.personal_info_form.controls['ville'].value;
+    let pays: string | null = this.personal_info_form.controls['pays'].value;
+    let nom: string | null = this.personal_info_form.controls['nom'].value;
+    let prenom: string | null = this.personal_info_form.controls['prenom'].value;
+    this.appUserTransmissionService.setTel(tel);
+    this.appUserTransmissionService.setNom(nom);
+    this.appUserTransmissionService.setPrenom(prenom);
+    this.appUserTransmissionService.setAddresse(addr + ' ' + code_postal + ' ' + ville + ' ' + pays);
+    this._router.navigate(['/shop/payment']);
   }
 }

@@ -5,6 +5,7 @@ import com.im2ag.ecom.repository.UserOrderRepository;
 import com.im2ag.ecom.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -184,5 +185,23 @@ public class UserOrderResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**
+     * {@code GET  /user-orders} : get all the userOrders for a given app user
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of userOrders in body.
+     */
+    @GetMapping("/user-orders/app-user/{id}")
+    public List<Long> getAllUserOrdersAppUser(@PathVariable Long id) {
+        log.debug("REST request to get all UserOrders");
+        List<UserOrder> list = userOrderRepository.findAll();
+        List<Long> app_userList = new ArrayList<Long>();
+        for (UserOrder userOrder : list) {
+            if (userOrder.getAppUser().getId() == id) {
+                app_userList.add(userOrder.getId());
+            }
+        }
+        return app_userList;
     }
 }

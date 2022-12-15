@@ -11,6 +11,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -176,5 +177,21 @@ public class AppUserResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**
+     * {@code POST  /personal-info} : save the appuser data in a new appuser.
+     *
+     * @param data the data of the appUser to create.
+     *      * @return the {@link ResponseEntity} with status {@code 201 (Created)}
+     */
+    @PostMapping("app-user-info")
+    public ResponseEntity<Long> savePersonalInfo(@RequestBody List<String> data) {
+        log.debug("REST request to add user info in database");
+        AppUser appUser = new AppUser();
+        appUser.setTelephone(data.get(0));
+        appUser.setAdresse(data.get(1));
+        appUserRepository.save(appUser);
+        return new ResponseEntity<Long>(appUser.getId(), HttpStatus.CREATED);
     }
 }

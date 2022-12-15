@@ -24,8 +24,18 @@ export class PaymentComponent {
     let nom = this.appUserTransmissionService.getNom();
     let prenom = this.appUserTransmissionService.getPrenom();
     let addresse = this.appUserTransmissionService.getAddresse();
-    this.http.post('http://localhost:8080/api/app-user-info', [tel, addresse]).subscribe(response => {});
-    this.http.put('http://localhost:8080/api/payment', []);
+    this.http.post('http://localhost:9000/api/app-user-info', [tel, addresse]).subscribe(response => {
+      let user_id = response;
+      this.http.get('http://localhost:9000/api/user-orders/app-user/' + user_id.toString()).subscribe(response => {
+        this.http.get('http://localhost:9000/api/order-lines/user-orders', response).subscribe(response => {
+          if (response instanceof Array) {
+            response.forEach(element => {
+              this.http.put('http://localhost:9000/api/sales-posts/stock', element);
+            });
+          }
+        });
+      });
+    });
     this._router.navigate([this._router.url + '/succes']);
   }
 }
