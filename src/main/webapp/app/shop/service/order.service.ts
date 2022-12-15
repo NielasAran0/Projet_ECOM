@@ -11,7 +11,6 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   getOrder(): Observable<IUserOrder> {
-    let id = 1;
     return this.http.get<IUserOrder>('/api/user-orders/1');
   }
 }

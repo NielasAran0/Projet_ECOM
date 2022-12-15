@@ -17,7 +17,7 @@ describe('ProfileComponent', () => {
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     profileService = TestBed.inject(ProfileService);
-    fixture.detectChanges();
+    ///fixture.detectChanges();
   });
 
   it('should create', () => {

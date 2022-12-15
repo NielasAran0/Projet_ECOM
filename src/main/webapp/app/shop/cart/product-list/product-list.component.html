@@ -19,7 +19,7 @@
                 <button class="plus_button" [disabled]="item.quantity >= item.stock" (click)="increseQuantity(item)">+</button>
               </div>
               <div class="nav-item ms-4">
-                <button class="btn btn-link" aria-current="delete-button" (click)="deleteItem(item)">Delete</button>
+                <button class="btn btn-link" aria-current="delete-button" (click)="deleteItem(item)">Supprimer</button>
               </div>
             </ul>
           </div>
@@ -27,7 +27,7 @@
             <p class="h5 text-end text-nowrap">{{ item.price | currency: 'EUR':'symbol':'.2' }}</p>
           </div>
           <div class="col-3 col-md-2">
-            <p class="h5 text-end text-nowrap" style="color: brown">Expire {{ item.limitDate | date: 'yyyy:MM:dd HH:mm:ss' }}</p>
+            <p class="h5 text-end text-nowrap" style="color: brown">Expire:{{ item.limitDate | date: 'yyyy:MM:dd HH:mm:ss' }}</p>
           </div>
         </div>
       </div>
