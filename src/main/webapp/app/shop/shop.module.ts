@@ -29,6 +29,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { OrderComponent } from './order/order.component';
 import { UploadProductComponent } from './upload-product/upload-product.component';
 import { PostAnnonceComponent } from './post-annonce/post-annonce.component';
+import { NgbDateAdapter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateDayjsAdapter } from 'app/config/datepicker-adapter';
+import dayjs from 'dayjs';
 
 @NgModule({
   declarations: [
@@ -63,5 +66,10 @@ import { PostAnnonceComponent } from './post-annonce/post-annonce.component';
     ButtonModule,
     DataViewModule,
   ],
+  providers: [{ provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter }],
 })
-export class ShopModule {}
+export class ShopModule {
+  constructor(dpConfig: NgbDatepickerConfig) {
+    dpConfig.minDate = { year: dayjs().subtract(100, 'year').year(), month: 1, day: 1 };
+  }
+}

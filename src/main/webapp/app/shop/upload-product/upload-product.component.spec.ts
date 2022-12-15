@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { SessionStorageService } from 'ngx-webstorage';
@@ -10,7 +11,7 @@ describe('UploadProductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot()],
+      imports: [HttpClientTestingModule, TranslateModule.forRoot()],
       declarations: [UploadProductComponent],
       providers: [SessionStorageService],
     }).compileComponents();
