@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'jhi-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent {
   // constructor() {}
   // ngOnInit(): void {}
 }
