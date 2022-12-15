@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+  // constructor() {}
+  // ngOnInit(): void {}
 }

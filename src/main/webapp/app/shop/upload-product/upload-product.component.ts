@@ -39,7 +39,6 @@ export class UploadProductComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.getAuthenticationState().subscribe(account => {
       this.account = account;
-      console.log(this.account);
     });
 
     this.loadRelationshipsOptions();
