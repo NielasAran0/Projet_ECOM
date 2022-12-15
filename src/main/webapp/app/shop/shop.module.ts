@@ -9,7 +9,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { ProductCardComponent } from './product/product-card/product-card.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { MainBodyComponent } from './main-body/main-body.component';
-import { AppModule } from 'app/app.module';
+
 import { CartComponent } from './cart/cart.component';
 import { SubtotalComponent } from './cart/subtotal/subtotal.component';
 import { ProductListComponent } from './cart/product-list/product-list.component';
@@ -27,6 +27,13 @@ import { DataViewModule } from 'primeng/dataview';
 import { ProfileComponent } from './profile/profile.component';
 import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
 
+import { OrderComponent } from './order/order.component';
+import { UploadProductComponent } from './upload-product/upload-product.component';
+import { PostAnnonceComponent } from './post-annonce/post-annonce.component';
+import { NgbDateAdapter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateDayjsAdapter } from 'app/config/datepicker-adapter';
+import dayjs from 'dayjs';
+
 @NgModule({
   declarations: [
     AccueilComponent,
@@ -41,6 +48,10 @@ import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
     PersonalInfoComponent,
     PaymentSuccesComponent,
     PaymentEchecComponent,
+
+    OrderComponent,
+    UploadProductComponent,
+    PostAnnonceComponent,
     ProfileComponent,
     BuyerOrderComponent,
   ],

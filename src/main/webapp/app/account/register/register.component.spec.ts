@@ -57,6 +57,7 @@ describe('RegisterComponent', () => {
         password: 'password',
         login: '',
         langKey: 'en',
+        isSeller: false,
       });
       expect(comp.success).toBe(true);
       expect(comp.errorUserExists).toBe(false);

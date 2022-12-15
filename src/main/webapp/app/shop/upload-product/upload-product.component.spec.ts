@@ -1,23 +1,22 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
-import { CartServiceService } from '../service/cart-service.service';
+import { SessionStorageService } from 'ngx-webstorage';
 
-import { TopNavComponent } from './top-nav.component';
+import { UploadProductComponent } from './upload-product.component';
 
-describe('TopNavComponent', () => {
-  let component: TopNavComponent;
-  let fixture: ComponentFixture<TopNavComponent>;
+describe('UploadProductComponent', () => {
+  let component: UploadProductComponent;
+  let fixture: ComponentFixture<UploadProductComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, TranslateModule.forRoot()],
-      declarations: [TopNavComponent],
-      providers: [CartServiceService, LocalStorageService, SessionStorageService],
+      declarations: [UploadProductComponent],
+      providers: [SessionStorageService],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TopNavComponent);
+    fixture = TestBed.createComponent(UploadProductComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
