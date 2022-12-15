@@ -4,14 +4,17 @@
       <div class="card-body">
         <div class="row">
           <div class="col-3">
-            <img class="img-fluid" src="https://via.placeholder.com/175" alt="sample image" />
+            <img
+              class="img-fluid"
+              src="https://images.unsplash.com/photo-1591337676887-a217a6970a8a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+              alt="sample image"
+            />
           </div>
           <div class="col-6 col-md-7">
             <a [routerLink]="['/shop/product/', item.id]">
               <h5>{{ item.product.name }}</h5>
-              <p>ID:{{ item.id }}</p>
             </a>
-            <div class="text-success" *ngIf="item?.stock > 0">en stock</div>
+            <div class="text-success" *ngIf="item?.stock > 0">en stock : {{ item?.stock }}</div>
             <ul class="nav">
               <div>
                 <button class="minus_button" [disabled]="item.quantity === 1" (click)="decreseQuantity(item)">-</button>
@@ -19,15 +22,15 @@
                 <button class="plus_button" [disabled]="item.quantity >= item.stock" (click)="increseQuantity(item)">+</button>
               </div>
               <div class="nav-item ms-4">
-                <button class="btn btn-link" aria-current="delete-button" (click)="deleteItem(item)">Delete</button>
+                <button class="btn btn-link" aria-current="delete-button" (click)="deleteItem(item)">Supprimer</button>
               </div>
             </ul>
           </div>
           <div class="col-3 col-md-2">
-            <p class="h5 text-end text-nowrap">Prix Unitaire:{{ item.price | currency: 'EUR':'symbol':'.2' }}</p>
+            <p class="h5 text-end text-nowrap">Prix unitaire : {{ item.price | currency: 'symbol':'2' }} &euro;</p>
           </div>
           <div class="col-3 col-md-2">
-            <p class="h5 text-end text-nowrap" style="color: brown">Expire {{ item.limitDate | date: 'yyyy:MM:dd HH:mm:ss' }}</p>
+            <p class="h5 text-end text-nowrap" style="color: brown">Expire le : {{ item.limitDate | date: 'dd:MM:yyyy HH:mm:ss' }}</p>
           </div>
         </div>
       </div>

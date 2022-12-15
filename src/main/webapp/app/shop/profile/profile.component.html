@@ -2,51 +2,52 @@
   <form method="post">
     <div class="row">
       <div class="col-md-8">
-        <div class="tab-content profile-tab" id="myTabContent">
+        <h2 *ngIf="user.id === undefined">Vous devez vous connecter</h2>
+        <div class="tab-content profile-tab" id="myTabContent" *ngIf="user.id !== undefined">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
               <div class="col-md-6">
-                <label>User Id</label>
+                <label>ID:</label>
               </div>
               <div class="col-md-6">
-                <p>{{ user?.id }}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>First Name</label>
-              </div>
-              <div class="col-md-6">
-                <p>{{ user?.firstName }}</p>
+                <p>{{ user!.id }}</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <label>First Name</label>
+                <label>Login</label>
               </div>
               <div class="col-md-6">
-                <p>{{ user?.firstName }}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Last Name</label>
-              </div>
-              <div class="col-md-6">
-                <p>{{ user?.lastName }}</p>
+                <p>{{ user!.login }}</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <label>Email</label>
+                <label>Prénom:</label>
               </div>
               <div class="col-md-6">
-                <p>{{ user?.email }}</p>
+                <p>{{ user!.firstName }}</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <label>Adresse</label>
+                <label>Nom:</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{ user!.lastName }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Email:</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{ user!.email }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Adresse:</label>
               </div>
               <div class="col-md-6">
                 <p></p>
@@ -54,15 +55,33 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                <label>Telephone</label>
+                <label>Téléphone:</label>
               </div>
               <div class="col-md-6">
                 <p></p>
               </div>
             </div>
-            <!-- <div class="col-md-2">
-                                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                            </div> -->
+            <div class="row">
+              <div class="col-md-6">
+                <input
+                  routerLink="/shop/buyer-order"
+                  [disabled]="user.id"
+                  type="button"
+                  class="btn btn-primary"
+                  name="btnAddMore"
+                  value="Consulter le Order"
+                />
+              </div>
+              <div class="col-md-6">
+                <input
+                  [routerLink]="['../../app-user', user.id, 'edit']"
+                  type="button"
+                  class="btn btn-primary"
+                  name="btnAddMore"
+                  value="Editer le profil"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

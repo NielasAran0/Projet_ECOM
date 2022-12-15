@@ -25,6 +25,7 @@ import { SliderModule } from 'primeng/slider';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { ProfileComponent } from './profile/profile.component';
+import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ProfileComponent } from './profile/profile.component';
     PaymentSuccesComponent,
     PaymentEchecComponent,
     ProfileComponent,
+    BuyerOrderComponent,
   ],
   imports: [
     CommonModule,

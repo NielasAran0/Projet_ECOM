@@ -10,7 +10,6 @@ import { CartServiceService } from '../../service/cart-service.service';
 export class SubtotalComponent implements OnInit {
   count$: Observable<number> | undefined;
   subTotal$: Observable<number> | undefined;
-
   constructor(private shoppingCartService: CartServiceService) {}
 
   ngOnInit(): void {
