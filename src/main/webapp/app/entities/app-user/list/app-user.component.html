@@ -56,12 +56,6 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="user.id">
-            <div class="d-flex">
-              <span jhiTranslate="ecomApp.appUser.user">User</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -76,9 +70,6 @@
             <div *ngIf="appUser.cart">
               <a [routerLink]="['/user-order', appUser.cart.id, 'view']">{{ appUser.cart.id }}</a>
             </div>
-          </td>
-          <td>
-            {{ appUser.user?.id }}
           </td>
           <td class="text-end">
             <div class="btn-group">

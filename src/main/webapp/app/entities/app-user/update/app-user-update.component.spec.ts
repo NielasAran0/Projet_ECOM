@@ -12,9 +12,6 @@ import { IAppUser } from '../app-user.model';
 import { IUserOrder } from 'app/entities/user-order/user-order.model';
 import { UserOrderService } from 'app/entities/user-order/service/user-order.service';
 
-import { IUser } from 'app/entities/user/user.model';
-import { UserService } from 'app/entities/user/user.service';
-
 import { AppUserUpdateComponent } from './app-user-update.component';
 
 describe('AppUser Management Update Component', () => {
@@ -24,7 +21,6 @@ describe('AppUser Management Update Component', () => {
   let appUserFormService: AppUserFormService;
   let appUserService: AppUserService;
   let userOrderService: UserOrderService;
-  let userService: UserService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -48,7 +44,6 @@ describe('AppUser Management Update Component', () => {
     appUserFormService = TestBed.inject(AppUserFormService);
     appUserService = TestBed.inject(AppUserService);
     userOrderService = TestBed.inject(UserOrderService);
-    userService = TestBed.inject(UserService);
 
     comp = fixture.componentInstance;
   });
@@ -76,40 +71,15 @@ describe('AppUser Management Update Component', () => {
       expect(comp.userOrdersSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call User query and add missing value', () => {
-      const appUser: IAppUser = { id: 456 };
-      const user: IUser = { id: 80166 };
-      appUser.user = user;
-
-      const userCollection: IUser[] = [{ id: 18619 }];
-      jest.spyOn(userService, 'query').mockReturnValue(of(new HttpResponse({ body: userCollection })));
-      const additionalUsers = [user];
-      const expectedCollection: IUser[] = [...additionalUsers, ...userCollection];
-      jest.spyOn(userService, 'addUserToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ appUser });
-      comp.ngOnInit();
-
-      expect(userService.query).toHaveBeenCalled();
-      expect(userService.addUserToCollectionIfMissing).toHaveBeenCalledWith(
-        userCollection,
-        ...additionalUsers.map(expect.objectContaining)
-      );
-      expect(comp.usersSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const appUser: IAppUser = { id: 456 };
       const cart: IUserOrder = { id: 5732 };
       appUser.cart = cart;
-      const user: IUser = { id: 29309 };
-      appUser.user = user;
 
       activatedRoute.data = of({ appUser });
       comp.ngOnInit();
 
       expect(comp.userOrdersSharedCollection).toContain(cart);
-      expect(comp.usersSharedCollection).toContain(user);
       expect(comp.appUser).toEqual(appUser);
     });
   });
@@ -190,16 +160,6 @@ describe('AppUser Management Update Component', () => {
         jest.spyOn(userOrderService, 'compareUserOrder');
         comp.compareUserOrder(entity, entity2);
         expect(userOrderService.compareUserOrder).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
-    describe('compareUser', () => {
-      it('Should forward to userService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(userService, 'compareUser');
-        comp.compareUser(entity, entity2);
-        expect(userService.compareUser).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

@@ -39,7 +39,7 @@ public class Product implements Serializable {
     private Set<Image> images = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "cart", "user", "orders", "posts" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "cart", "orders", "posts" }, allowSetters = true)
     private AppUser seller;
 
     @ManyToMany

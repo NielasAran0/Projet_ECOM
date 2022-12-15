@@ -39,7 +39,7 @@ public class SalesPost implements Serializable {
     private Product product;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "cart", "user", "orders", "posts" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "cart", "orders", "posts" }, allowSetters = true)
     private AppUser appUser;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

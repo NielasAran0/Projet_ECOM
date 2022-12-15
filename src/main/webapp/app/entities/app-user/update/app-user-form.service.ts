@@ -21,7 +21,6 @@ type AppUserFormGroupContent = {
   telephone: FormControl<IAppUser['telephone']>;
   adresse: FormControl<IAppUser['adresse']>;
   cart: FormControl<IAppUser['cart']>;
-  user: FormControl<IAppUser['user']>;
 };
 
 export type AppUserFormGroup = FormGroup<AppUserFormGroupContent>;
@@ -44,7 +43,6 @@ export class AppUserFormService {
       telephone: new FormControl(appUserRawValue.telephone),
       adresse: new FormControl(appUserRawValue.adresse),
       cart: new FormControl(appUserRawValue.cart),
-      user: new FormControl(appUserRawValue.user),
     });
   }
 

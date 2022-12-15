@@ -28,10 +28,6 @@
             <a [routerLink]="['/user-order', appUser.cart.id, 'view']">{{ appUser.cart.id }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="ecomApp.appUser.user">User</span></dt>
-        <dd>
-          <span>{{ appUser.user?.id }}</span>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

@@ -23,7 +23,6 @@ describe('AppUser Form Service', () => {
             telephone: expect.any(Object),
             adresse: expect.any(Object),
             cart: expect.any(Object),
-            user: expect.any(Object),
           })
         );
       });
@@ -37,7 +36,6 @@ describe('AppUser Form Service', () => {
             telephone: expect.any(Object),
             adresse: expect.any(Object),
             cart: expect.any(Object),
-            user: expect.any(Object),
           })
         );
       });

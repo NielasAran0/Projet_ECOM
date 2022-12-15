@@ -30,14 +30,6 @@
             <option [ngValue]="userOrderOption" *ngFor="let userOrderOption of userOrdersSharedCollection">{{ userOrderOption.id }}</option>
           </select>
         </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="ecomApp.appUser.user" for="field_user">User</label>
-          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
-            <option [ngValue]="null"></option>
-            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.id }}</option>
-          </select>
-        </div>
       </div>
 
       <div>
