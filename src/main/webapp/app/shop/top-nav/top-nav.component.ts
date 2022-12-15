@@ -24,24 +24,24 @@ export class TopNavComponent implements OnInit {
     private loginService: LoginService,
     private accountService: AccountService,
 
-    private translateService: TranslateService,
     private sessionStorageService: SessionStorageService,
+    private translateService: TranslateService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.totalItem = this.storageService.getCount();
-    this.changeLanguage('fr');
+    // this.changeLanguage('fr');
 
     this.accountService.getAuthenticationState().subscribe(account => {
       this.account = account;
     });
   }
 
-  changeLanguage(languageKey: string): void {
-    this.sessionStorageService.store('locale', languageKey);
-    this.translateService.use(languageKey);
-  }
+  // changeLanguage(languageKey: string): void {
+  //   this.sessionStorageService.store('locale', languageKey);
+  //   this.translateService.use(languageKey);
+  // }
   login(): void {
     this.router.navigate(['/login']);
   }
