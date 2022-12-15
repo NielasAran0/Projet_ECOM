@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { SessionStorageService } from 'ngx-webstorage';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 import { TopNavComponent } from './top-nav.component';
 
@@ -13,7 +13,7 @@ describe('TopNavComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, TranslateModule.forRoot()],
       declarations: [TopNavComponent],
-      providers: [SessionStorageService],
+      providers: [LocalStorageService, SessionStorageService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TopNavComponent);

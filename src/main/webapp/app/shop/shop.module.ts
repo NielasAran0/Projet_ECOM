@@ -9,7 +9,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { ProductCardComponent } from './product/product-card/product-card.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { MainBodyComponent } from './main-body/main-body.component';
-import { AppModule } from 'app/app.module';
+
 import { CartComponent } from './cart/cart.component';
 import { SubtotalComponent } from './cart/subtotal/subtotal.component';
 import { ProductListComponent } from './cart/product-list/product-list.component';
@@ -66,10 +66,5 @@ import dayjs from 'dayjs';
     ButtonModule,
     DataViewModule,
   ],
-  providers: [{ provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter }],
 })
-export class ShopModule {
-  constructor(dpConfig: NgbDatepickerConfig) {
-    dpConfig.minDate = { year: dayjs().subtract(100, 'year').year(), month: 1, day: 1 };
-  }
-}
+export class ShopModule {}

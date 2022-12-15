@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { PostAnnonceComponent } from './post-annonce.component';
 
@@ -10,7 +11,7 @@ describe('PostAnnonceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([])],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([]), NgbModule.forRoot()],
       declarations: [PostAnnonceComponent],
     }).compileComponents();
 
