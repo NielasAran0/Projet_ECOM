@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ISalesPost } from '../../../entities/sales-post/sales-post.model';
 import { CartServiceService } from '../../service/cart-service.service';
 import { map } from 'rxjs';
+import { IImage } from 'app/entities/image/image.model';
 @Component({
   selector: 'jhi-product-list',
   templateUrl: './product-list.component.html',
@@ -10,10 +11,14 @@ import { map } from 'rxjs';
 })
 export class ProductListComponent implements OnInit {
   items$: Observable<any[]> | undefined;
+  image: IImage[] = [];
   constructor(private CartService: CartServiceService) {}
 
   ngOnInit(): void {
     this.items$ = this.CartService.getCart();
+    this.CartService.getImage().subscribe((image: IImage[]) => {
+      this.image = image;
+    });
   }
 
   deleteItem(product: ISalesPost): void {

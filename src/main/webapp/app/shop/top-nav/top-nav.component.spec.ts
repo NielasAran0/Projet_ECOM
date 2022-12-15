@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CartServiceService } from '../service/cart-service.service';
 
 import { TopNavComponent } from './top-nav.component';
 
@@ -9,6 +11,8 @@ describe('TopNavComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TopNavComponent],
+      imports: [HttpClientTestingModule],
+      providers: [CartServiceService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TopNavComponent);

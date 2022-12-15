@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
+import { IImage } from 'app/entities/image/image.model';
 import { ISalesPost } from 'app/entities/sales-post/sales-post.model';
 import dayjs from 'dayjs/esm';
-
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, elementAt, Observable } from 'rxjs';
 
 export interface StorageChange {
@@ -26,7 +27,7 @@ export class CartServiceService {
   public storage: BehaviorSubject<any[]>;
   public subTotal: BehaviorSubject<number>;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     const tmp = localStorage.getItem('cart');
     let count = 0;
     const list = tmp ? JSON.parse(tmp) : [];
@@ -100,5 +101,9 @@ export class CartServiceService {
     // remove the item from the array
 
     this.setStorageItem(list);
+  }
+
+  getImage(): Observable<IImage[]> {
+    return this.http.get<IImage[]>('/api/images');
   }
 }
