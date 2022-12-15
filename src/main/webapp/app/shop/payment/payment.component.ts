@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppUserTransmissionService } from '../app-user-transmission.service';
@@ -17,7 +17,7 @@ export class PaymentComponent {
   });
 
   constructor(private _router: Router, private http: HttpClient, private appUserTransmissionService: AppUserTransmissionService) {}
-  //ngOnInit(): void {}
+  // ngOnInit(): void {}
 
   onSubmit(): void {
     let tel = this.appUserTransmissionService.getTel();

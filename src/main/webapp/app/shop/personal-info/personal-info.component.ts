@@ -49,17 +49,17 @@ export class PersonalInfoComponent {
   }
 
   onSubmit(): void {
-    let tel: string | null = this.personal_info_form.controls['telephone'].value;
-    let addr: string | null = this.personal_info_form.controls['addresse'].value;
-    let code_postal: string | null = this.personal_info_form.controls['code_postal'].value;
-    let ville: string | null = this.personal_info_form.controls['ville'].value;
-    let pays: string | null = this.personal_info_form.controls['pays'].value;
-    let nom: string | null = this.personal_info_form.controls['nom'].value;
-    let prenom: string | null = this.personal_info_form.controls['prenom'].value;
+    const tel: string | null = this.personal_info_form.controls['telephone'].value;
+    const addr: string | null = this.personal_info_form.controls['addresse'].value;
+    const code_postal: string | null = this.personal_info_form.controls['code_postal'].value;
+    const ville: string | null = this.personal_info_form.controls['ville'].value;
+    const pays: string | null = this.personal_info_form.controls['pays'].value;
+    const nom: string | null = this.personal_info_form.controls['nom'].value;
+    const prenom: string | null = this.personal_info_form.controls['prenom'].value;
     this.appUserTransmissionService.setTel(tel);
-    this.appUserTransmissionService.setNom(nom);
-    this.appUserTransmissionService.setPrenom(prenom);
-    this.appUserTransmissionService.setAddresse(addr + ' ' + code_postal + ' ' + ville + ' ' + pays);
+    this.appUserTransmissionService.setAddresse(
+      String(nom) + ' ' + String(prenom) + ' ' + String(addr) + ' ' + String(code_postal) + ' ' + String(ville) + ' ' + String(pays)
+    );
     this._router.navigate(['/shop/payment']);
   }
 }

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AppUserTransmissionService {
-  private id: number = 0;
+  private id = 0;
   private telephone: string | null = '';
   private addresse: string | null = '';
   private prenom: string | null = '';
@@ -15,7 +15,7 @@ export class AppUserTransmissionService {
     return this.id;
   }
 
-  public setId(v: number) {
+  public setId(v: number): void {
     this.id = v;
   }
 
@@ -23,7 +23,7 @@ export class AppUserTransmissionService {
     return this.telephone;
   }
 
-  public setTel(v: string | null) {
+  public setTel(v: string | null): void {
     this.telephone = v;
   }
 
@@ -31,7 +31,7 @@ export class AppUserTransmissionService {
     return this.addresse;
   }
 
-  public setAddresse(v: string | null) {
+  public setAddresse(v: string | null): void {
     this.addresse = v;
   }
 
@@ -39,7 +39,7 @@ export class AppUserTransmissionService {
     return this.prenom;
   }
 
-  public setPrenom(v: string | null) {
+  public setPrenom(v: string | null): void {
     this.prenom = v;
   }
 
@@ -47,7 +47,7 @@ export class AppUserTransmissionService {
     return this.nom;
   }
 
-  public setNom(v: string | null) {
+  public setNom(v: string | null): void {
     this.nom = v;
   }
 
@@ -55,7 +55,7 @@ export class AppUserTransmissionService {
     return this.email;
   }
 
-  public setEmail(v: string | null) {
+  public setEmail(v: string | null): void {
     this.email = v;
   }
 }

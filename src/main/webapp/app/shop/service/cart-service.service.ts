@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
 import { ISalesPost } from 'app/entities/sales-post/sales-post.model';
-import { filter } from 'cypress/types/bluebird';
-import { unique } from 'cypress/types/jquery';
-import { entries } from 'cypress/types/lodash';
 import dayjs from 'dayjs/esm';
 
-import { BehaviorSubject, elementAt, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface StorageChange {
   key: string;
