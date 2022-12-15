@@ -130,7 +130,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
         ele.quantity = 1;
         cart.push(ele);
       } else {
-        let item = cart[index];
+        const item = cart[index];
         item.quantity++;
         cart.splice(index, 1, item);
       }
