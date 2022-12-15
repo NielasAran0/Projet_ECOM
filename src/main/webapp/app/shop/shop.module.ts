@@ -23,7 +23,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
-import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
@@ -49,7 +48,6 @@ import { ProfileComponent } from './profile/profile.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     // primeng modules
     DropdownModule,
     SliderModule,
