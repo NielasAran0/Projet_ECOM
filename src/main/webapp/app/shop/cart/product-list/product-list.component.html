@@ -27,7 +27,7 @@
             </ul>
           </div>
           <div class="col-3 col-md-2">
-            <p class="h5 text-end text-nowrap">Prix unitaire : {{ item.price | currency: 'symbol':'2' }} &euro;</p>
+            <p class="h5 text-end text-nowrap">Prix unitaire : {{ item.price | currency: 'symbol':'' }} &euro;</p>
           </div>
           <div class="col-3 col-md-2">
             <p class="h5 text-end text-nowrap" style="color: brown">Expire le : {{ item.limitDate | date: 'dd:MM:yyyy HH:mm:ss' }}</p>

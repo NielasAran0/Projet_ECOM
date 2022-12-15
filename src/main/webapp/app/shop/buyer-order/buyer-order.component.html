@@ -1,5 +1,7 @@
 <div class="card mt-50 mb-50">
-  <div class="col d-flex"><span class="text-muted" id="orderno">order #546924</span></div>
+  <div class="col d-flex">
+    <span class="text-muted" id="orderno">order #{{ order.id }}</span>
+  </div>
 
   <div class="title mx-auto">Nous vous remercions de votre commande!</div>
   <div class="main">
@@ -26,7 +28,7 @@
               </ul>
             </div>
             <div class="col-3 col-md-2">
-              <p class="h5 text-end text-nowrap">{{ item.price | currency: 'EUR':'symbol':'.2' }}</p>
+              <p class="h5 text-end text-nowrap">{{ item.price | currency: 'symbol':'' }} &euro;</p>
             </div>
           </div>
         </div>
@@ -37,7 +39,7 @@
       <div class="row">
         <div class="col"><b> Total:</b></div>
         <div class="col d-flex justify-content-end">
-          <b>{{ order.totalPrice | currency: 'EUR':'symbol':'.2' }}</b>
+          <b>{{ order.totalPrice | currency: 'symbol':'' }} &euro;</b>
         </div>
       </div>
       <button class="btn d-flex mx-auto">Track your order</button>
