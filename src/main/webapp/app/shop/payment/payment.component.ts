@@ -23,7 +23,7 @@ export class PaymentComponent {
     const tel = this.appUserTransmissionService.getTel();
     const addresse = this.appUserTransmissionService.getAddresse();
     this.http.post('http://localhost:9000/api/app-user-info', [tel, addresse]).subscribe(app_user_response => {
-      let user_id = app_user_response;
+      const user_id = app_user_response;
       this.http.get('http://localhost:9000/api/user-orders/app-user/' + user_id.toString()).subscribe(user_order_response => {
         this.http.get('http://localhost:9000/api/order-lines/user-orders', user_order_response).subscribe(order_line_response => {
           if (order_line_response instanceof Array) {
