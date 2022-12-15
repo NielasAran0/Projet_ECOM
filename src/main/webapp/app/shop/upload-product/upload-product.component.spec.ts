@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
+import { SessionStorageService } from 'ngx-webstorage';
 
 import { UploadProductComponent } from './upload-product.component';
 
@@ -11,6 +12,7 @@ describe('UploadProductComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot()],
       declarations: [UploadProductComponent],
+      providers: [SessionStorageService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UploadProductComponent);
