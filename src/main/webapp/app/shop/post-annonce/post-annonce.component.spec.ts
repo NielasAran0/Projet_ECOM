@@ -11,7 +11,7 @@ describe('PostAnnonceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([]), NgbModule.forRoot()],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([]), NgbModule],
       declarations: [PostAnnonceComponent],
     }).compileComponents();
 
