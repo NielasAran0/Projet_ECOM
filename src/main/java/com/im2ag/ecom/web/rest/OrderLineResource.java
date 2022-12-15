@@ -5,7 +5,9 @@ import com.im2ag.ecom.repository.OrderLineRepository;
 import com.im2ag.ecom.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -181,5 +183,23 @@ public class OrderLineResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**
+     * {@code GET  /order-lines} : returns the products and quantities of each order line given user orders
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of orderLines in body.
+     */
+    @GetMapping("/order-lines/user-orders")
+    public List<Entry<Long, Integer>> getAllOrderLinesUserOrder(@RequestBody List<Long> user_order_ids) {
+        log.debug("REST request to get all OrderLines");
+        List<OrderLine> list = orderLineRepository.findAll();
+        List<Entry<Long, Integer>> pairList_productId_quantity = new java.util.ArrayList<>();
+        for (OrderLine orderLine : list) {
+            if (user_order_ids.contains(orderLine.getId())) {
+                pairList_productId_quantity.add(new SimpleEntry<>(orderLine.getProduct().getId(), orderLine.getQuantity()));
+            }
+        }
+        return pairList_productId_quantity;
     }
 }

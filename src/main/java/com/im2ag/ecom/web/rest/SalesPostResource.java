@@ -6,8 +6,14 @@ import com.im2ag.ecom.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,6 +47,9 @@ public class SalesPostResource {
     private String applicationName;
 
     private final SalesPostRepository salesPostRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public SalesPostResource(SalesPostRepository salesPostRepository) {
         this.salesPostRepository = salesPostRepository;
@@ -230,5 +239,49 @@ public class SalesPostResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**
+     * {@code PUT /sales-posts/stock} : update the stock of the given product if possible
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)}.
+     */
+    @PutMapping("/sales-posts/stock")
+    public ResponseEntity<Void> updateQuantities(@RequestBody Entry<Long, Integer> product_command_quantities) {
+        log.debug("REST request to update stock");
+        List<SalesPost> sList = salesPostRepository.findAll();
+        Long id = -1L;
+        for (SalesPost salesPost : sList) {
+            if (salesPost.getProduct().getId() == product_command_quantities.getKey()) {
+                id = salesPost.getId();
+            }
+        }
+        try {
+            entityManager.getTransaction().begin();
+            // create the query
+            //Query("SELECT e FROM SalesPost e WHERE e.limitDate > current_timestamp AND e.stock > 0 AND e.price <= :maxPrice")
+            Query query = entityManager.createQuery("SELECT e FROM SalesPost e WHERE e.id = :id").setParameter("id", id);
+
+            // lock the row by appending "FOR UPDATE" to the query
+            query.setLockMode(LockModeType.PESSIMISTIC_WRITE);
+
+            SalesPost salesPost = (SalesPost) query.getSingleResult();
+            Integer newStock = salesPost.getStock() - product_command_quantities.getValue();
+            if (newStock < 0) {
+                throw new IllegalArgumentException("Stock trop faible");
+            }
+            Query updateQuery = entityManager.createQuery("UPDATE SalesPost e SET e.stock = :newStock WHERE e.id = :id");
+            query.setParameter("newStock", newStock);
+            query.setParameter("id", id);
+
+            updateQuery.executeUpdate();
+
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

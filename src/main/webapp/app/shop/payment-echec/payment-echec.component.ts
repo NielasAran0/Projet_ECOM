@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'jhi-payment-echec',
@@ -6,6 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment-echec.component.scss'],
 })
 export class PaymentEchecComponent {
-  //constructor() { }
-  //ngOnInit(): void {}
+  // constructor() { }
+  // ngOnInit(): void {}
 }

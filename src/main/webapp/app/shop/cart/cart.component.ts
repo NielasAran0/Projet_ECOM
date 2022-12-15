@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'jhi-cart',
@@ -6,6 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-  //constructor() {}
-  //ngOnInit(): void
+  // constructor() {}
+  // ngOnInit(): void
 }

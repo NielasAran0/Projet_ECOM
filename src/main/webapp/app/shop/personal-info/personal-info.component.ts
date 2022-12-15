@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AppUserTransmissionService } from '../app-user-transmission.service';
 
 @Component({
   selector: 'jhi-personal-info-component',
@@ -24,9 +25,9 @@ export class PersonalInfoComponent {
     CGV: new FormControl('', Validators.required),
   });
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private http: HttpClient, private appUserTransmissionService: AppUserTransmissionService) {}
 
-  //ngOnInit(): void {}
+  // ngOnInit(): void {}
 
   countryValidator(): void {
     if (this.personal_info_form.controls['pays'].value === 'france') {
@@ -47,7 +48,17 @@ export class PersonalInfoComponent {
   }
 
   onSubmit(): void {
-    //Ajouter if sur l'email, si il existe deja -> payment, sinon page de connexion/creation compte a faire
-    this._router.navigate(['../payment']);
+    const tel: string | null = this.personal_info_form.controls['telephone'].value;
+    const addr: string | null = this.personal_info_form.controls['addresse'].value;
+    const code_postal: string | null = this.personal_info_form.controls['code_postal'].value;
+    const ville: string | null = this.personal_info_form.controls['ville'].value;
+    const pays: string | null = this.personal_info_form.controls['pays'].value;
+    const nom: string | null = this.personal_info_form.controls['nom'].value;
+    const prenom: string | null = this.personal_info_form.controls['prenom'].value;
+    this.appUserTransmissionService.setTel(tel);
+    this.appUserTransmissionService.setAddresse(
+      String(nom) + ' ' + String(prenom) + ' ' + String(addr) + ' ' + String(code_postal) + ' ' + String(ville) + ' ' + String(pays)
+    );
+    this._router.navigate(['/shop/payment']);
   }
 }
