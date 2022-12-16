@@ -84,7 +84,14 @@ export class AccueilComponent implements OnInit, OnDestroy {
             });
         }
       });
-
+    const tmp = localStorage.getItem('cart');
+    if(tmp!=null){
+      cart = JSON.parse(tmp);
+    }else{
+      cart:any[] = []
+    }
+    this.setMessage(cart);
+  }
   }
 
   ngOnDestroy(): void {
