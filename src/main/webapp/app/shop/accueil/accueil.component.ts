@@ -86,7 +86,8 @@ export class AccueilComponent implements OnInit, OnDestroy {
       });
       const tmp = localStorage.getItem('cart');
       if(tmp===null){
-        localStorage.setItem('cart',[])
+        const array=[];
+        localStorage.setItem('cart',JSON.stringify(array))
       }
   }
 
