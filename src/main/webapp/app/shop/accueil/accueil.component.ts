@@ -128,8 +128,9 @@ export class AccueilComponent implements OnInit, OnDestroy {
         ele.quantity = 1;
         cart.push(ele);
       } else {
-        ele.quantity++;
-        cart.splice(index, 1, ele);
+        const item = cart[index];
+        item.quantity++;
+        cart.splice(index, 1, item);
       }
     } else {
       cart = [ele];
