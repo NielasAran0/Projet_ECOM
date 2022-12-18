@@ -1,19 +1,30 @@
 <form class="form-container" [formGroup]="personal_info_form" (ngSubmit)="onSubmit()">
   <div>
     <label class="form-label" for="name">Nom :</label>
+    <span *ngIf="f.nom.invalid && (f.nom.dirty || f.nom.touched)" class="form-error">
+      Le nom est obligatoire et doit comporter moins de 128 caractères
+    </span>
     <input class="form-control" type="text" id="name" formControlName="nom" />
+
     <label class="form-label" for="surname">Prenom :</label>
+    <span *ngIf="f.prenom.invalid && (f.prenom.dirty || f.prenom.touched)" class="form-error">
+      Le prenom est obligatoire et doit comporter moins de 128 caractères
+    </span>
     <input class="form-control" type="text" id="surname" formControlName="prenom" />
   </div>
   <div>
     <label class="form-label" for="mail">E-mail&nbsp;:</label>
+    <span *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="form-error">
+      Le mail est obligatoire et doit être une adresse mail valide.
+    </span>
     <input class="form-control" type="email" id="mail" formControlName="email" />
   </div>
   <!--Pour les pays, regions, et departements dropbox de choix-->
   <div>
     <label class="form-label" for="pays">Pays :</label>
+    <span *ngIf="f.pays.invalid && (f.pays.dirty || f.pays.touched)" class="form-error"> Le pays est obligatoire. </span>
     <select #payslist class="dropdown" id="pays" formControlName="pays" value="test" (change)="updatePays(payslist.value)">
-      <option class="form-dropdown-option" value="none">-</option>
+      <option class="form-dropdown-option" value="">-</option>
       <option class="form-dropdown-option" value="belgique">Belgique</option>
       <option class="form-dropdown-option" value="france">France</option>
       <option class="form-dropdown-option" value="suisse">Suisse</option>
@@ -21,6 +32,7 @@
     <span [ngSwitch]="[personal_info_form.controls['pays'].value]">
       <br *ngSwitchCase="'france'" />
       <label class="form-label" for="regions" *ngSwitchCase="'france'">Region: </label>
+      <span *ngIf="f.region.invalid && (f.region.dirty || f.region.touched)" class="form-error"> La region est obligatoire. </span>
       <input class="form-control" list="regions_france" id="regions" formControlName="region" *ngSwitchCase="'france'" />
       <datalist id="regions_france">
         <option value="Auvergne-Rhône-Alpes"></option>
@@ -39,6 +51,9 @@
       </datalist>
 
       <label class="form-label" for="dept" *ngSwitchCase="'france'">Departement :</label>
+      <span *ngIf="f.departement.invalid && (f.departement.dirty || f.departement.touched)" class="form-error">
+        Le departement est obligatoire.
+      </span>
       <input class="form-control" list="departements_ARA" id="dept" formControlName="departement" *ngSwitchCase="'france'" />
       <datalist id="departements_ARA">
         <option value="Ain"></option>
@@ -63,6 +78,9 @@
     <label class="form-label" for="ville">Ville :</label>
     <input class="form-control" type="text" id="ville" formControlName="ville" />
     <label class="form-label" for="code_postal">Code Postal :</label>
+    <span *ngIf="f.code_postal.invalid && (f.code_postal.dirty || f.code_postal.touched)" class="form-error">
+      Le code postal de {{ f.pays.value }} est obligatoire et doit être en {{ f.pays.value === 'france' ? 5 : 4 }} chiffres.
+    </span>
     <input class="form-control" type="text" id="code_postal" formControlName="code_postal" />
     <label class="form-label" for="addresse">Addresse Postale</label>
     <input class="form-control" type="text" id="addresse" formControlName="addresse" />
@@ -70,10 +88,16 @@
   <!--ajouter identificateur pays-->
   <div>
     <label class="form-label" for="telephone">Telephone :</label>
+    <span *ngIf="f.telephone.invalid && (f.telephone.dirty || f.telephone.touched)" class="form-error">
+      Téléphone est obligatoire et doit être en chiffres.
+    </span>
     <input class="form-control" type="tel" id="telephone" formControlName="telephone" />
   </div>
   <div class="button">
     <!-- ><button class="form-button" type="submit" [routerLink]="['../payment']">Valider les informations personnelles</button>-->
-    <button class="form-button" type="submit" [disabled]="!personal_info_form.valid">Valider les informations personnelles</button>
+    <!--  -->
+    <button class="form-button btn btn-info" type="submit" [disabled]="!personal_info_form.valid">
+      Valider les informations personnelles
+    </button>
   </div>
 </form>

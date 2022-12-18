@@ -4,15 +4,23 @@
   </div>
   <div>
     <label class="form-label" for="cardnum">Numero de carte :</label>
+    <span *ngIf="f.numero_carte.invalid && (f.numero_carte.dirty || f.numero_carte.touched)" class="form-error">
+      La numero de carte de 16 chiffres est obligatoire.
+    </span>
     <input class="form-control" type="text" id="cardnum" formControlName="numero_carte" />
   </div>
   <div>
     <label class="form-label" for="expdate">Date d'expiration</label>
-    <input class="form-control" type="month" id="expdate" formControlName="exp_date" />
+    <span *ngIf="f.exp_date.invalid && (f.exp_date.dirty || f.exp_date.touched)" class="form-error">
+      La Date d'expiration (YYYY-MM) est obligatoire.
+    </span>
+    <input class="form-control" type="month" [min]="minValue" id="expdate" formControlName="exp_date" />
+
     <label class="form-label" for="cvv">CVV</label>
+    <span *ngIf="f.cvv.invalid && (f.cvv.dirty || f.cvv.touched)" class="form-error"> La cvv de 3 chiffres est obligatoire. </span>
     <input class="form-control" type="text" id="cvv" formControlName="cvv" />
   </div>
   <div class="button">
-    <button class="form-button" type="submit" [disabled]="!payment_form.valid">Valider les informations de paiement</button>
+    <button class="form-button btn btn-info" type="submit" [disabled]="!payment_form.valid">Valider les informations de paiement</button>
   </div>
 </form>
