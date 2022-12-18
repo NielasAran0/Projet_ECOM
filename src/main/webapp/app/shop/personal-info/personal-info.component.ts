@@ -54,6 +54,7 @@ export class PersonalInfoComponent implements OnInit {
     this.personal_info_form.patchValue({ pays: val });
     this.countryValidator();
     // this.personal_info_form.updateValueAndValidity();
+    // eslint-disable-next-line guard-for-in
     for (const control in this.personal_info_form.controls) {
       this.personal_info_form.controls[control].updateValueAndValidity();
     }
