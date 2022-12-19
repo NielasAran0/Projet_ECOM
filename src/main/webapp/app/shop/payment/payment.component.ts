@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartServiceService } from '../service/cart-service.service';
 
 @Component({
   selector: 'jhi-payment',
@@ -11,7 +12,7 @@ export class PaymentComponent implements OnInit {
   payment_form!: FormGroup;
   minValue = '';
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private cartService: CartServiceService) {}
   ngOnInit(): void {
     this.payment_form = new FormGroup({
       numero_carte: new FormControl('', [Validators.required, Validators.pattern('[0-9]{16}')]),
@@ -32,9 +33,9 @@ export class PaymentComponent implements OnInit {
   onSubmit(): void {
     if (this.payment_form.valid) {
       this._router.navigate([this._router.url + '/succes']);
-
-      // remove cart, personal-info-form
-      localStorage.clear();
+      this.cartService.setCommande();
+      // remove personal-info-form
+      localStorage.removeItem('personal_info_form');
     }
   }
 }

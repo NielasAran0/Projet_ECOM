@@ -27,8 +27,13 @@ export class CartServiceService {
   public storage: BehaviorSubject<any[]>;
   public subTotal: BehaviorSubject<number>;
 
+  public commande: BehaviorSubject<any[]>;
+  public subTotalCommande: BehaviorSubject<number>;
+
   constructor(private http: HttpClient) {
     const tmp = localStorage.getItem('cart');
+    const commandeL = localStorage.getItem('commande');
+
     let count = 0;
     const list = tmp ? JSON.parse(tmp) : [];
     if (list.length !== 0) {
@@ -37,7 +42,6 @@ export class CartServiceService {
       });
     }
     this.storageChange = new BehaviorSubject<number>(count);
-
     this.storage = new BehaviorSubject<any[]>(list);
 
     let total = 0;
@@ -45,6 +49,14 @@ export class CartServiceService {
       total = element.price * element.quantity + total;
     });
     this.subTotal = new BehaviorSubject<number>(total);
+
+    let commandeTotal = 0;
+    const listCommande = tmp ? JSON.parse(tmp) : [];
+    listCommande.forEach((element: any) => {
+      commandeTotal = element.price * element.quantity + commandeTotal;
+    });
+    this.commande = new BehaviorSubject<any[]>(listCommande);
+    this.subTotalCommande = new BehaviorSubject<number>(commandeTotal);
   }
 
   public setStorageItem(change: []): void {
@@ -103,7 +115,23 @@ export class CartServiceService {
     this.setStorageItem(list);
   }
 
-  getImage(): Observable<IImage[]> {
-    return this.http.get<IImage[]>('/api/images');
+  setCommande(): void {
+    const items = localStorage.getItem('cart');
+    const list = items ? JSON.parse(items) : [];
+    localStorage.setItem('commande', JSON.stringify(list));
+    let total = 0;
+    list.forEach((element: any) => {
+      total = element.price * element.quantity + total;
+    });
+    this.subTotalCommande.next(total);
+    this.commande.next(list);
+    this.setStorageItem([]);
+  }
+
+  getSubTotalCommande(): Observable<number> {
+    return this.subTotalCommande;
+  }
+  getCommande(): Observable<any[]> {
+    return this.commande;
   }
 }

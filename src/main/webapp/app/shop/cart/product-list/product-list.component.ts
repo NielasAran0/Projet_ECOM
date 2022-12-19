@@ -16,9 +16,6 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.items$ = this.CartService.getCart();
-    this.CartService.getImage().subscribe((image: IImage[]) => {
-      this.image = image;
-    });
   }
 
   deleteItem(product: ISalesPost): void {
