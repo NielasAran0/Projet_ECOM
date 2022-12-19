@@ -12,11 +12,12 @@ import { OrderService } from '../service/order.service';
 export class BuyerOrderComponent implements OnInit {
   order: IUserOrder = {} as IUserOrder;
   items$: Observable<any[]> | undefined;
-
+  subTotal$: Observable<number> | undefined;
   constructor(private orderService: OrderService, private CartService: CartServiceService) {}
 
   ngOnInit(): void {
     this.orderService.getOrder().subscribe((order: IUserOrder) => (this.order = order));
-    this.items$ = this.CartService.getCart();
+    this.items$ = this.CartService.getCommande();
+    this.subTotal$ = this.CartService.getSubTotalCommande();
   }
 }
