@@ -3,21 +3,21 @@
     <button class="form-button" type="text" [routerLink]="['../personal-info']">Retour aux informations personelles</button>
   </div>
   <div>
-    <label class="form-label" for="cardnum">Numero de carte :</label>
+    <label class="form-label" for="cardnum">Numéro de carte<span style="color: red">*</span> :</label>
     <span *ngIf="f.numero_carte.invalid && (f.numero_carte.dirty || f.numero_carte.touched)" class="form-error">
-      La numero de carte de 16 chiffres est obligatoire.
+      Le numéro de carte doit être composé de 16 chiffres.
     </span>
     <input class="form-control" type="text" id="cardnum" formControlName="numero_carte" />
   </div>
   <div>
-    <label class="form-label" for="expdate">Date d'expiration</label>
+    <label class="form-label" for="expdate">Date d'expiration<span style="color: red">*</span> :</label>
     <span *ngIf="f.exp_date.invalid && (f.exp_date.dirty || f.exp_date.touched)" class="form-error">
-      La Date d'expiration (YYYY-MM) est obligatoire.
+      La date d'expiration de la carte bancaire doit être écrite sous la forme (YYYY-MM).
     </span>
     <input class="form-control" type="month" [min]="minValue" id="expdate" formControlName="exp_date" />
 
-    <label class="form-label" for="cvv">CVV</label>
-    <span *ngIf="f.cvv.invalid && (f.cvv.dirty || f.cvv.touched)" class="form-error"> La cvv de 3 chiffres est obligatoire. </span>
+    <label class="form-label" for="cvv">CVV<span style="color: red">*</span> : </label>
+    <span *ngIf="f.cvv.invalid && (f.cvv.dirty || f.cvv.touched)" class="form-error"> La CVV doit être composée de 3 chiffres. </span>
     <input class="form-control" type="text" id="cvv" formControlName="cvv" />
   </div>
   <div class="button">
