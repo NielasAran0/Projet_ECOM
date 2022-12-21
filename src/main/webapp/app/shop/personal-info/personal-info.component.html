@@ -4,18 +4,18 @@
     <span *ngIf="f.nom.invalid && (f.nom.dirty || f.nom.touched)" class="form-error">
       Le nom doit être composé de moins de 128 caractères.
     </span>
-    <input class="form-control" type="text" id="name" formControlName="nom" />
+    <input class="form-control" type="text" id="name" formControlName="nom" placeholder="Ex : Personn" />
 
     <label class="form-label" for="surname">Prénom<span style="color: red">*</span> :</label>
     <span *ngIf="f.prenom.invalid && (f.prenom.dirty || f.prenom.touched)" class="form-error">
       Le prénom doit être composé de moins de 128 caractères.
     </span>
-    <input class="form-control" type="text" id="surname" formControlName="prenom" />
+    <input class="form-control" type="text" id="surname" formControlName="prenom" placeholder="Ex : Markus" />
   </div>
   <div>
     <label class="form-label" for="mail">Mail<span style="color: red">*</span> :</label>
     <span *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="form-error"> L'adresse mail n'est pas valide. </span>
-    <input class="form-control" type="email" id="mail" formControlName="email" />
+    <input class="form-control" type="email" id="mail" formControlName="email" placeholder="Ex : xyz@example.com" />
   </div>
   <!--Pour les pays, regions, et departements dropbox de choix-->
   <div>
@@ -72,14 +72,14 @@
   </div>
   <div>
     <label class="form-label" for="ville">Ville<span style="color: red">*</span> :</label>
-    <input class="form-control" type="text" id="ville" formControlName="ville" />
+    <input class="form-control" type="text" id="ville" formControlName="ville" placeholder="Ex : Chambéry" />
     <label class="form-label" for="code_postal">Code postal<span style="color: red">*</span> :</label>
     <span *ngIf="f.code_postal.invalid && (f.code_postal.dirty || f.code_postal.touched)" class="form-error">
       Le code postal du pays {{ f.pays.value }} est obligatoire et doit être composé de {{ f.pays.value === 'france' ? 5 : 4 }} chiffres.
     </span>
-    <input class="form-control" type="text" id="code_postal" formControlName="code_postal" />
+    <input class="form-control" type="text" id="code_postal" formControlName="code_postal" placeholder="Ex : 73000" />
     <label class="form-label" for="addresse">Adresse postale<span style="color: red">*</span> :</label>
-    <input class="form-control" type="text" id="addresse" formControlName="addresse" />
+    <input class="form-control" type="text" id="addresse" formControlName="addresse" placeholder="Ex : 5 avenue de la république" />
   </div>
   <!--ajouter identificateur pays-->
   <div>
@@ -87,7 +87,7 @@
     <span *ngIf="f.telephone.invalid && (f.telephone.dirty || f.telephone.touched)" class="form-error">
       Le téléphone est obligatoire et doit être composé de 10 chiffres.
     </span>
-    <input class="form-control" type="tel" id="telephone" formControlName="telephone" />
+    <input class="form-control" type="tel" id="telephone" formControlName="telephone" placeholder="Ex : 0479550166" />
   </div>
   <div class="button">
     <!-- ><button class="form-button" type="submit" [routerLink]="['../payment']">Valider les informations personnelles</button>-->

@@ -7,18 +7,18 @@
     <span *ngIf="f.numero_carte.invalid && (f.numero_carte.dirty || f.numero_carte.touched)" class="form-error">
       Le numéro de carte doit être composé de 16 chiffres.
     </span>
-    <input class="form-control" type="text" id="cardnum" formControlName="numero_carte" />
+    <input class="form-control" type="text" id="cardnum" formControlName="numero_carte" placeholder="Ex : 6565444433338745" />
   </div>
   <div>
     <label class="form-label" for="expdate">Date d'expiration<span style="color: red">*</span> :</label>
     <span *ngIf="f.exp_date.invalid && (f.exp_date.dirty || f.exp_date.touched)" class="form-error">
       La date d'expiration de la carte bancaire doit être écrite sous la forme (YYYY-MM).
     </span>
-    <input class="form-control" type="month" [min]="minValue" id="expdate" formControlName="exp_date" />
+    <input class="form-control" type="month" [min]="minValue" id="expdate" formControlName="exp_date" placeholder="2025-07" />
 
     <label class="form-label" for="cvv">CVV<span style="color: red">*</span> : </label>
     <span *ngIf="f.cvv.invalid && (f.cvv.dirty || f.cvv.touched)" class="form-error"> La CVV doit être composée de 3 chiffres. </span>
-    <input class="form-control" type="text" id="cvv" formControlName="cvv" />
+    <input class="form-control" type="text" id="cvv" formControlName="cvv" placeholder="564" />
   </div>
   <div class="button">
     <button class="form-button btn btn-info" type="submit" [disabled]="!payment_form.valid">Valider les informations de paiement</button>
